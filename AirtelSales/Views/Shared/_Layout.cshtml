@@ -25,25 +25,26 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/Site.css" rel="stylesheet" />
 
-    @*@Styles.Render("~/Omnistack-UI-html/lib/fontawesome-free/css")
-        @Styles.Render("~/Omnistack-UI-html/lib/ionicons/css")
-        @Styles.Render("~/Omnistack-UI-html/lib/typicons.font")
-        @Styles.Render("~/Omnistack-UI-html/lib/simplebar/css")
-        @Styles.Render("~/Omnistack-UI-html/lib/select2/css")
-        @Styles.Render("~/Omnistack-UI-html/css")
-        @Styles.Render("~/Omnistack-UI-html/css/custom")*@
-    @*@Scripts.Render("~/Omnistack-UI-html/lib/jquery")*@
+    @Styles.Render("~/Omnistack-UI-html/lib/fontawesome-free/css")
+    @Styles.Render("~/Omnistack-UI-html/lib/ionicons/css")
+    @Styles.Render("~/Omnistack-UI-html/lib/typicons.font")
+    @Styles.Render("~/Omnistack-UI-html/css")
+    @Styles.Render("~/Omnistack-UI-html/lib/simplebar/css")
+    @Styles.Render("~/Omnistack-UI-html/lib/select2/css")
 
-    @*@Scripts.Render("~/Omnistack-UI-html/lib/bootstrap/js")*@
+    @*@Styles.Render("~/Omnistack-UI-html/css/custom")*@
+
+    @Scripts.Render("~/Omnistack-UI-html/lib/jquery")
+    @Scripts.Render("~/Omnistack-UI-html/lib/bootstrap/js")
 
     <!-- vendor css -->
-    <link href="~/Omnistack-UI-html/lib/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="~/Omnistack-UI-html/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="~/Omnistack-UI-html/lib/typicons.font/typicons.css" rel="stylesheet">
+    @*<link href="~/Omnistack-UI-html/lib/fontawesome-free/css/all.min.css" rel="stylesheet">
+        <link href="~/Omnistack-UI-html/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+        <link href="~/Omnistack-UI-html/lib/typicons.font/typicons.css" rel="stylesheet">*@
     <link href="~/Omnistack-UI-html/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
 
     <!-- azia CSS -->
-    <link href="~/Omnistack-UI-html/css/azia.css" rel="stylesheet" />
+    @*<link href="~/Omnistack-UI-html/css/azia.css" rel="stylesheet" />*@
 
 </head>
 <body class="az-body az-body-sidebar az-body-dashboard-nine">
@@ -83,7 +84,7 @@
                     </li>*@
 
 
-                    //AirtelSalesDBEntities db = new AirtelSalesDBEntities();
+                    //AirtelSalesDBEntities db = new AirtelSalesDBEntities(); 
                     //var userId = User.Identity.GetUserId();
                     //var mkt = db.MarketDevelopers.Where(m => m.UserId == userId).FirstOrDefault();
                     <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "IncentiveConfigs" ? "active" : "")">
@@ -92,11 +93,11 @@
                             @if (ViewContext.HttpContext.User.IsInRole("MarketDeveloper"))
                             {
                                 <li class="nav-sub-item @(ViewContext.RouteData.Values["controller"].ToString() == "Incentive" ? "active" : "")">
-                                    <a href="@Url.Action("Dashboard", "Incentive")" class="nav-sub-link"><i class="fa fa-money-bill" style="font-size: 1.1em"></i> Incentive </a>
+                                    <a href="@Url.Action("Dashboard", "Incentive")" class="nav-sub-link"><i class="fa fa-money-bill" style="font-size: 1.2em; margin-right:10px"></i> Incentive </a>
                                 </li>
                             }
                             <li class="nav-sub-item @(ViewContext.RouteData.Values["controller"].ToString() == "IncentiveConfigs" ? "active" : "")">
-                                <a href="@Url.Action("Index", "IncentiveConfigs")" class="nav-link "><i class="fa fa-address-book" style="font-size: 1.1em"></i> Configuration </a>
+                                <a href="@Url.Action("Index", "IncentiveConfigs")" class="nav-sub-link "><i class="fa fa-address-book" style="font-size: 1.2em; margin-right:10px"></i> Configuration </a>
                             </li>
 
                         </ul>
@@ -269,7 +270,7 @@
 
     @*<script src="~/Omnistack-UI-html/lib/jquery/jquery.min.js"></script>*@
     <script src="~/Omnistack-UI-html/lib/jquery-ui/ui/widgets/datepicker.js"></script>
-    <script src="~/Omnistack-UI-html/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/Omnistack-UI-html/lib/bootstrap/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/Omnistack-UI-html/lib/ionicons/ionicons.js"></script>
     <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.js"></script>
     <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.resize.js"></script>
