@@ -1,0 +1,169 @@
+﻿@model AirtelSales.Models.Profile
+@{
+    ViewBag.Title = "UpdateUserRole";
+}
+<div class="welcome">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h2>Update User Role</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="welcome">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content table-di" style="min-height:320px">
+                    <div class="col-md-10" style="padding-left: 0">
+                        @if (ViewBag.ErrorMessage != null)
+                        {
+                            <div class="form-group col-md-12">
+                                <p class="alert alert-danger">@ViewBag.ErrorMessage</p>
+                            </div>
+
+                        }
+                        @using (Html.BeginForm("UpdateUserRole", "Account", FormMethod.Post))
+                        {
+                            <input type="hidden" value="@ViewBag.User.Id" id="userId" name="userId" />
+                            <input type="hidden" value="@ViewBag.Role" id="OldRole" name="OldRole" />
+
+                            <div class="form-group col-md-6">
+                                <label for="Email"> Email</label>
+                                <input type="email" class="form-control " name="Email" id="Email" value="@ViewBag.User.Email" placeholder="Enter Email .." readonly  />
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.Label("Role", new { @class = "control-label " })
+                                <input type="hidden" value="@ViewBag.Role" id="iniRole" />
+                                @Html.DropDownList("Role", ViewBag.Roles as SelectList, "--Select Role--", new { @class = "form-control", required = "required" })
+                                @Html.ValidationMessage("Role", "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                    @Html.Label("FullName", new { @class = "control-label " })
+                                    @*@Html.TextBox("Name", new { @class = "form-control", placeholder = "FirstName LastName", @Value=ViewBag.FullName, required = "required" })*@
+                                <input type="text" class="form-control " name="Name" id="Name" value="@ViewBag.FullName" placeholder="FirstName LastName"  />    
+                                @Html.ValidationMessage("Name", "", new { @class = "text-danger" })
+                               
+                            </div>
+
+                            <div class="form-group col-md-6" id="regionDiv">
+                                
+                                    @Html.Label("Region", new { @class = "control-label " })
+                                    @Html.DropDownList("RegionId", ViewBag.Regions as SelectList, "--Select Region--", new { @class = "form-control" })
+                                    @Html.ValidationMessage("RegionId", "", new { @class = "text-danger" })
+                                
+                            </div>
+                            <div class="form-group col-md-6" id="areaDiv">
+                                    @Html.Label("Area", new { @class = "control-label " })
+                                    @Html.DropDownList("AreaId", ViewBag.Areas as SelectList, "--Select Area--", new { @class = "form-control" })
+                                    @Html.ValidationMessage("AreaId", "", new { @class = "text-danger" })
+                                
+                            </div>
+
+                            <div class="form-group col-md-6" id="zoneDiv">
+                                    @Html.Label("Zone", new { @class = "control-label " })
+                                    @Html.DropDownList("ZoneId", ViewBag.Zones as SelectList, "--Select Zone--", new { @class = "form-control" })
+                                    @Html.ValidationMessage("ZoneId", "", new { @class = "text-danger" })
+                           
+                            </div>
+
+                            <div class="form-group col-md-6" id="RegionalManagerDiv">
+                                    @Html.Label("Regional Manager", new { @class = "control-label " })
+                                    @Html.DropDownList("RegionalManagerId", ViewBag.RegionalManagers as SelectList, "--Select RegionalManager--", new { @class = "form-control" })
+                                    @Html.ValidationMessage("RegionalManagerId", "", new { @class = "text-danger" })
+                               
+                            </div>
+
+                            <div class="form-group col-md-6" id="ZonalManagerDiv">
+                                    @Html.Label("Zonal Manager", new { @class = "control-label " })
+                                    @Html.DropDownList("ZonalManagerId", ViewBag.ZonalManagers as SelectList, "--Select ZonalManager--", new { @class = "form-control" })
+                                    @Html.ValidationMessage("ZonalManagerId", "", new { @class = "text-danger" })
+                             
+                            </div>
+
+                            <div class="form-group col-md-6" id="AreaManagerDiv">
+                                    @Html.Label("Area Manager", new { @class = "control-label " })
+                                    @Html.DropDownList("AreaManagerId", ViewBag.AreaManagers as SelectList, "--Select ArealManager--", new { @class = "form-control" })
+                                    @Html.ValidationMessage("AreaManagerId", "", new { @class = "text-danger" })
+                                
+                            </div>
+
+                            <div class="form-group">
+                                <div class=" col-md-10">
+                                    <input type="submit" class="btn btn-danger" value="Submit" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $("#Role").children('[value="' + $("#iniRole").val() + '"]').attr('selected', true);
+
+        })
+
+        $(document).ready(function () {
+            $("#RegionalManagerDiv").hide();
+            $("#ZonalManagerDiv").hide();
+            $("#AreaManagerDiv").hide();
+            $("#regionDiv").hide();
+            $("#zoneDiv").hide();
+            $("#areaDiv").hide();
+
+            $("#Role").change(function () {
+                if ($(this).val() == "RegionalManager") {
+                    $("#RegionalManagerDiv").hide();
+                    $("#ZonalManagerDiv").hide();
+                    $("#AreaManagerDiv").hide();
+                    $("#regionDiv").show();
+                    $("#zoneDiv").hide();
+                    $("#areaDiv").hide();
+                }
+                else if ($(this).val() == "ZonalManager") {
+                    $("#RegionalManagerDiv").show();
+                    $("#ZonalManagerDiv").hide();
+                    $("#AreaManagerDiv").hide();
+                    $("#regionDiv").hide();
+                    $("#zoneDiv").show();
+                    $("#areaDiv").hide();
+                }
+                else if ($(this).val() == "AreaManager") {
+                    $("#RegionalManagerDiv").show();
+                    $("#ZonalManagerDiv").show();
+                    $("#AreaManagerDiv").hide();
+                    $("#regionDiv").hide();
+                    $("#zoneDiv").hide();
+                    $("#areaDiv").show();
+                }
+                else if ($(this).val() == "MarketDeveloper") {
+                    $("#RegionalManagerDiv").show();
+                    $("#ZonalManagerDiv").show();
+                    $("#AreaManagerDiv").show();
+                    $("#regionDiv").hide();
+                    $("#zoneDiv").hide();
+                    $("#areaDiv").hide();
+                }
+            })
+        })
+    </script>
+}
+
+
+
+

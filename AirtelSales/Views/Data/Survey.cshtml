@@ -1,0 +1,137 @@
+﻿@model IEnumerable<AirtelSales.DAL.all_survey_responses>
+@using AirtelSales.DAL;
+
+@{
+    ViewBag.Title = "Survey";
+}
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                <div class="card-header">
+                    <h2>Survey Data</h2>
+                </div>
+                <div class="card-body">
+
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                <div class="card-header">
+                    <div style="margin: 20px auto">
+                        <table class="table" id="table_id">
+                            <thead>
+                                <tr>
+                                    @*<th>
+                                            @Html.DisplayNameFor(model => model.SurveyId)
+                                        </th>*@
+                                    <th>
+                                        Question
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SurveyAnswer)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.agentcode)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.submission_date)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.geo_longitude)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.geo_latitude)
+                                    </th>
+                                    @*<th>
+                                            @Html.DisplayNameFor(model => model.location_id)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.state_id)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.region_id)
+                                        </th>
+                                        <th></th>*@
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    AirtelSalesDBEntities db = new AirtelSalesDBEntities();
+                                    var question = db.all_survey_questions.Find(item.SurveryQuestionId);
+                                    <tr>
+                                        @*<td>;
+                                                @Html.DisplayFor(modelItem => item.survey_types.SurveyType)
+                                            </td>*@
+                                        <td>
+                                            @question.SurveyQuestion
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SurveyAnswer)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.agentcode)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.submission_date)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.geo_longitude)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.geo_latitude)
+                                        </td>
+                                        @*<td>
+                                                @Html.DisplayFor(modelItem => item.location_id)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.state_id)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.region_id)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                                                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                                            </td>*@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+
+
+
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section Scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                //"scrollX": true,
+                "ordering": false
+            });
+        });
+    </script>
+}

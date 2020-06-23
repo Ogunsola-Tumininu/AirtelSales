@@ -1,0 +1,129 @@
+﻿@model AirtelSales.DAL.all_surveys
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <div class="col-md-12">
+        <div class="card card-dashboard-twelve mg-b-20">
+
+            <div class="media-body">
+                <div class="card card-minimal-two">
+                    <div class="card-header">
+                        <h2>Survey Details  </h2>
+                        <a href="@Url.Action("Survey", "Data", new { Id = Model.Id })" class="btn btn-outline-danger float-right">View Data</a>
+                    </div>
+                    <div class="card-body">
+
+                    </div><!-- card-body -->
+                </div><!-- card minimal-->
+            </div> <!--media body-->
+        </div> <!--card-->
+    </div>
+
+    <div class="col-md-12">
+        <div class="card card-dashboard-twelve mg-b-20">
+
+            <div class="media-body">
+                <div class="card card-minimal-two">
+                    <div class="card-body">
+                        <div style="margin: 25px auto">
+                            <div class="col-md-5 col-xl-4 mg-t-40 mg-md-t-0">
+                                <div class="az-profile-contact-list">
+                                    <div>
+                                        <dl class="dl-horizontal">
+                                            <dt>
+                                                @Html.DisplayNameFor(model => model.SurveyName)
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.SurveyName)
+                                            </dd>
+
+                                            <dt>
+                                                @Html.DisplayNameFor(model => model.SurveryStartDate)
+                                            </dt>
+
+                                            <dd>
+                                                @String.Format("{0:dd MMM, yyyy}", Model.SurveryStartDate)
+                                            </dd>
+
+                                            <dt>
+                                                @Html.DisplayNameFor(model => model.SurveryExpiryDate)
+                                            </dt>
+
+                                            <dd>
+                                                @String.Format("{0:dd MMM, yyyy}", Model.SurveryExpiryDate)
+                                            </dd>
+
+                                            <dt>
+                                                @Html.DisplayNameFor(model => model.SurveyStatus)
+                                            </dt>
+
+                                            <dd>
+                                                @{
+                                                    if (Model.SurveyStatus == 1)
+                                                    {
+                                                        <p>Active</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>Inactive</p>
+                                                    }
+                                                }
+                                            </dd>
+
+                                            <dt>
+                                                @Html.DisplayNameFor(model => model.created_date)
+                                            </dt>
+
+                                            <dd>
+                                                @String.Format("{0:dd MMM, yyyy}", Model.created_date)
+                                            </dd>
+
+                                            <dt>
+                                                @Html.DisplayNameFor(model => model.created_by)
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.created_by)
+                                            </dd>
+
+                                            <dt>
+                                                @Html.DisplayNameFor(model => model.response_count)
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.response_count)
+                                            </dd>
+
+                                            <dt>
+                                                @Html.DisplayNameFor(model => model.survey_types.SurveyType)
+                                            </dt>
+
+                                            <dd>
+                                                @Html.DisplayFor(model => model.survey_types.SurveyType)
+
+                                            </dd>
+
+                                        </dl>
+                                    </div>
+                                    <p>
+                                        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                                        @Html.ActionLink("Back to List", "Index")
+                                    </p>
+                                </div><!-- az-profile-contact-list -->
+                            </div>
+                        </div>
+                        
+                    </div><!-- card-body -->
+                </div><!-- card minimal-->
+            </div> <!--media body-->
+        </div> <!--card-->
+    </div>
+
+
+
+
+
+

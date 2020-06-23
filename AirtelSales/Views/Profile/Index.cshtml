@@ -1,0 +1,268 @@
+﻿@model AirtelSales.Models.Profile
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Profile Page - Airtel Sales </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="position: relative; overflow-y:hidden">
+
+    <div class="col-md-12 login" style="padding: 0; height:100vh !important">
+
+        <div class="col-md-6 col-md-offset-3 col-sm-12 ">
+            <div style=" border: 1px solid gray; background-color: white; opacity: 0.9; border-radius: 20px; padding: 25px; padding-top: 1%; margin: 30px 0px; height: 90% !important; overflow-y:scroll">
+                <div class="title" style="margin: 0 auto">
+                    <img src="~/Content/images/airtel-logo.png" style="width: 17%;" />
+
+                    <h3>Airtel Sales Portal</h3>
+                    <h4>Update Profile</h4>
+                </div>
+
+
+                @using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="row ">
+                <div class="col-md-6 col-lg-6">
+                    @Html.Label("FullName", new { @class = "form-control-label " })
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "FirstName LastName", required = "required" })
+                    @Html.ValidationMessage("Name", "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6 col-lg-6 mg-t-20 mg-md-t-0">
+                    @Html.Label("Role", new { @class = "form-control-label " })
+                    @Html.DropDownList("Role", ViewBag.Roles as SelectList, "--Select Role--", new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessage("Role", "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 col-lg-6" id="regionDiv">
+                    @Html.Label("Region", new { @class = "form-control-label " })
+                    @Html.DropDownList("RegionId", ViewBag.Regions as SelectList, "--Select Region--", new { @class = "form-control" })
+                    @Html.ValidationMessage("RegionId", "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6 col-lg-6 mg-t-20 mg-md-t-0" id="areaDiv">
+                    @Html.Label("Area", new { @class = "control-label " })
+                    @Html.DropDownList("AreaId", ViewBag.Areas as SelectList, "--Select Area--", new { @class = "form-control" })
+                    @Html.ValidationMessage("AreaId", "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 col-lg-6" id="zoneDiv">
+                    @Html.Label("Zone", new { @class = "form-control-label " })
+                    @Html.DropDownList("ZoneId", ViewBag.Zones as SelectList, "--Select Zone--", new { @class = "form-control" })
+                    @Html.ValidationMessage("ZoneId", "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6 col-lg-6 mg-t-20 mg-md-t-0" id="RegionalManagerDiv">
+                    @Html.Label("Regional Manager", new { @class = "control-label " })
+                    @Html.DropDownList("RegionalManagerId", ViewBag.RegionalManagers as SelectList, "--Select RegionalManager--", new { @class = "form-control" })
+                    @Html.ValidationMessage("RegionalManagerId", "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 col-lg-6" id="ZonalManagerDiv">
+                    @Html.Label("Zonal Manager", new { @class = "form-control-label " })
+                    @Html.DropDownList("ZonalManagerId", ViewBag.ZonalManagers as SelectList, "--Select ZonalManager--", new { @class = "form-control" })
+                    @Html.ValidationMessage("ZonalManagerId", "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-6 col-lg-6 mg-t-20 mg-md-t-0" id="AreaManagerDiv">
+                    @Html.Label("Area Manager", new { @class = "control-label " })
+                    @Html.DropDownList("AreaManagerId", ViewBag.AreaManagers as SelectList, "--Select ArealManager--", new { @class = "form-control" })
+                    @Html.ValidationMessage("AreaManagerId", "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 col-lg-6 mg-t-20 mg-md-t-0" id="marketDiv">
+                    @Html.Label("Market", new { @class = "control-label " })
+                    @Html.DropDownList("MarketId", ViewBag.Markets as SelectList, "--Select Market--", new { @class = "form-control" })
+                    @Html.ValidationMessage("MarketId", "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 col-lg-6 mg-t-20 mg-md-t-0" id="DealerDiv">
+                    @Html.Label("Dealer", new { @class = "control-label " })
+                    @Html.DropDownList("DealerId", ViewBag.Dealers as SelectList, "--Select Dealer--", new { @class = "form-control" })
+                    @Html.ValidationMessage("DealerId", "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-6 col-lg-6 mg-t-20 mg-md-t-0" id="subDealerDiv">
+                    @Html.Label("Sub Dealer", new { @class = "control-label " })
+                    @Html.DropDownList("SubDealerId", ViewBag.SubDealers as SelectList, "--Select Sub dealer--", new { @class = "form-control" })
+                    @Html.ValidationMessage("SubDealerId", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+                    <div class="form-group" style="margin-top:20px">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-danger btn-block ">Submit</button>
+                        </div>
+                    </div>
+                }
+
+
+                @*<div class="register">
+            <span class="text">Already Registered? Please Click</span><br>
+            @Html.ActionLink("here", "Login")
+        </div>*@
+
+            </div>
+        </div>
+    </div>
+
+    @*<div class="row">
+            <div class="form-group col-md-4 ">
+                <div class="col-md-12">
+                    @Html.Label("Regional Manager", new { @class = "control-label " })
+                </div>
+                <div class="col-md-12">
+                    @Html.DropDownList("RegionalManagerId", ViewBag.RegionalManagers as SelectList, "--Select RegionalManager--", new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessage("RegionalManagerId", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4 ">
+                <div class="col-md-12">
+                    @Html.Label("Zonal Manager", new { @class = "control-label " })
+                </div>
+                <div class="col-md-12">
+                    @Html.DropDownList("ZonalManagerId", ViewBag.ZonalManagers as SelectList, "--Select ZonalManager--", new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessage("ZonalManagerId", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4 ">
+                <div class="col-md-12">
+                    @Html.Label("Area Manager", new { @class = "control-label " })
+                </div>
+                <div class="col-md-12">
+                    @Html.DropDownList("AreaManagerId", ViewBag.AreaManagers as SelectList, "--Select ArealManager--", new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessage("AreaManagerId", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script>
+        function showPassword() {
+            var pass = document.getElementById("Password");
+            if (pass.type === "password") {
+                pass.type = "text";
+            }
+            else {
+                pass.type = "password";
+            }
+        }
+
+        $(document).ready(function () {
+            $("#RegionalManagerDiv").hide();
+            $("#ZonalManagerDiv").hide();
+            $("#AreaManagerDiv").hide();
+            $("#regionDiv").hide();
+            $("#zoneDiv").hide();
+            $("#areaDiv").hide();
+            $("#marketDiv").hide();
+            $("#DealerDiv").hide();
+            $("#subDealerDiv").hide();
+            
+            $("#Role").change(function () {
+                if ($(this).val() == "RegionalManager" ) {
+                    $("#RegionalManagerDiv").hide();
+                    $("#ZonalManagerDiv").hide();
+                    $("#AreaManagerDiv").hide();
+                    $("#regionDiv").show();
+                    $("#zoneDiv").hide();
+                    $("#areaDiv").hide();
+                    $("#marketDiv").hide();
+                    $("#DealerDiv").hide();
+                    $("#subDealerDiv").hide();
+                }
+                else if ($(this).val() == "ZonalManager") {
+                    $("#RegionalManagerDiv").show();
+                    $("#ZonalManagerDiv").hide();
+                    $("#AreaManagerDiv").hide();
+                    $("#regionDiv").hide();
+                    $("#zoneDiv").show();
+                    $("#areaDiv").hide();
+                    $("#DealerDiv").hide();
+                    $("#subDealerDiv").hide();
+                }
+                else if ($(this).val() == "AreaManager") {
+                    $("#RegionalManagerDiv").show();
+                    $("#ZonalManagerDiv").show();
+                    $("#AreaManagerDiv").hide();
+                    $("#regionDiv").hide();
+                    $("#zoneDiv").hide();
+                    $("#areaDiv").show();
+                    $("#marketDiv").hide();
+                    $("#DealerDiv").hide();
+                    $("#subDealerDiv").hide();
+                }
+                else if ($(this).val() == "MarketDeveloper") {
+                    $("#RegionalManagerDiv").show();
+                    $("#ZonalManagerDiv").show();
+                    $("#AreaManagerDiv").show();
+                    $("#marketDiv").show();
+                    $("#regionDiv").hide();
+                    $("#zoneDiv").hide();
+                    $("#areaDiv").hide();
+                    $("#DealerDiv").hide();
+                    $("#subDealerDiv").hide();
+                }
+                else if ($(this).val() == "Dealer") {
+                    $("#RegionalManagerDiv").show();
+                    $("#ZonalManagerDiv").show();
+                    $("#AreaManagerDiv").show();
+                    $("#marketDiv").show();
+                    $("#regionDiv").hide();
+                    $("#zoneDiv").hide();
+                    $("#areaDiv").hide();
+                    $("#DealerDiv").hide();
+                    $("#subDealerDiv").hide();
+                }
+
+                else if ($(this).val() == "SubDealer") {
+                    $("#RegionalManagerDiv").show();
+                    $("#ZonalManagerDiv").show();
+                    $("#AreaManagerDiv").show();
+                    $("#marketDiv").show();
+                    $("#regionDiv").hide();
+                    $("#zoneDiv").hide();
+                    $("#areaDiv").hide();
+                    $("#DealerDiv").show();
+                    $("#subDealerDiv").hide();
+                }
+
+                else if ($(this).val() == "Reseller") {
+                    $("#RegionalManagerDiv").show();
+                    $("#ZonalManagerDiv").show();
+                    $("#AreaManagerDiv").show();
+                    $("#marketDiv").show();
+                    $("#regionDiv").hide();
+                    $("#zoneDiv").hide();
+                    $("#areaDiv").hide();
+                    $("#DealerDiv").show();
+                    $("#subDealerDiv").show();
+                }
+            })
+        })
+    </script>
+
+        @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        
+    }
+
+</body>
+
+</html>
+
+

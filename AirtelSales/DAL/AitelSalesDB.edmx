@@ -1,0 +1,2167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="airtelsalesforceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="all_survey_questions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurveyId" Type="int" Nullable="false" />
+          <Property Name="SurveyQuestion" Type="varchar(max)" Nullable="false" />
+          <Property Name="ResponseType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DomainValues" Type="nvarchar" MaxLength="250" />
+          <Property Name="SurvAns" Type="nvarchar" MaxLength="50" />
+          <Property Name="SurveyQuestionOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="all_survey_responses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurveyId" Type="int" Nullable="false" />
+          <Property Name="SurveryQuestionId" Type="int" Nullable="false" />
+          <Property Name="SurveyAnswer" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="agentcode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="submission_date" Type="datetime" Nullable="false" />
+          <Property Name="geo_longitude" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="geo_latitude" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="location_id" Type="int" Nullable="false" />
+          <Property Name="state_id" Type="int" Nullable="false" />
+          <Property Name="region_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="all_surveys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurveyTypeId" Type="int" Nullable="false" />
+          <Property Name="SurveyName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SurveryStartDate" Type="date" Nullable="false" />
+          <Property Name="SurveryExpiryDate" Type="date" Nullable="false" />
+          <Property Name="SurveyStatus" Type="int" Nullable="false" />
+          <Property Name="created_date" Type="datetime" Nullable="false" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="response_count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDisabled" Type="bit" />
+          <Property Name="ProfileId" Type="int" />
+        </EntityType>
+        <EntityType Name="IncentiveConfig">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="quarter" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="orsc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="bts" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.kpi_agent_sales' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="kpi_agent_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="AgentCode" />
+            <PropertyRef Name="AgentName" />
+            <PropertyRef Name="ResellerCode" />
+            <PropertyRef Name="target_activation" />
+            <PropertyRef Name="target_activebase" />
+            <PropertyRef Name="target_recharge" />
+            <PropertyRef Name="target_usage" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgentCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AgentName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ResellerCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="target_activation" Type="int" Nullable="false" />
+          <Property Name="target_activebase" Type="int" Nullable="false" />
+          <Property Name="target_recharge" Type="int" Nullable="false" />
+          <Property Name="target_usage" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="indirect_contribution" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="distribution_pct1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="distribution_pct2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="bigint" />
+          <Property Name="actual_activebase" Type="bigint" />
+          <Property Name="actual_recharge" Type="bigint" />
+          <Property Name="actual_usage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ref_period" Type="nvarchar" MaxLength="20" />
+          <Property Name="orsc_comm" Type="bigint" />
+          <Property Name="bts_comm" Type="bigint" />
+        </EntityType>
+        <EntityType Name="kpi_area_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AreaName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ZoneCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="target_activation" Type="bigint" Nullable="false" />
+          <Property Name="target_activebase" Type="bigint" Nullable="false" />
+          <Property Name="target_recharge" Type="bigint" Nullable="false" />
+          <Property Name="target_usage" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="bigint" />
+          <Property Name="actual_activebase" Type="bigint" />
+          <Property Name="actual_recharge" Type="bigint" />
+          <Property Name="actual_usage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ref_period" Type="nvarchar" MaxLength="20" />
+          <Property Name="orsc_comm" Type="bigint" />
+          <Property Name="bts_comm" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.kpi_dealer_sales' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="kpi_dealer_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="DealerCode" />
+            <PropertyRef Name="DealerName" />
+            <PropertyRef Name="RegionCode" />
+            <PropertyRef Name="target_activation" />
+            <PropertyRef Name="target_activebase" />
+            <PropertyRef Name="target_recharge" />
+            <PropertyRef Name="target_usage" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DealerCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DealerName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="RegionCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="target_activation" Type="bigint" Nullable="false" />
+          <Property Name="target_activebase" Type="bigint" Nullable="false" />
+          <Property Name="target_recharge" Type="bigint" Nullable="false" />
+          <Property Name="target_usage" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="subdealer_fraction" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="fraction_pct" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="bigint" />
+          <Property Name="actual_activebase" Type="bigint" />
+          <Property Name="actual_recharge" Type="bigint" />
+          <Property Name="actual_usage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ref_period" Type="nvarchar" MaxLength="20" />
+          <Property Name="orsc_comm" Type="bigint" />
+          <Property Name="bts_comm" Type="bigint" />
+        </EntityType>
+        <EntityType Name="kpi_mktdev_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MarketDevCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MarketDevName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AreaCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="target_activation" Type="int" Nullable="false" />
+          <Property Name="target_activebase" Type="int" Nullable="false" />
+          <Property Name="target_recharge" Type="int" Nullable="false" />
+          <Property Name="target_usage" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="bigint" />
+          <Property Name="actual_activebase" Type="bigint" />
+          <Property Name="actual_recharge" Type="bigint" />
+          <Property Name="actual_usage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ref_period" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="kpi_region_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegionCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Region_Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="target_activation" Type="bigint" Nullable="false" />
+          <Property Name="target_activebase" Type="bigint" Nullable="false" />
+          <Property Name="target_recharge" Type="bigint" Nullable="false" />
+          <Property Name="target_usage" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="indirect_contribution" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="distribution_pct" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="bigint" />
+          <Property Name="actual_activebase" Type="bigint" />
+          <Property Name="actual_recharge" Type="bigint" />
+          <Property Name="actual_usage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ref_period" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.kpi_reseller_sales' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="kpi_reseller_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ResellerCode" />
+            <PropertyRef Name="ResellerName" />
+            <PropertyRef Name="SubdealerCode" />
+            <PropertyRef Name="target_activation" />
+            <PropertyRef Name="target_activebase" />
+            <PropertyRef Name="target_recharge" />
+            <PropertyRef Name="target_usage" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ref_period" Type="nvarchar" MaxLength="20" />
+          <Property Name="ResellerCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ResellerName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SubdealerCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="target_activation" Type="int" Nullable="false" />
+          <Property Name="target_activebase" Type="int" Nullable="false" />
+          <Property Name="target_recharge" Type="int" Nullable="false" />
+          <Property Name="target_usage" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct1" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="distribution_pct2" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="bigint" />
+          <Property Name="actual_activebase" Type="bigint" />
+          <Property Name="actual_recharge" Type="bigint" />
+          <Property Name="actual_usage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="orsc_comm" Type="bigint" />
+          <Property Name="bts_comm" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.kpi_subdealer_sales' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="kpi_subdealer_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="SubdealerCode" />
+            <PropertyRef Name="SubdealerName" />
+            <PropertyRef Name="DealerCode" />
+            <PropertyRef Name="target_activation" />
+            <PropertyRef Name="target_activebase" />
+            <PropertyRef Name="target_recharge" />
+            <PropertyRef Name="target_usage" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ref_period" Type="nvarchar" MaxLength="20" />
+          <Property Name="SubdealerCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SubdealerName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DealerCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="target_activation" Type="bigint" Nullable="false" />
+          <Property Name="target_activebase" Type="bigint" Nullable="false" />
+          <Property Name="target_recharge" Type="bigint" Nullable="false" />
+          <Property Name="target_usage" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="reseller_fraction" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="fraction_pct" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="bigint" />
+          <Property Name="actual_activebase" Type="bigint" />
+          <Property Name="actual_recharge" Type="bigint" />
+          <Property Name="actual_usage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="orsc_comm" Type="bigint" />
+          <Property Name="bts_comm" Type="bigint" />
+        </EntityType>
+        <EntityType Name="kpi_zone_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ref_period" Type="nvarchar" MaxLength="20" />
+          <Property Name="ZoneCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ZoneName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="RegionCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="target_activation" Type="bigint" Nullable="false" />
+          <Property Name="target_activebase" Type="bigint" Nullable="false" />
+          <Property Name="target_recharge" Type="bigint" Nullable="false" />
+          <Property Name="target_usage" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="bigint" />
+          <Property Name="actual_activebase" Type="bigint" />
+          <Property Name="actual_recharge" Type="bigint" />
+          <Property Name="actual_usage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="orsc_comm" Type="bigint" />
+          <Property Name="bts_comm" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.sales_areas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sales_areas">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="AreaName" />
+            <PropertyRef Name="ZoneId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AreaName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZoneId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sales_regions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="RegionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.sales_zones' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sales_zones">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ZoneName" />
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ZoneName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RegionId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.sf_permissions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sf_permissions">
+          <Key>
+            <PropertyRef Name="PERMISSION_ID" />
+            <PropertyRef Name="PERMISSIONDESCRIPTION" />
+            <PropertyRef Name="ACTION_NAME" />
+            <PropertyRef Name="CONTROLLER_NAME" />
+            <PropertyRef Name="PARENT_PERMISSION" />
+            <PropertyRef Name="FORM_URL" />
+            <PropertyRef Name="ISACTIVE" />
+          </Key>
+          <Property Name="PERMISSION_ID" Type="int" Nullable="false" />
+          <Property Name="PERMISSIONDESCRIPTION" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ACTION_NAME" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="CONTROLLER_NAME" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="PARENT_PERMISSION" Type="int" Nullable="false" />
+          <Property Name="FORM_URL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IMAGE_URL" Type="varchar" MaxLength="100" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+          <Property Name="ICON_CLASS" Type="varchar" MaxLength="50" />
+          <Property Name="ISOPEN_CLASS" Type="varchar" MaxLength="20" />
+          <Property Name="TOGGLE_ICON" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.sf_roles_perm_xref' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sf_roles_perm_xref">
+          <Key>
+            <PropertyRef Name="RECORD_ID" />
+            <PropertyRef Name="ROLE_ID" />
+            <PropertyRef Name="PERMISSION_ID" />
+            <PropertyRef Name="PARENT_TASK" />
+          </Key>
+          <Property Name="RECORD_ID" Type="int" Nullable="false" />
+          <Property Name="ROLE_ID" Type="int" Nullable="false" />
+          <Property Name="PERMISSION_ID" Type="int" Nullable="false" />
+          <Property Name="PARENT_TASK" Type="int" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="CREATED_DATE" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.sf_user_profiles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sf_user_profiles">
+          <Key>
+            <PropertyRef Name="PROFILE_ID" />
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="COD_PASSWORD" />
+            <PropertyRef Name="PASSWORDSALT" />
+            <PropertyRef Name="ISLOCKED" />
+            <PropertyRef Name="CREATED_DATE" />
+            <PropertyRef Name="ROLE_ID" />
+            <PropertyRef Name="DISPLAY_NAME" />
+            <PropertyRef Name="FIRSTNAME" />
+            <PropertyRef Name="LASTNAME" />
+            <PropertyRef Name="EMAIL_ADDRESS" />
+            <PropertyRef Name="BRANCH_ID" />
+          </Key>
+          <Property Name="PROFILE_ID" Type="int" Nullable="false" />
+          <Property Name="USER_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="COD_PASSWORD" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PASSWORDSALT" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PASSWORDQUESTION" Type="varchar" MaxLength="255" />
+          <Property Name="PASSWORDANSWER" Type="varchar" MaxLength="255" />
+          <Property Name="ISAPPROVED" Type="bit" />
+          <Property Name="ISLOCKED" Type="bit" Nullable="false" />
+          <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+          <Property Name="LASTLOGINDATE" Type="datetime" />
+          <Property Name="LASTPASSWORDCHANGEDDATE" Type="datetime" />
+          <Property Name="LASTLOCKOUTDATE" Type="datetime" />
+          <Property Name="FAILEDPASSWORDATTEMPTCOUNT" Type="int" />
+          <Property Name="FLAG_ALLOW_DOC_SHARING" Type="bit" />
+          <Property Name="FLAG_ALLOW_SMS_ALERT" Type="bit" />
+          <Property Name="ROLE_ID" Type="int" Nullable="false" />
+          <Property Name="DISPLAY_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LASTNAME" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EMAIL_ADDRESS" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BRANCH_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="LAST_MODIFIED_BY" Type="int" />
+          <Property Name="region_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="zonal_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="area_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="marketdev_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="dealer_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="subdealer_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="reseller_code" Type="nvarchar" MaxLength="20" />
+          <Property Name="agent_code" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.sf_user_roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sf_user_roles">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+            <PropertyRef Name="ROLE_NAME" />
+            <PropertyRef Name="PSWD_LIFE_DAYS" />
+          </Key>
+          <Property Name="ROLE_ID" Type="int" Nullable="false" />
+          <Property Name="ROLE_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PSWD_LIFE_DAYS" Type="int" Nullable="false" />
+          <Property Name="USER_LEVEL" Type="int" />
+          <Property Name="CREATED_BY" Type="int" />
+          <Property Name="CREATED_DATE" Type="datetime" />
+          <Property Name="LAST_MODIFIED_BY" Type="int" />
+          <Property Name="LAST_MODIFIED_DATE" Type="datetime" />
+          <Property Name="IS_DEFAULT" Type="bit" />
+          <Property Name="PARENT_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="survey_types">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurveyType" Type="nvarchar" MaxLength="50" />
+          <Property Name="SurveyDesc" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'airtelsalesforce.dbo.tbl' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tbl">
+          <Property Name="color" Type="varchar" MaxLength="10" />
+          <Property Name="Paul" Type="int" />
+          <Property Name="John" Type="int" />
+          <Property Name="Tim" Type="int" />
+          <Property Name="Eric" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.z_donotousse_zonekpi' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="z_donotousse_zonekpi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Zone Code" Type="varchar" MaxLength="50" />
+          <Property Name="Zone Name" Type="varchar" MaxLength="50" />
+          <Property Name="Region Code" Type="varchar" MaxLength="50" />
+          <Property Name="Activation" Type="varchar" MaxLength="50" />
+          <Property Name="Active Base" Type="varchar" MaxLength="50" />
+          <Property Name="Recharge" Type="varchar" MaxLength="50" />
+          <Property Name="Usage" Type="varchar" MaxLength="50" />
+          <Property Name="pct" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.z_donotoussez_kpi_reseller' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="z_donotoussez_kpi_reseller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reseller Code" Type="varchar" MaxLength="50" />
+          <Property Name="Reseller Name" Type="varchar" MaxLength="50" />
+          <Property Name="SubDealer Code" Type="varchar" MaxLength="50" />
+          <Property Name="Activation" Type="varchar" MaxLength="50" />
+          <Property Name="Active Base" Type="varchar" MaxLength="50" />
+          <Property Name="Recharge" Type="varchar" MaxLength="50" />
+          <Property Name="Usage" Type="varchar" MaxLength="50" />
+          <Property Name="dist1" Type="varchar" MaxLength="50" />
+          <Property Name="dist2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.z_donotoussez_kpiarea' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="z_donotoussez_kpiarea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Area Code" Type="varchar" MaxLength="50" />
+          <Property Name="Area Name" Type="varchar" MaxLength="50" />
+          <Property Name="Zone Code" Type="varchar" MaxLength="50" />
+          <Property Name="Activation" Type="varchar" MaxLength="50" />
+          <Property Name="Active Base" Type="varchar" MaxLength="50" />
+          <Property Name="Recharge" Type="varchar" MaxLength="50" />
+          <Property Name="Usage" Type="varchar" MaxLength="50" />
+          <Property Name="pct" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.z_donotoussez_kpidealer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="z_donotoussez_kpidealer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dealer Code" Type="varchar" MaxLength="50" />
+          <Property Name="Dealer Name" Type="varchar" MaxLength="50" />
+          <Property Name="Region Code" Type="varchar" MaxLength="50" />
+          <Property Name="Activation" Type="varchar" MaxLength="50" />
+          <Property Name="Active Base" Type="varchar" MaxLength="50" />
+          <Property Name="Recharge" Type="varchar" MaxLength="50" />
+          <Property Name="Usage" Type="varchar" MaxLength="50" />
+          <Property Name="pct" Type="varchar" MaxLength="50" />
+          <Property Name="SubDealer Fraction %" Type="varchar" MaxLength="50" />
+          <Property Name="fractionpct" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.z_donotoussez_kpimarketdev' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="z_donotoussez_kpimarketdev">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Market Developer Code" Type="varchar" MaxLength="50" />
+          <Property Name="Market Developer Name" Type="varchar" MaxLength="50" />
+          <Property Name="Area Code" Type="varchar" MaxLength="50" />
+          <Property Name="Activation" Type="varchar" MaxLength="50" />
+          <Property Name="Active Base" Type="varchar" MaxLength="50" />
+          <Property Name="Recharge" Type="varchar" MaxLength="50" />
+          <Property Name="Usage" Type="varchar" MaxLength="50" />
+          <Property Name="pct" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'airtelsalesforce.dbo.z_donotoussez_kpisubdealer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="z_donotoussez_kpisubdealer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubDealer Code" Type="varchar" MaxLength="50" />
+          <Property Name="SubDealer Name" Type="varchar" MaxLength="50" />
+          <Property Name="Dealer Code" Type="varchar" MaxLength="50" />
+          <Property Name="Activation" Type="varchar" MaxLength="50" />
+          <Property Name="Active Base" Type="varchar" MaxLength="50" />
+          <Property Name="Recharge" Type="varchar" MaxLength="50" />
+          <Property Name="Usage" Type="varchar" MaxLength="50" />
+          <Property Name="pct" Type="varchar" MaxLength="50" />
+          <Property Name="Reseller Fraction %" Type="varchar" MaxLength="50" />
+          <Property Name="fractionpct" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_all_surveys_survey_types">
+          <End Role="survey_types" Type="Self.survey_types" Multiplicity="1" />
+          <End Role="all_surveys" Type="Self.all_surveys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="survey_types">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="all_surveys">
+              <PropertyRef Name="SurveyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="airtelsalesforceModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="all_survey_questions" EntityType="Self.all_survey_questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="all_survey_responses" EntityType="Self.all_survey_responses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="all_surveys" EntityType="Self.all_surveys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IncentiveConfig" EntityType="Self.IncentiveConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kpi_area_sales" EntityType="Self.kpi_area_sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kpi_mktdev_sales" EntityType="Self.kpi_mktdev_sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kpi_region_sales" EntityType="Self.kpi_region_sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kpi_zone_sales" EntityType="Self.kpi_zone_sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sales_regions" EntityType="Self.sales_regions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="survey_types" EntityType="Self.survey_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kpi_agent_sales" EntityType="Self.kpi_agent_sales" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [kpi_agent_sales].[Id] AS [Id], 
+    [kpi_agent_sales].[AgentCode] AS [AgentCode], 
+    [kpi_agent_sales].[AgentName] AS [AgentName], 
+    [kpi_agent_sales].[ResellerCode] AS [ResellerCode], 
+    [kpi_agent_sales].[target_activation] AS [target_activation], 
+    [kpi_agent_sales].[target_activebase] AS [target_activebase], 
+    [kpi_agent_sales].[target_recharge] AS [target_recharge], 
+    [kpi_agent_sales].[target_usage] AS [target_usage], 
+    [kpi_agent_sales].[indirect_contribution] AS [indirect_contribution], 
+    [kpi_agent_sales].[distribution_pct1] AS [distribution_pct1], 
+    [kpi_agent_sales].[distribution_pct2] AS [distribution_pct2], 
+    [kpi_agent_sales].[actual_activation] AS [actual_activation], 
+    [kpi_agent_sales].[actual_activebase] AS [actual_activebase], 
+    [kpi_agent_sales].[actual_recharge] AS [actual_recharge], 
+    [kpi_agent_sales].[actual_usage] AS [actual_usage], 
+    [kpi_agent_sales].[ref_period] AS [ref_period], 
+    [kpi_agent_sales].[orsc_comm] AS [orsc_comm], 
+    [kpi_agent_sales].[bts_comm] AS [bts_comm]
+    FROM [dbo].[kpi_agent_sales] AS [kpi_agent_sales]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="kpi_dealer_sales" EntityType="Self.kpi_dealer_sales" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [kpi_dealer_sales].[Id] AS [Id], 
+    [kpi_dealer_sales].[DealerCode] AS [DealerCode], 
+    [kpi_dealer_sales].[DealerName] AS [DealerName], 
+    [kpi_dealer_sales].[RegionCode] AS [RegionCode], 
+    [kpi_dealer_sales].[target_activation] AS [target_activation], 
+    [kpi_dealer_sales].[target_activebase] AS [target_activebase], 
+    [kpi_dealer_sales].[target_recharge] AS [target_recharge], 
+    [kpi_dealer_sales].[target_usage] AS [target_usage], 
+    [kpi_dealer_sales].[distribution_pct] AS [distribution_pct], 
+    [kpi_dealer_sales].[subdealer_fraction] AS [subdealer_fraction], 
+    [kpi_dealer_sales].[fraction_pct] AS [fraction_pct], 
+    [kpi_dealer_sales].[actual_activation] AS [actual_activation], 
+    [kpi_dealer_sales].[actual_activebase] AS [actual_activebase], 
+    [kpi_dealer_sales].[actual_recharge] AS [actual_recharge], 
+    [kpi_dealer_sales].[actual_usage] AS [actual_usage], 
+    [kpi_dealer_sales].[ref_period] AS [ref_period], 
+    [kpi_dealer_sales].[orsc_comm] AS [orsc_comm], 
+    [kpi_dealer_sales].[bts_comm] AS [bts_comm]
+    FROM [dbo].[kpi_dealer_sales] AS [kpi_dealer_sales]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="kpi_reseller_sales" EntityType="Self.kpi_reseller_sales" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [kpi_reseller_sales].[Id] AS [Id], 
+    [kpi_reseller_sales].[ref_period] AS [ref_period], 
+    [kpi_reseller_sales].[ResellerCode] AS [ResellerCode], 
+    [kpi_reseller_sales].[ResellerName] AS [ResellerName], 
+    [kpi_reseller_sales].[SubdealerCode] AS [SubdealerCode], 
+    [kpi_reseller_sales].[target_activation] AS [target_activation], 
+    [kpi_reseller_sales].[target_activebase] AS [target_activebase], 
+    [kpi_reseller_sales].[target_recharge] AS [target_recharge], 
+    [kpi_reseller_sales].[target_usage] AS [target_usage], 
+    [kpi_reseller_sales].[distribution_pct1] AS [distribution_pct1], 
+    [kpi_reseller_sales].[distribution_pct2] AS [distribution_pct2], 
+    [kpi_reseller_sales].[actual_activation] AS [actual_activation], 
+    [kpi_reseller_sales].[actual_activebase] AS [actual_activebase], 
+    [kpi_reseller_sales].[actual_recharge] AS [actual_recharge], 
+    [kpi_reseller_sales].[actual_usage] AS [actual_usage], 
+    [kpi_reseller_sales].[orsc_comm] AS [orsc_comm], 
+    [kpi_reseller_sales].[bts_comm] AS [bts_comm]
+    FROM [dbo].[kpi_reseller_sales] AS [kpi_reseller_sales]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="kpi_subdealer_sales" EntityType="Self.kpi_subdealer_sales" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [kpi_subdealer_sales].[Id] AS [Id], 
+    [kpi_subdealer_sales].[ref_period] AS [ref_period], 
+    [kpi_subdealer_sales].[SubdealerCode] AS [SubdealerCode], 
+    [kpi_subdealer_sales].[SubdealerName] AS [SubdealerName], 
+    [kpi_subdealer_sales].[DealerCode] AS [DealerCode], 
+    [kpi_subdealer_sales].[target_activation] AS [target_activation], 
+    [kpi_subdealer_sales].[target_activebase] AS [target_activebase], 
+    [kpi_subdealer_sales].[target_recharge] AS [target_recharge], 
+    [kpi_subdealer_sales].[target_usage] AS [target_usage], 
+    [kpi_subdealer_sales].[distribution_pct] AS [distribution_pct], 
+    [kpi_subdealer_sales].[reseller_fraction] AS [reseller_fraction], 
+    [kpi_subdealer_sales].[fraction_pct] AS [fraction_pct], 
+    [kpi_subdealer_sales].[actual_activation] AS [actual_activation], 
+    [kpi_subdealer_sales].[actual_activebase] AS [actual_activebase], 
+    [kpi_subdealer_sales].[actual_recharge] AS [actual_recharge], 
+    [kpi_subdealer_sales].[actual_usage] AS [actual_usage], 
+    [kpi_subdealer_sales].[orsc_comm] AS [orsc_comm], 
+    [kpi_subdealer_sales].[bts_comm] AS [bts_comm]
+    FROM [dbo].[kpi_subdealer_sales] AS [kpi_subdealer_sales]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sales_areas" EntityType="Self.sales_areas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sales_areas].[Id] AS [Id], 
+    [sales_areas].[AreaName] AS [AreaName], 
+    [sales_areas].[ZoneId] AS [ZoneId]
+    FROM [dbo].[sales_areas] AS [sales_areas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sales_zones" EntityType="Self.sales_zones" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sales_zones].[Id] AS [Id], 
+    [sales_zones].[ZoneName] AS [ZoneName], 
+    [sales_zones].[RegionId] AS [RegionId]
+    FROM [dbo].[sales_zones] AS [sales_zones]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sf_permissions" EntityType="Self.sf_permissions" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sf_permissions].[PERMISSION_ID] AS [PERMISSION_ID], 
+    [sf_permissions].[PERMISSIONDESCRIPTION] AS [PERMISSIONDESCRIPTION], 
+    [sf_permissions].[ACTION_NAME] AS [ACTION_NAME], 
+    [sf_permissions].[CONTROLLER_NAME] AS [CONTROLLER_NAME], 
+    [sf_permissions].[PARENT_PERMISSION] AS [PARENT_PERMISSION], 
+    [sf_permissions].[FORM_URL] AS [FORM_URL], 
+    [sf_permissions].[IMAGE_URL] AS [IMAGE_URL], 
+    [sf_permissions].[ISACTIVE] AS [ISACTIVE], 
+    [sf_permissions].[ICON_CLASS] AS [ICON_CLASS], 
+    [sf_permissions].[ISOPEN_CLASS] AS [ISOPEN_CLASS], 
+    [sf_permissions].[TOGGLE_ICON] AS [TOGGLE_ICON]
+    FROM [dbo].[sf_permissions] AS [sf_permissions]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sf_roles_perm_xref" EntityType="Self.sf_roles_perm_xref" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sf_roles_perm_xref].[RECORD_ID] AS [RECORD_ID], 
+    [sf_roles_perm_xref].[ROLE_ID] AS [ROLE_ID], 
+    [sf_roles_perm_xref].[PERMISSION_ID] AS [PERMISSION_ID], 
+    [sf_roles_perm_xref].[PARENT_TASK] AS [PARENT_TASK], 
+    [sf_roles_perm_xref].[CREATED_BY] AS [CREATED_BY], 
+    [sf_roles_perm_xref].[CREATED_DATE] AS [CREATED_DATE]
+    FROM [dbo].[sf_roles_perm_xref] AS [sf_roles_perm_xref]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sf_user_profiles" EntityType="Self.sf_user_profiles" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sf_user_profiles].[PROFILE_ID] AS [PROFILE_ID], 
+    [sf_user_profiles].[USER_ID] AS [USER_ID], 
+    [sf_user_profiles].[COD_PASSWORD] AS [COD_PASSWORD], 
+    [sf_user_profiles].[PASSWORDSALT] AS [PASSWORDSALT], 
+    [sf_user_profiles].[PASSWORDQUESTION] AS [PASSWORDQUESTION], 
+    [sf_user_profiles].[PASSWORDANSWER] AS [PASSWORDANSWER], 
+    [sf_user_profiles].[ISAPPROVED] AS [ISAPPROVED], 
+    [sf_user_profiles].[ISLOCKED] AS [ISLOCKED], 
+    [sf_user_profiles].[CREATED_DATE] AS [CREATED_DATE], 
+    [sf_user_profiles].[LASTLOGINDATE] AS [LASTLOGINDATE], 
+    [sf_user_profiles].[LASTPASSWORDCHANGEDDATE] AS [LASTPASSWORDCHANGEDDATE], 
+    [sf_user_profiles].[LASTLOCKOUTDATE] AS [LASTLOCKOUTDATE], 
+    [sf_user_profiles].[FAILEDPASSWORDATTEMPTCOUNT] AS [FAILEDPASSWORDATTEMPTCOUNT], 
+    [sf_user_profiles].[FLAG_ALLOW_DOC_SHARING] AS [FLAG_ALLOW_DOC_SHARING], 
+    [sf_user_profiles].[FLAG_ALLOW_SMS_ALERT] AS [FLAG_ALLOW_SMS_ALERT], 
+    [sf_user_profiles].[ROLE_ID] AS [ROLE_ID], 
+    [sf_user_profiles].[DISPLAY_NAME] AS [DISPLAY_NAME], 
+    [sf_user_profiles].[FIRSTNAME] AS [FIRSTNAME], 
+    [sf_user_profiles].[LASTNAME] AS [LASTNAME], 
+    [sf_user_profiles].[EMAIL_ADDRESS] AS [EMAIL_ADDRESS], 
+    [sf_user_profiles].[BRANCH_ID] AS [BRANCH_ID], 
+    [sf_user_profiles].[CREATED_BY] AS [CREATED_BY], 
+    [sf_user_profiles].[LAST_MODIFIED_BY] AS [LAST_MODIFIED_BY], 
+    [sf_user_profiles].[region_code] AS [region_code], 
+    [sf_user_profiles].[zonal_code] AS [zonal_code], 
+    [sf_user_profiles].[area_code] AS [area_code], 
+    [sf_user_profiles].[marketdev_code] AS [marketdev_code], 
+    [sf_user_profiles].[dealer_code] AS [dealer_code], 
+    [sf_user_profiles].[subdealer_code] AS [subdealer_code], 
+    [sf_user_profiles].[reseller_code] AS [reseller_code], 
+    [sf_user_profiles].[agent_code] AS [agent_code]
+    FROM [dbo].[sf_user_profiles] AS [sf_user_profiles]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sf_user_roles" EntityType="Self.sf_user_roles" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sf_user_roles].[ROLE_ID] AS [ROLE_ID], 
+    [sf_user_roles].[ROLE_NAME] AS [ROLE_NAME], 
+    [sf_user_roles].[PSWD_LIFE_DAYS] AS [PSWD_LIFE_DAYS], 
+    [sf_user_roles].[USER_LEVEL] AS [USER_LEVEL], 
+    [sf_user_roles].[CREATED_BY] AS [CREATED_BY], 
+    [sf_user_roles].[CREATED_DATE] AS [CREATED_DATE], 
+    [sf_user_roles].[LAST_MODIFIED_BY] AS [LAST_MODIFIED_BY], 
+    [sf_user_roles].[LAST_MODIFIED_DATE] AS [LAST_MODIFIED_DATE], 
+    [sf_user_roles].[IS_DEFAULT] AS [IS_DEFAULT], 
+    [sf_user_roles].[PARENT_ID] AS [PARENT_ID]
+    FROM [dbo].[sf_user_roles] AS [sf_user_roles]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="z_donotousse_zonekpi" EntityType="Self.z_donotousse_zonekpi" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [z_donotousse_zonekpi].[id] AS [id], 
+    [z_donotousse_zonekpi].[Zone Code] AS [Zone Code], 
+    [z_donotousse_zonekpi].[Zone Name] AS [Zone Name], 
+    [z_donotousse_zonekpi].[Region Code] AS [Region Code], 
+    [z_donotousse_zonekpi].[Activation] AS [Activation], 
+    [z_donotousse_zonekpi].[Active Base] AS [Active Base], 
+    [z_donotousse_zonekpi].[Recharge] AS [Recharge], 
+    [z_donotousse_zonekpi].[Usage] AS [Usage], 
+    [z_donotousse_zonekpi].[pct] AS [pct]
+    FROM [dbo].[z_donotousse_zonekpi] AS [z_donotousse_zonekpi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="z_donotoussez_kpi_reseller" EntityType="Self.z_donotoussez_kpi_reseller" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [z_donotoussez_kpi_reseller].[id] AS [id], 
+    [z_donotoussez_kpi_reseller].[Reseller Code] AS [Reseller Code], 
+    [z_donotoussez_kpi_reseller].[Reseller Name] AS [Reseller Name], 
+    [z_donotoussez_kpi_reseller].[SubDealer Code] AS [SubDealer Code], 
+    [z_donotoussez_kpi_reseller].[Activation] AS [Activation], 
+    [z_donotoussez_kpi_reseller].[Active Base] AS [Active Base], 
+    [z_donotoussez_kpi_reseller].[Recharge] AS [Recharge], 
+    [z_donotoussez_kpi_reseller].[Usage] AS [Usage], 
+    [z_donotoussez_kpi_reseller].[dist1] AS [dist1], 
+    [z_donotoussez_kpi_reseller].[dist2] AS [dist2]
+    FROM [dbo].[z_donotoussez_kpi_reseller] AS [z_donotoussez_kpi_reseller]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="z_donotoussez_kpiarea" EntityType="Self.z_donotoussez_kpiarea" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [z_donotoussez_kpiarea].[Id] AS [Id], 
+    [z_donotoussez_kpiarea].[Area Code] AS [Area Code], 
+    [z_donotoussez_kpiarea].[Area Name] AS [Area Name], 
+    [z_donotoussez_kpiarea].[Zone Code] AS [Zone Code], 
+    [z_donotoussez_kpiarea].[Activation] AS [Activation], 
+    [z_donotoussez_kpiarea].[Active Base] AS [Active Base], 
+    [z_donotoussez_kpiarea].[Recharge] AS [Recharge], 
+    [z_donotoussez_kpiarea].[Usage] AS [Usage], 
+    [z_donotoussez_kpiarea].[pct] AS [pct]
+    FROM [dbo].[z_donotoussez_kpiarea] AS [z_donotoussez_kpiarea]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="z_donotoussez_kpidealer" EntityType="Self.z_donotoussez_kpidealer" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [z_donotoussez_kpidealer].[Id] AS [Id], 
+    [z_donotoussez_kpidealer].[Dealer Code] AS [Dealer Code], 
+    [z_donotoussez_kpidealer].[Dealer Name] AS [Dealer Name], 
+    [z_donotoussez_kpidealer].[Region Code] AS [Region Code], 
+    [z_donotoussez_kpidealer].[Activation] AS [Activation], 
+    [z_donotoussez_kpidealer].[Active Base] AS [Active Base], 
+    [z_donotoussez_kpidealer].[Recharge] AS [Recharge], 
+    [z_donotoussez_kpidealer].[Usage] AS [Usage], 
+    [z_donotoussez_kpidealer].[pct] AS [pct], 
+    [z_donotoussez_kpidealer].[SubDealer Fraction %] AS [SubDealer Fraction %], 
+    [z_donotoussez_kpidealer].[fractionpct] AS [fractionpct]
+    FROM [dbo].[z_donotoussez_kpidealer] AS [z_donotoussez_kpidealer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="z_donotoussez_kpimarketdev" EntityType="Self.z_donotoussez_kpimarketdev" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [z_donotoussez_kpimarketdev].[id] AS [id], 
+    [z_donotoussez_kpimarketdev].[Market Developer Code] AS [Market Developer Code], 
+    [z_donotoussez_kpimarketdev].[Market Developer Name] AS [Market Developer Name], 
+    [z_donotoussez_kpimarketdev].[Area Code] AS [Area Code], 
+    [z_donotoussez_kpimarketdev].[Activation] AS [Activation], 
+    [z_donotoussez_kpimarketdev].[Active Base] AS [Active Base], 
+    [z_donotoussez_kpimarketdev].[Recharge] AS [Recharge], 
+    [z_donotoussez_kpimarketdev].[Usage] AS [Usage], 
+    [z_donotoussez_kpimarketdev].[pct] AS [pct]
+    FROM [dbo].[z_donotoussez_kpimarketdev] AS [z_donotoussez_kpimarketdev]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="z_donotoussez_kpisubdealer" EntityType="Self.z_donotoussez_kpisubdealer" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [z_donotoussez_kpisubdealer].[Id] AS [Id], 
+    [z_donotoussez_kpisubdealer].[SubDealer Code] AS [SubDealer Code], 
+    [z_donotoussez_kpisubdealer].[SubDealer Name] AS [SubDealer Name], 
+    [z_donotoussez_kpisubdealer].[Dealer Code] AS [Dealer Code], 
+    [z_donotoussez_kpisubdealer].[Activation] AS [Activation], 
+    [z_donotoussez_kpisubdealer].[Active Base] AS [Active Base], 
+    [z_donotoussez_kpisubdealer].[Recharge] AS [Recharge], 
+    [z_donotoussez_kpisubdealer].[Usage] AS [Usage], 
+    [z_donotoussez_kpisubdealer].[pct] AS [pct], 
+    [z_donotoussez_kpisubdealer].[Reseller Fraction %] AS [Reseller Fraction %], 
+    [z_donotoussez_kpisubdealer].[fractionpct] AS [fractionpct]
+    FROM [dbo].[z_donotoussez_kpisubdealer] AS [z_donotoussez_kpisubdealer]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_all_surveys_survey_types" Association="Self.FK_all_surveys_survey_types">
+            <End Role="survey_types" EntitySet="survey_types" />
+            <End Role="all_surveys" EntitySet="all_surveys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="airtelsalesforceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="all_survey_questions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurveyId" Type="Int32" Nullable="false" />
+          <Property Name="SurveyQuestion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ResponseType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DomainValues" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SurvAns" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurveyQuestionOrder" Type="Int32" />
+        </EntityType>
+        <EntityType Name="all_survey_responses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurveyId" Type="Int32" Nullable="false" />
+          <Property Name="SurveryQuestionId" Type="Int32" Nullable="false" />
+          <Property Name="SurveyAnswer" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="agentcode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="submission_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="geo_longitude" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="geo_latitude" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="location_id" Type="Int32" Nullable="false" />
+          <Property Name="state_id" Type="Int32" Nullable="false" />
+          <Property Name="region_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="all_surveys">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurveyTypeId" Type="Int32" Nullable="false" />
+          <Property Name="SurveyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SurveryStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SurveryExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SurveyStatus" Type="Int32" Nullable="false" />
+          <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="created_by" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="response_count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="survey_types" Relationship="Self.FK_all_surveys_survey_types" FromRole="all_surveys" ToRole="survey_types" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDisabled" Type="Boolean" />
+          <Property Name="ProfileId" Type="Int32" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="IncentiveConfig">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="quarter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="orsc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="bts" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="created_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="kpi_area_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AreaName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZoneCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="target_activation" Type="Int64" Nullable="false" />
+          <Property Name="target_activebase" Type="Int64" Nullable="false" />
+          <Property Name="target_recharge" Type="Int64" Nullable="false" />
+          <Property Name="target_usage" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="Int64" />
+          <Property Name="actual_activebase" Type="Int64" />
+          <Property Name="actual_recharge" Type="Int64" />
+          <Property Name="actual_usage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ref_period" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="orsc_comm" Type="Int64" />
+          <Property Name="bts_comm" Type="Int64" />
+        </EntityType>
+        <EntityType Name="kpi_mktdev_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarketDevCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MarketDevName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AreaCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="target_activation" Type="Int32" Nullable="false" />
+          <Property Name="target_activebase" Type="Int32" Nullable="false" />
+          <Property Name="target_recharge" Type="Int32" Nullable="false" />
+          <Property Name="target_usage" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="Int64" />
+          <Property Name="actual_activebase" Type="Int64" />
+          <Property Name="actual_recharge" Type="Int64" />
+          <Property Name="actual_usage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ref_period" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="kpi_region_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegionCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Region_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="target_activation" Type="Int64" Nullable="false" />
+          <Property Name="target_activebase" Type="Int64" Nullable="false" />
+          <Property Name="target_recharge" Type="Int64" Nullable="false" />
+          <Property Name="target_usage" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="indirect_contribution" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="distribution_pct" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="Int64" />
+          <Property Name="actual_activebase" Type="Int64" />
+          <Property Name="actual_recharge" Type="Int64" />
+          <Property Name="actual_usage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ref_period" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="kpi_zone_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ref_period" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ZoneCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZoneName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegionCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="target_activation" Type="Int64" Nullable="false" />
+          <Property Name="target_activebase" Type="Int64" Nullable="false" />
+          <Property Name="target_recharge" Type="Int64" Nullable="false" />
+          <Property Name="target_usage" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="Int64" />
+          <Property Name="actual_activebase" Type="Int64" />
+          <Property Name="actual_recharge" Type="Int64" />
+          <Property Name="actual_usage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="orsc_comm" Type="Int64" />
+          <Property Name="bts_comm" Type="Int64" />
+        </EntityType>
+        <EntityType Name="sales_regions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RegionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="survey_types">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurveyType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurveyDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="all_surveys" Relationship="Self.FK_all_surveys_survey_types" FromRole="survey_types" ToRole="all_surveys" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="kpi_agent_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="AgentCode" />
+            <PropertyRef Name="AgentName" />
+            <PropertyRef Name="ResellerCode" />
+            <PropertyRef Name="target_activation" />
+            <PropertyRef Name="target_activebase" />
+            <PropertyRef Name="target_recharge" />
+            <PropertyRef Name="target_usage" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AgentName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResellerCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="target_activation" Type="Int32" Nullable="false" />
+          <Property Name="target_activebase" Type="Int32" Nullable="false" />
+          <Property Name="target_recharge" Type="Int32" Nullable="false" />
+          <Property Name="target_usage" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="indirect_contribution" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="distribution_pct1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="distribution_pct2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="Int64" />
+          <Property Name="actual_activebase" Type="Int64" />
+          <Property Name="actual_recharge" Type="Int64" />
+          <Property Name="actual_usage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ref_period" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="orsc_comm" Type="Int64" />
+          <Property Name="bts_comm" Type="Int64" />
+        </EntityType>
+        <EntityType Name="kpi_dealer_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="DealerCode" />
+            <PropertyRef Name="DealerName" />
+            <PropertyRef Name="RegionCode" />
+            <PropertyRef Name="target_activation" />
+            <PropertyRef Name="target_activebase" />
+            <PropertyRef Name="target_recharge" />
+            <PropertyRef Name="target_usage" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DealerCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DealerName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegionCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="target_activation" Type="Int64" Nullable="false" />
+          <Property Name="target_activebase" Type="Int64" Nullable="false" />
+          <Property Name="target_recharge" Type="Int64" Nullable="false" />
+          <Property Name="target_usage" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="subdealer_fraction" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="fraction_pct" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="Int64" />
+          <Property Name="actual_activebase" Type="Int64" />
+          <Property Name="actual_recharge" Type="Int64" />
+          <Property Name="actual_usage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ref_period" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="orsc_comm" Type="Int64" />
+          <Property Name="bts_comm" Type="Int64" />
+        </EntityType>
+        <EntityType Name="kpi_reseller_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ResellerCode" />
+            <PropertyRef Name="ResellerName" />
+            <PropertyRef Name="SubdealerCode" />
+            <PropertyRef Name="target_activation" />
+            <PropertyRef Name="target_activebase" />
+            <PropertyRef Name="target_recharge" />
+            <PropertyRef Name="target_usage" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ref_period" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ResellerCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ResellerName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubdealerCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="target_activation" Type="Int32" Nullable="false" />
+          <Property Name="target_activebase" Type="Int32" Nullable="false" />
+          <Property Name="target_recharge" Type="Int32" Nullable="false" />
+          <Property Name="target_usage" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct1" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="distribution_pct2" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="Int64" />
+          <Property Name="actual_activebase" Type="Int64" />
+          <Property Name="actual_recharge" Type="Int64" />
+          <Property Name="actual_usage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="orsc_comm" Type="Int64" />
+          <Property Name="bts_comm" Type="Int64" />
+        </EntityType>
+        <EntityType Name="kpi_subdealer_sales">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="SubdealerCode" />
+            <PropertyRef Name="SubdealerName" />
+            <PropertyRef Name="DealerCode" />
+            <PropertyRef Name="target_activation" />
+            <PropertyRef Name="target_activebase" />
+            <PropertyRef Name="target_recharge" />
+            <PropertyRef Name="target_usage" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ref_period" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SubdealerCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubdealerName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DealerCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="target_activation" Type="Int64" Nullable="false" />
+          <Property Name="target_activebase" Type="Int64" Nullable="false" />
+          <Property Name="target_recharge" Type="Int64" Nullable="false" />
+          <Property Name="target_usage" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="distribution_pct" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="reseller_fraction" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="fraction_pct" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="actual_activation" Type="Int64" />
+          <Property Name="actual_activebase" Type="Int64" />
+          <Property Name="actual_recharge" Type="Int64" />
+          <Property Name="actual_usage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="orsc_comm" Type="Int64" />
+          <Property Name="bts_comm" Type="Int64" />
+        </EntityType>
+        <EntityType Name="sales_areas">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="AreaName" />
+            <PropertyRef Name="ZoneId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ZoneId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sales_zones">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ZoneName" />
+            <PropertyRef Name="RegionId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ZoneName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegionId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sf_permissions">
+          <Key>
+            <PropertyRef Name="PERMISSION_ID" />
+            <PropertyRef Name="PERMISSIONDESCRIPTION" />
+            <PropertyRef Name="ACTION_NAME" />
+            <PropertyRef Name="CONTROLLER_NAME" />
+            <PropertyRef Name="PARENT_PERMISSION" />
+            <PropertyRef Name="FORM_URL" />
+            <PropertyRef Name="ISACTIVE" />
+          </Key>
+          <Property Name="PERMISSION_ID" Type="Int32" Nullable="false" />
+          <Property Name="PERMISSIONDESCRIPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTION_NAME" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTROLLER_NAME" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PARENT_PERMISSION" Type="Int32" Nullable="false" />
+          <Property Name="FORM_URL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGE_URL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="ICON_CLASS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ISOPEN_CLASS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TOGGLE_ICON" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sf_roles_perm_xref">
+          <Key>
+            <PropertyRef Name="RECORD_ID" />
+            <PropertyRef Name="ROLE_ID" />
+            <PropertyRef Name="PERMISSION_ID" />
+            <PropertyRef Name="PARENT_TASK" />
+          </Key>
+          <Property Name="RECORD_ID" Type="Int32" Nullable="false" />
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="PERMISSION_ID" Type="Int32" Nullable="false" />
+          <Property Name="PARENT_TASK" Type="Int32" Nullable="false" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sf_user_profiles">
+          <Key>
+            <PropertyRef Name="PROFILE_ID" />
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="COD_PASSWORD" />
+            <PropertyRef Name="PASSWORDSALT" />
+            <PropertyRef Name="ISLOCKED" />
+            <PropertyRef Name="CREATED_DATE" />
+            <PropertyRef Name="ROLE_ID" />
+            <PropertyRef Name="DISPLAY_NAME" />
+            <PropertyRef Name="FIRSTNAME" />
+            <PropertyRef Name="LASTNAME" />
+            <PropertyRef Name="EMAIL_ADDRESS" />
+            <PropertyRef Name="BRANCH_ID" />
+          </Key>
+          <Property Name="PROFILE_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COD_PASSWORD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORDSALT" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORDQUESTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORDANSWER" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ISAPPROVED" Type="Boolean" />
+          <Property Name="ISLOCKED" Type="Boolean" Nullable="false" />
+          <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LASTLOGINDATE" Type="DateTime" Precision="3" />
+          <Property Name="LASTPASSWORDCHANGEDDATE" Type="DateTime" Precision="3" />
+          <Property Name="LASTLOCKOUTDATE" Type="DateTime" Precision="3" />
+          <Property Name="FAILEDPASSWORDATTEMPTCOUNT" Type="Int32" />
+          <Property Name="FLAG_ALLOW_DOC_SHARING" Type="Boolean" />
+          <Property Name="FLAG_ALLOW_SMS_ALERT" Type="Boolean" />
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="DISPLAY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BRANCH_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="LAST_MODIFIED_BY" Type="Int32" />
+          <Property Name="region_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="zonal_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="area_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="marketdev_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="dealer_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="subdealer_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="reseller_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="agent_code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sf_user_roles">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+            <PropertyRef Name="ROLE_NAME" />
+            <PropertyRef Name="PSWD_LIFE_DAYS" />
+          </Key>
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="ROLE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PSWD_LIFE_DAYS" Type="Int32" Nullable="false" />
+          <Property Name="USER_LEVEL" Type="Int32" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="LAST_MODIFIED_BY" Type="Int32" />
+          <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="IS_DEFAULT" Type="Boolean" />
+          <Property Name="PARENT_ID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="z_donotousse_zonekpi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Zone_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zone_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Region_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active_Base" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Recharge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="z_donotoussez_kpi_reseller">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reseller_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reseller_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubDealer_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active_Base" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Recharge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dist1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dist2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="z_donotoussez_kpiarea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Area_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Area_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zone_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active_Base" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Recharge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="z_donotoussez_kpidealer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dealer_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dealer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Region_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active_Base" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Recharge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubDealer_Fraction__" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fractionpct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="z_donotoussez_kpimarketdev">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Market_Developer_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Market_Developer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Area_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active_Base" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Recharge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="z_donotoussez_kpisubdealer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubDealer_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubDealer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dealer_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active_Base" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Recharge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Reseller_Fraction__" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fractionpct" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_all_surveys_survey_types">
+          <End Role="survey_types" Type="Self.survey_types" Multiplicity="1" />
+          <End Role="all_surveys" Type="Self.all_surveys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="survey_types">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="all_surveys">
+              <PropertyRef Name="SurveyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="AirtelSalesDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="all_survey_questions" EntityType="Self.all_survey_questions" />
+          <EntitySet Name="all_survey_responses" EntityType="Self.all_survey_responses" />
+          <EntitySet Name="all_surveys" EntityType="Self.all_surveys" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="IncentiveConfigs" EntityType="Self.IncentiveConfig" />
+          <EntitySet Name="kpi_area_sales" EntityType="Self.kpi_area_sales" />
+          <EntitySet Name="kpi_mktdev_sales" EntityType="Self.kpi_mktdev_sales" />
+          <EntitySet Name="kpi_region_sales" EntityType="Self.kpi_region_sales" />
+          <EntitySet Name="kpi_zone_sales" EntityType="Self.kpi_zone_sales" />
+          <EntitySet Name="sales_regions" EntityType="Self.sales_regions" />
+          <EntitySet Name="survey_types" EntityType="Self.survey_types" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="kpi_agent_sales" EntityType="Self.kpi_agent_sales" />
+          <EntitySet Name="kpi_dealer_sales" EntityType="Self.kpi_dealer_sales" />
+          <EntitySet Name="kpi_reseller_sales" EntityType="Self.kpi_reseller_sales" />
+          <EntitySet Name="kpi_subdealer_sales" EntityType="Self.kpi_subdealer_sales" />
+          <EntitySet Name="sales_areas" EntityType="Self.sales_areas" />
+          <EntitySet Name="sales_zones" EntityType="Self.sales_zones" />
+          <EntitySet Name="sf_permissions" EntityType="Self.sf_permissions" />
+          <EntitySet Name="sf_roles_perm_xref" EntityType="Self.sf_roles_perm_xref" />
+          <EntitySet Name="sf_user_profiles" EntityType="Self.sf_user_profiles" />
+          <EntitySet Name="sf_user_roles" EntityType="Self.sf_user_roles" />
+          <EntitySet Name="z_donotousse_zonekpi" EntityType="Self.z_donotousse_zonekpi" />
+          <EntitySet Name="z_donotoussez_kpi_reseller" EntityType="Self.z_donotoussez_kpi_reseller" />
+          <EntitySet Name="z_donotoussez_kpiarea" EntityType="Self.z_donotoussez_kpiarea" />
+          <EntitySet Name="z_donotoussez_kpidealer" EntityType="Self.z_donotoussez_kpidealer" />
+          <EntitySet Name="z_donotoussez_kpimarketdev" EntityType="Self.z_donotoussez_kpimarketdev" />
+          <EntitySet Name="z_donotoussez_kpisubdealer" EntityType="Self.z_donotoussez_kpisubdealer" />
+          <AssociationSet Name="FK_all_surveys_survey_types" Association="Self.FK_all_surveys_survey_types">
+            <End Role="survey_types" EntitySet="survey_types" />
+            <End Role="all_surveys" EntitySet="all_surveys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="airtelsalesforceModelStoreContainer" CdmEntityContainer="AirtelSalesDBEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="all_survey_questions">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.all_survey_questions">
+              <MappingFragment StoreEntitySet="all_survey_questions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+                <ScalarProperty Name="SurveyQuestion" ColumnName="SurveyQuestion" />
+                <ScalarProperty Name="ResponseType" ColumnName="ResponseType" />
+                <ScalarProperty Name="DomainValues" ColumnName="DomainValues" />
+                <ScalarProperty Name="SurvAns" ColumnName="SurvAns" />
+                <ScalarProperty Name="SurveyQuestionOrder" ColumnName="SurveyQuestionOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="all_survey_responses">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.all_survey_responses">
+              <MappingFragment StoreEntitySet="all_survey_responses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+                <ScalarProperty Name="SurveryQuestionId" ColumnName="SurveryQuestionId" />
+                <ScalarProperty Name="SurveyAnswer" ColumnName="SurveyAnswer" />
+                <ScalarProperty Name="agentcode" ColumnName="agentcode" />
+                <ScalarProperty Name="submission_date" ColumnName="submission_date" />
+                <ScalarProperty Name="geo_longitude" ColumnName="geo_longitude" />
+                <ScalarProperty Name="geo_latitude" ColumnName="geo_latitude" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="all_surveys">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.all_surveys">
+              <MappingFragment StoreEntitySet="all_surveys">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SurveyTypeId" ColumnName="SurveyTypeId" />
+                <ScalarProperty Name="SurveyName" ColumnName="SurveyName" />
+                <ScalarProperty Name="SurveryStartDate" ColumnName="SurveryStartDate" />
+                <ScalarProperty Name="SurveryExpiryDate" ColumnName="SurveryExpiryDate" />
+                <ScalarProperty Name="SurveyStatus" ColumnName="SurveyStatus" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="response_count" ColumnName="response_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IsDisabled" ColumnName="IsDisabled" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IncentiveConfigs">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.IncentiveConfig">
+              <MappingFragment StoreEntitySet="IncentiveConfig">
+                <ScalarProperty Name="quarter" ColumnName="quarter" />
+                <ScalarProperty Name="orsc" ColumnName="orsc" />
+                <ScalarProperty Name="bts" ColumnName="bts" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kpi_area_sales">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.kpi_area_sales">
+              <MappingFragment StoreEntitySet="kpi_area_sales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AreaCode" ColumnName="AreaCode" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="ZoneCode" ColumnName="ZoneCode" />
+                <ScalarProperty Name="target_activation" ColumnName="target_activation" />
+                <ScalarProperty Name="target_activebase" ColumnName="target_activebase" />
+                <ScalarProperty Name="target_recharge" ColumnName="target_recharge" />
+                <ScalarProperty Name="target_usage" ColumnName="target_usage" />
+                <ScalarProperty Name="distribution_pct" ColumnName="distribution_pct" />
+                <ScalarProperty Name="actual_activation" ColumnName="actual_activation" />
+                <ScalarProperty Name="actual_activebase" ColumnName="actual_activebase" />
+                <ScalarProperty Name="actual_recharge" ColumnName="actual_recharge" />
+                <ScalarProperty Name="actual_usage" ColumnName="actual_usage" />
+                <ScalarProperty Name="ref_period" ColumnName="ref_period" />
+                <ScalarProperty Name="orsc_comm" ColumnName="orsc_comm" />
+                <ScalarProperty Name="bts_comm" ColumnName="bts_comm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kpi_mktdev_sales">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.kpi_mktdev_sales">
+              <MappingFragment StoreEntitySet="kpi_mktdev_sales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MarketDevCode" ColumnName="MarketDevCode" />
+                <ScalarProperty Name="MarketDevName" ColumnName="MarketDevName" />
+                <ScalarProperty Name="AreaCode" ColumnName="AreaCode" />
+                <ScalarProperty Name="target_activation" ColumnName="target_activation" />
+                <ScalarProperty Name="target_activebase" ColumnName="target_activebase" />
+                <ScalarProperty Name="target_recharge" ColumnName="target_recharge" />
+                <ScalarProperty Name="target_usage" ColumnName="target_usage" />
+                <ScalarProperty Name="distribution_pct" ColumnName="distribution_pct" />
+                <ScalarProperty Name="actual_activation" ColumnName="actual_activation" />
+                <ScalarProperty Name="actual_activebase" ColumnName="actual_activebase" />
+                <ScalarProperty Name="actual_recharge" ColumnName="actual_recharge" />
+                <ScalarProperty Name="actual_usage" ColumnName="actual_usage" />
+                <ScalarProperty Name="ref_period" ColumnName="ref_period" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kpi_region_sales">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.kpi_region_sales">
+              <MappingFragment StoreEntitySet="kpi_region_sales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+                <ScalarProperty Name="Region_Name" ColumnName="Region_Name" />
+                <ScalarProperty Name="target_activation" ColumnName="target_activation" />
+                <ScalarProperty Name="target_activebase" ColumnName="target_activebase" />
+                <ScalarProperty Name="target_recharge" ColumnName="target_recharge" />
+                <ScalarProperty Name="target_usage" ColumnName="target_usage" />
+                <ScalarProperty Name="indirect_contribution" ColumnName="indirect_contribution" />
+                <ScalarProperty Name="distribution_pct" ColumnName="distribution_pct" />
+                <ScalarProperty Name="actual_activation" ColumnName="actual_activation" />
+                <ScalarProperty Name="actual_activebase" ColumnName="actual_activebase" />
+                <ScalarProperty Name="actual_recharge" ColumnName="actual_recharge" />
+                <ScalarProperty Name="actual_usage" ColumnName="actual_usage" />
+                <ScalarProperty Name="ref_period" ColumnName="ref_period" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kpi_zone_sales">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.kpi_zone_sales">
+              <MappingFragment StoreEntitySet="kpi_zone_sales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ref_period" ColumnName="ref_period" />
+                <ScalarProperty Name="ZoneCode" ColumnName="ZoneCode" />
+                <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
+                <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+                <ScalarProperty Name="target_activation" ColumnName="target_activation" />
+                <ScalarProperty Name="target_activebase" ColumnName="target_activebase" />
+                <ScalarProperty Name="target_recharge" ColumnName="target_recharge" />
+                <ScalarProperty Name="target_usage" ColumnName="target_usage" />
+                <ScalarProperty Name="distribution_pct" ColumnName="distribution_pct" />
+                <ScalarProperty Name="actual_activation" ColumnName="actual_activation" />
+                <ScalarProperty Name="actual_activebase" ColumnName="actual_activebase" />
+                <ScalarProperty Name="actual_recharge" ColumnName="actual_recharge" />
+                <ScalarProperty Name="actual_usage" ColumnName="actual_usage" />
+                <ScalarProperty Name="orsc_comm" ColumnName="orsc_comm" />
+                <ScalarProperty Name="bts_comm" ColumnName="bts_comm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales_regions">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.sales_regions">
+              <MappingFragment StoreEntitySet="sales_regions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="survey_types">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.survey_types">
+              <MappingFragment StoreEntitySet="survey_types">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SurveyType" ColumnName="SurveyType" />
+                <ScalarProperty Name="SurveyDesc" ColumnName="SurveyDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kpi_agent_sales">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.kpi_agent_sales">
+              <MappingFragment StoreEntitySet="kpi_agent_sales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AgentCode" ColumnName="AgentCode" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+                <ScalarProperty Name="ResellerCode" ColumnName="ResellerCode" />
+                <ScalarProperty Name="target_activation" ColumnName="target_activation" />
+                <ScalarProperty Name="target_activebase" ColumnName="target_activebase" />
+                <ScalarProperty Name="target_recharge" ColumnName="target_recharge" />
+                <ScalarProperty Name="target_usage" ColumnName="target_usage" />
+                <ScalarProperty Name="indirect_contribution" ColumnName="indirect_contribution" />
+                <ScalarProperty Name="distribution_pct1" ColumnName="distribution_pct1" />
+                <ScalarProperty Name="distribution_pct2" ColumnName="distribution_pct2" />
+                <ScalarProperty Name="actual_activation" ColumnName="actual_activation" />
+                <ScalarProperty Name="actual_activebase" ColumnName="actual_activebase" />
+                <ScalarProperty Name="actual_recharge" ColumnName="actual_recharge" />
+                <ScalarProperty Name="actual_usage" ColumnName="actual_usage" />
+                <ScalarProperty Name="ref_period" ColumnName="ref_period" />
+                <ScalarProperty Name="orsc_comm" ColumnName="orsc_comm" />
+                <ScalarProperty Name="bts_comm" ColumnName="bts_comm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kpi_dealer_sales">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.kpi_dealer_sales">
+              <MappingFragment StoreEntitySet="kpi_dealer_sales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DealerCode" ColumnName="DealerCode" />
+                <ScalarProperty Name="DealerName" ColumnName="DealerName" />
+                <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+                <ScalarProperty Name="target_activation" ColumnName="target_activation" />
+                <ScalarProperty Name="target_activebase" ColumnName="target_activebase" />
+                <ScalarProperty Name="target_recharge" ColumnName="target_recharge" />
+                <ScalarProperty Name="target_usage" ColumnName="target_usage" />
+                <ScalarProperty Name="distribution_pct" ColumnName="distribution_pct" />
+                <ScalarProperty Name="subdealer_fraction" ColumnName="subdealer_fraction" />
+                <ScalarProperty Name="fraction_pct" ColumnName="fraction_pct" />
+                <ScalarProperty Name="actual_activation" ColumnName="actual_activation" />
+                <ScalarProperty Name="actual_activebase" ColumnName="actual_activebase" />
+                <ScalarProperty Name="actual_recharge" ColumnName="actual_recharge" />
+                <ScalarProperty Name="actual_usage" ColumnName="actual_usage" />
+                <ScalarProperty Name="ref_period" ColumnName="ref_period" />
+                <ScalarProperty Name="orsc_comm" ColumnName="orsc_comm" />
+                <ScalarProperty Name="bts_comm" ColumnName="bts_comm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kpi_reseller_sales">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.kpi_reseller_sales">
+              <MappingFragment StoreEntitySet="kpi_reseller_sales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ref_period" ColumnName="ref_period" />
+                <ScalarProperty Name="ResellerCode" ColumnName="ResellerCode" />
+                <ScalarProperty Name="ResellerName" ColumnName="ResellerName" />
+                <ScalarProperty Name="SubdealerCode" ColumnName="SubdealerCode" />
+                <ScalarProperty Name="target_activation" ColumnName="target_activation" />
+                <ScalarProperty Name="target_activebase" ColumnName="target_activebase" />
+                <ScalarProperty Name="target_recharge" ColumnName="target_recharge" />
+                <ScalarProperty Name="target_usage" ColumnName="target_usage" />
+                <ScalarProperty Name="distribution_pct1" ColumnName="distribution_pct1" />
+                <ScalarProperty Name="distribution_pct2" ColumnName="distribution_pct2" />
+                <ScalarProperty Name="actual_activation" ColumnName="actual_activation" />
+                <ScalarProperty Name="actual_activebase" ColumnName="actual_activebase" />
+                <ScalarProperty Name="actual_recharge" ColumnName="actual_recharge" />
+                <ScalarProperty Name="actual_usage" ColumnName="actual_usage" />
+                <ScalarProperty Name="orsc_comm" ColumnName="orsc_comm" />
+                <ScalarProperty Name="bts_comm" ColumnName="bts_comm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kpi_subdealer_sales">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.kpi_subdealer_sales">
+              <MappingFragment StoreEntitySet="kpi_subdealer_sales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ref_period" ColumnName="ref_period" />
+                <ScalarProperty Name="SubdealerCode" ColumnName="SubdealerCode" />
+                <ScalarProperty Name="SubdealerName" ColumnName="SubdealerName" />
+                <ScalarProperty Name="DealerCode" ColumnName="DealerCode" />
+                <ScalarProperty Name="target_activation" ColumnName="target_activation" />
+                <ScalarProperty Name="target_activebase" ColumnName="target_activebase" />
+                <ScalarProperty Name="target_recharge" ColumnName="target_recharge" />
+                <ScalarProperty Name="target_usage" ColumnName="target_usage" />
+                <ScalarProperty Name="distribution_pct" ColumnName="distribution_pct" />
+                <ScalarProperty Name="reseller_fraction" ColumnName="reseller_fraction" />
+                <ScalarProperty Name="fraction_pct" ColumnName="fraction_pct" />
+                <ScalarProperty Name="actual_activation" ColumnName="actual_activation" />
+                <ScalarProperty Name="actual_activebase" ColumnName="actual_activebase" />
+                <ScalarProperty Name="actual_recharge" ColumnName="actual_recharge" />
+                <ScalarProperty Name="actual_usage" ColumnName="actual_usage" />
+                <ScalarProperty Name="orsc_comm" ColumnName="orsc_comm" />
+                <ScalarProperty Name="bts_comm" ColumnName="bts_comm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales_areas">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.sales_areas">
+              <MappingFragment StoreEntitySet="sales_areas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sales_zones">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.sales_zones">
+              <MappingFragment StoreEntitySet="sales_zones">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sf_permissions">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.sf_permissions">
+              <MappingFragment StoreEntitySet="sf_permissions">
+                <ScalarProperty Name="PERMISSION_ID" ColumnName="PERMISSION_ID" />
+                <ScalarProperty Name="PERMISSIONDESCRIPTION" ColumnName="PERMISSIONDESCRIPTION" />
+                <ScalarProperty Name="ACTION_NAME" ColumnName="ACTION_NAME" />
+                <ScalarProperty Name="CONTROLLER_NAME" ColumnName="CONTROLLER_NAME" />
+                <ScalarProperty Name="PARENT_PERMISSION" ColumnName="PARENT_PERMISSION" />
+                <ScalarProperty Name="FORM_URL" ColumnName="FORM_URL" />
+                <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+                <ScalarProperty Name="ICON_CLASS" ColumnName="ICON_CLASS" />
+                <ScalarProperty Name="ISOPEN_CLASS" ColumnName="ISOPEN_CLASS" />
+                <ScalarProperty Name="TOGGLE_ICON" ColumnName="TOGGLE_ICON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sf_roles_perm_xref">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.sf_roles_perm_xref">
+              <MappingFragment StoreEntitySet="sf_roles_perm_xref">
+                <ScalarProperty Name="RECORD_ID" ColumnName="RECORD_ID" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="PERMISSION_ID" ColumnName="PERMISSION_ID" />
+                <ScalarProperty Name="PARENT_TASK" ColumnName="PARENT_TASK" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sf_user_profiles">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.sf_user_profiles">
+              <MappingFragment StoreEntitySet="sf_user_profiles">
+                <ScalarProperty Name="PROFILE_ID" ColumnName="PROFILE_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="COD_PASSWORD" ColumnName="COD_PASSWORD" />
+                <ScalarProperty Name="PASSWORDSALT" ColumnName="PASSWORDSALT" />
+                <ScalarProperty Name="PASSWORDQUESTION" ColumnName="PASSWORDQUESTION" />
+                <ScalarProperty Name="PASSWORDANSWER" ColumnName="PASSWORDANSWER" />
+                <ScalarProperty Name="ISAPPROVED" ColumnName="ISAPPROVED" />
+                <ScalarProperty Name="ISLOCKED" ColumnName="ISLOCKED" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="LASTLOGINDATE" ColumnName="LASTLOGINDATE" />
+                <ScalarProperty Name="LASTPASSWORDCHANGEDDATE" ColumnName="LASTPASSWORDCHANGEDDATE" />
+                <ScalarProperty Name="LASTLOCKOUTDATE" ColumnName="LASTLOCKOUTDATE" />
+                <ScalarProperty Name="FAILEDPASSWORDATTEMPTCOUNT" ColumnName="FAILEDPASSWORDATTEMPTCOUNT" />
+                <ScalarProperty Name="FLAG_ALLOW_DOC_SHARING" ColumnName="FLAG_ALLOW_DOC_SHARING" />
+                <ScalarProperty Name="FLAG_ALLOW_SMS_ALERT" ColumnName="FLAG_ALLOW_SMS_ALERT" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="DISPLAY_NAME" ColumnName="DISPLAY_NAME" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="EMAIL_ADDRESS" ColumnName="EMAIL_ADDRESS" />
+                <ScalarProperty Name="BRANCH_ID" ColumnName="BRANCH_ID" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="LAST_MODIFIED_BY" ColumnName="LAST_MODIFIED_BY" />
+                <ScalarProperty Name="region_code" ColumnName="region_code" />
+                <ScalarProperty Name="zonal_code" ColumnName="zonal_code" />
+                <ScalarProperty Name="area_code" ColumnName="area_code" />
+                <ScalarProperty Name="marketdev_code" ColumnName="marketdev_code" />
+                <ScalarProperty Name="dealer_code" ColumnName="dealer_code" />
+                <ScalarProperty Name="subdealer_code" ColumnName="subdealer_code" />
+                <ScalarProperty Name="reseller_code" ColumnName="reseller_code" />
+                <ScalarProperty Name="agent_code" ColumnName="agent_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sf_user_roles">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.sf_user_roles">
+              <MappingFragment StoreEntitySet="sf_user_roles">
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="ROLE_NAME" ColumnName="ROLE_NAME" />
+                <ScalarProperty Name="PSWD_LIFE_DAYS" ColumnName="PSWD_LIFE_DAYS" />
+                <ScalarProperty Name="USER_LEVEL" ColumnName="USER_LEVEL" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="LAST_MODIFIED_BY" ColumnName="LAST_MODIFIED_BY" />
+                <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
+                <ScalarProperty Name="IS_DEFAULT" ColumnName="IS_DEFAULT" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="z_donotousse_zonekpi">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.z_donotousse_zonekpi">
+              <MappingFragment StoreEntitySet="z_donotousse_zonekpi">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Zone_Code" ColumnName="Zone Code" />
+                <ScalarProperty Name="Zone_Name" ColumnName="Zone Name" />
+                <ScalarProperty Name="Region_Code" ColumnName="Region Code" />
+                <ScalarProperty Name="Activation" ColumnName="Activation" />
+                <ScalarProperty Name="Active_Base" ColumnName="Active Base" />
+                <ScalarProperty Name="Recharge" ColumnName="Recharge" />
+                <ScalarProperty Name="Usage" ColumnName="Usage" />
+                <ScalarProperty Name="pct" ColumnName="pct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="z_donotoussez_kpi_reseller">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.z_donotoussez_kpi_reseller">
+              <MappingFragment StoreEntitySet="z_donotoussez_kpi_reseller">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Reseller_Code" ColumnName="Reseller Code" />
+                <ScalarProperty Name="Reseller_Name" ColumnName="Reseller Name" />
+                <ScalarProperty Name="SubDealer_Code" ColumnName="SubDealer Code" />
+                <ScalarProperty Name="Activation" ColumnName="Activation" />
+                <ScalarProperty Name="Active_Base" ColumnName="Active Base" />
+                <ScalarProperty Name="Recharge" ColumnName="Recharge" />
+                <ScalarProperty Name="Usage" ColumnName="Usage" />
+                <ScalarProperty Name="dist1" ColumnName="dist1" />
+                <ScalarProperty Name="dist2" ColumnName="dist2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="z_donotoussez_kpiarea">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.z_donotoussez_kpiarea">
+              <MappingFragment StoreEntitySet="z_donotoussez_kpiarea">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Area_Code" ColumnName="Area Code" />
+                <ScalarProperty Name="Area_Name" ColumnName="Area Name" />
+                <ScalarProperty Name="Zone_Code" ColumnName="Zone Code" />
+                <ScalarProperty Name="Activation" ColumnName="Activation" />
+                <ScalarProperty Name="Active_Base" ColumnName="Active Base" />
+                <ScalarProperty Name="Recharge" ColumnName="Recharge" />
+                <ScalarProperty Name="Usage" ColumnName="Usage" />
+                <ScalarProperty Name="pct" ColumnName="pct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="z_donotoussez_kpidealer">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.z_donotoussez_kpidealer">
+              <MappingFragment StoreEntitySet="z_donotoussez_kpidealer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Dealer_Code" ColumnName="Dealer Code" />
+                <ScalarProperty Name="Dealer_Name" ColumnName="Dealer Name" />
+                <ScalarProperty Name="Region_Code" ColumnName="Region Code" />
+                <ScalarProperty Name="Activation" ColumnName="Activation" />
+                <ScalarProperty Name="Active_Base" ColumnName="Active Base" />
+                <ScalarProperty Name="Recharge" ColumnName="Recharge" />
+                <ScalarProperty Name="Usage" ColumnName="Usage" />
+                <ScalarProperty Name="pct" ColumnName="pct" />
+                <ScalarProperty Name="SubDealer_Fraction__" ColumnName="SubDealer Fraction %" />
+                <ScalarProperty Name="fractionpct" ColumnName="fractionpct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="z_donotoussez_kpimarketdev">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.z_donotoussez_kpimarketdev">
+              <MappingFragment StoreEntitySet="z_donotoussez_kpimarketdev">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Market_Developer_Code" ColumnName="Market Developer Code" />
+                <ScalarProperty Name="Market_Developer_Name" ColumnName="Market Developer Name" />
+                <ScalarProperty Name="Area_Code" ColumnName="Area Code" />
+                <ScalarProperty Name="Activation" ColumnName="Activation" />
+                <ScalarProperty Name="Active_Base" ColumnName="Active Base" />
+                <ScalarProperty Name="Recharge" ColumnName="Recharge" />
+                <ScalarProperty Name="Usage" ColumnName="Usage" />
+                <ScalarProperty Name="pct" ColumnName="pct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="z_donotoussez_kpisubdealer">
+            <EntityTypeMapping TypeName="airtelsalesforceModel.z_donotoussez_kpisubdealer">
+              <MappingFragment StoreEntitySet="z_donotoussez_kpisubdealer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SubDealer_Code" ColumnName="SubDealer Code" />
+                <ScalarProperty Name="SubDealer_Name" ColumnName="SubDealer Name" />
+                <ScalarProperty Name="Dealer_Code" ColumnName="Dealer Code" />
+                <ScalarProperty Name="Activation" ColumnName="Activation" />
+                <ScalarProperty Name="Active_Base" ColumnName="Active Base" />
+                <ScalarProperty Name="Recharge" ColumnName="Recharge" />
+                <ScalarProperty Name="Usage" ColumnName="Usage" />
+                <ScalarProperty Name="pct" ColumnName="pct" />
+                <ScalarProperty Name="Reseller_Fraction__" ColumnName="Reseller Fraction %" />
+                <ScalarProperty Name="fractionpct" ColumnName="fractionpct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="airtelsalesforceModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

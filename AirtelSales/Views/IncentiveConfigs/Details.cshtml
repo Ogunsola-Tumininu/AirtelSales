@@ -1,0 +1,92 @@
+﻿@model AirtelSales.DAL.IncentiveConfig
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                <div class="card-header">
+                    <h2>Incentive Config Details  </h2>
+                </div>
+                <div class="card-body">
+
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                <div class="card-body">
+                    <div style="margin: 25px auto">
+                        <div class="col-md-5 col-xl-4 mg-t-40 mg-md-t-0">
+                            <div class="az-profile-contact-list">
+                                <div>
+                                    <h4>IncentiveConfig</h4>
+                                    <hr />
+                                    <dl class="dl-horizontal">
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.quarter)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.quarter)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.orsc)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.orsc)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.bts)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.bts)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.created_by)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.created_by)
+                                        </dd>
+
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.created_at)
+                                        </dt>
+
+                                        <dd>
+                                            @Html.DisplayFor(model => model.created_at)
+                                        </dd>
+
+                                    </dl>
+                                </div>
+                                <p>
+                                    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+                                    @Html.ActionLink("Back to List", "Index")
+                                </p>
+                            </div><!-- az-profile-contact-list -->
+                        </div>
+                    </div>
+
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+

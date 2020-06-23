@@ -1,0 +1,139 @@
+﻿@model IEnumerable<AirtelSales.DAL.kpi_reseller_sales>
+@{
+    ViewBag.Title = "Reseller Incentives";
+}
+
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                <div class="card-header">
+                    <h2>Reseller Incentives </h2>
+
+                </div>
+                <div class="card-body">
+
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                @*<div class="card-header">
+
+                    </div>*@
+                <div class="card-body">
+                    <div style="margin: 20px auto">
+                        <table id="table_id" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    @*<th>
+                                            @Html.DisplayNameFor(model => model.SubdealerCode)
+                                        </th>*@
+                                    <th>
+                                        @Html.DisplayName("Name")
+                                    </th>
+                                    
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.distribution_pct1)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Activation")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("ActiveBase")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Recharge")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Usage")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ref_period)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("ORCS_COMM")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("BTS_COMM")
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        @*<td>
+                                                @Html.DisplayFor(modelItem => item.SubdealerCode)
+                                            </td>*@
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ResellerName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.distribution_pct1)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.actual_activation)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.actual_activebase)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.actual_recharge)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.actual_usage)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ref_period)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.orsc_comm)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.bts_comm)
+                                        </td>
+                                        @*<td>
+                                            <a href="@Url.Action("Reseller" , "Incentive",  new { subdealerCode = item.SubdealerCode})">Reseller Incentives</a>
+                                        </td>*@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+
+
+
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Omnistack-UI-html/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/select2/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                //"scrollX": true,
+                "ordering": false,
+                "responsive": true,
+            });
+        });
+    </script>
+}

@@ -1,0 +1,142 @@
+﻿@model IEnumerable<AirtelSales.DAL.all_surveys>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                <div class="card-header">
+                    <h2>Survey</h2>
+                    
+                </div>
+                <div class="card-body">
+
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+@if (ViewContext.HttpContext.User.IsInRole("MarketDeveloper"))
+{
+    <div class="col-md-12">
+        <div class="card card-dashboard-twelve mg-b-20">
+
+            <div class="media-body">
+                <div class="card card-minimal-two">
+
+                    <div class="card-body">
+                        <div style="margin-top: 20px">
+                            <h5>Select Survey to Fill Questionaire</h5>
+                            <div class="row">
+
+
+                                @foreach (var item in Model)
+                                {
+                                    <div class="col-md-4" style="margin-bottom: 20px">
+                                        <a href="@Url.Action("SurveyType", "Survey", new { id = item.Id })" class="btn btn-outline-danger">@item.SurveyName</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div><!-- card-body -->
+                </div><!-- card minimal-->
+            </div> <!--media body-->
+        </div> <!--card-->
+    </div>
+}
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                @*<div class="card-header">
+
+                    </div>*@
+                <div class="card-body">
+                    <div style="margin: 20px auto">
+                        <table id="table_id" class="table">
+                            <thead>
+                                <tr>
+                                    <th class="wd-">Survey Name</th>
+                                    <th class="wd">Start Date</th>
+                                    <th class="wd-">Expiry Date</th>
+                                    <th class="wd-">Status</th>
+                                    <th class="wd-">Created date</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SurveyName)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:dd MMM, yyyy}", item.SurveryStartDate)
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:dd MMM, yyyy}", item.SurveryExpiryDate)
+                                        </td>
+                                        <td>
+                                            @if (item.SurveyStatus == 1)
+                                            {
+                                            <span class="label label-success">Active</span>
+                                            }
+                                            else
+                                            {
+                                            <span class="label label-primary">inactive</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.created_date)
+                                        </td>
+
+                                        <td>
+
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Omnistack-UI-html/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/select2/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                //"scrollX": true,
+                "ordering": false,
+                "responsive": true,
+            });
+        });
+    </script>
+}

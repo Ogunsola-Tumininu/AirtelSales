@@ -1,0 +1,186 @@
+﻿@model IEnumerable<AirtelSales.DAL.kpi_dealer_sales>
+
+@{
+    ViewBag.Title = "Dealer Incentive";
+}
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                <div class="card-header">
+                    <h2>Dealers Incentive </h2>
+
+                </div>
+                <div class="card-body">
+
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                @*<div class="card-header">
+
+                    </div>*@
+                <div class="card-body">
+                    <div style="margin: 20px auto">
+                        <table id="table_id" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    @*<th>
+                                        @Html.DisplayNameFor(model => model.DealerCode)
+                                    </th>*@
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DealerName)
+                                    </th>
+                                    @*<th>
+                                                                    @Html.DisplayNameFor(model => model.RegionCode)
+                                                                </th>
+                                                                <th>
+                                            @Html.DisplayNameFor(model => model.target_activation)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.target_activebase)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.target_recharge)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.target_usage)
+                                        </th>*@
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.distribution_pct)
+                                    </th>
+                                    @*<th>
+                                            @Html.DisplayNameFor(model => model.subdealer_fraction)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.fraction_pct)
+                                        </th>*@
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.actual_activation)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.actual_activebase)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.actual_recharge)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.actual_usage)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ref_period)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.orsc_comm)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.bts_comm)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        @*<td>
+                                            @Html.DisplayFor(modelItem => item.DealerCode)
+                                        </td>*@
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DealerName)
+                                        </td>
+                                        @*<td>
+                                                @Html.DisplayFor(modelItem => item.RegionCode)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.target_activation)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.target_activebase)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.target_recharge)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.target_usage)
+                                            </td>*@
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.distribution_pct)
+                                        </td>
+                                        @*<td>
+                                                @Html.DisplayFor(modelItem => item.subdealer_fraction)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.fraction_pct)
+                                            </td>*@
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.actual_activation)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.actual_activebase)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.actual_recharge)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.actual_usage)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ref_period)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.orsc_comm)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.bts_comm)
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Subdealer", "Incentive",  new { dealercode = item.DealerCode})">SubDealer Incentive</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section Scripts{
+    <script src="~/Omnistack-UI-html/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/select2/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                //"scrollX": true,
+                "ordering": false,
+                "responsive": true,
+            });
+        });
+    </script>
+}
+

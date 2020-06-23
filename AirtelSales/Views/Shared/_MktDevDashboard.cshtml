@@ -1,0 +1,944 @@
+﻿<div class="row row-sm">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card card-dashboard-twentytwo">
+            <div class="media" style="height:200px !important">
+                <div class="media-icon bg-purple"><i class="typcn typcn-chart-line-outline"></i></div>
+                <div class="media-body">
+                    <input type="hidden" value="@ViewBag.Market" id="region" />
+                    @{
+                        var activation = (int)ViewBag.MarketDeveloperKPI.actual_activation / 1000;
+                    }
+                    <h6>@activation.ToString()K <small class="down">-0.5%</small></h6>
+                    <span>Activations (MTD)</span>
+                    @{
+                        var activationytd = (int)ViewBag.MarketDeveloperKPI.actual_activation / 1000 * 1.5;
+                    }
+                    <h6>@activationytd.ToString()K <small class="down">-0.5%</small></h6>
+                    <span>Activations (YTD)</span>
+
+                </div>
+            </div>
+            <div class="chart-wrapper">
+                <div id="flotChart1" class="flot-chart"></div>
+            </div><!-- chart-wrapper -->
+        </div><!-- card -->
+    </div><!-- col -->
+    <div class="col-sm-6 col-xl-3 mg-t-20 mg-sm-t-0">
+        <div class="card card-dashboard-twentytwo">
+            <div class="media">
+                <div class="media-icon bg-primary"><i class="typcn typcn-chart-line-outline"></i></div>
+                <div class="media-body">
+                    @{
+                        var activebase = (int)ViewBag.MarketDeveloperKPI.actual_activebase / 1000;
+                    }
+                    <h6>@activebase.ToString()K<small class="up">+0.1%</small></h6>
+                    <span>Active Base</span>
+                </div>
+            </div>
+            <div class="chart-wrapper">
+                <div id="flotChart2" class="flot-chart"></div>
+            </div><!-- chart-wrapper -->
+        </div><!-- card -->
+    </div><!-- col-3 -->
+    <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+        <div class="card card-dashboard-twentytwo">
+            <div class="media">
+                <div class="media-icon bg-pink"><i class="typcn typcn-chart-line-outline"></i></div>
+                <div class="media-body">
+                    @{
+                        var recharge = (int)ViewBag.MarketDeveloperKPI.actual_recharge / 1000000;
+                    }
+                    <h6>@recharge.ToString()M <small class="down">-2.1%</small></h6>
+                    <span>Recharge</span>
+                </div>
+            </div>
+            <div class="chart-wrapper">
+                <div id="flotChart3" class="flot-chart"></div>
+            </div><!-- chart-wrapper -->
+        </div><!-- card -->
+    </div><!-- col -->
+    <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
+        <div class="card card-dashboard-twentytwo">
+            <div class="media">
+                <div class="media-icon bg-teal"><i class="typcn typcn-chart-line-outline"></i></div>
+                <div class="media-body">
+                    @{
+                        var usage = Math.Round((decimal)ViewBag.MarketDeveloperKPI.actual_usage / 1000000, 2);
+                    }
+                    <h6>@usage.ToString()M<small class="up">+0.8%</small></h6>
+                    <span>Usage</span>
+                </div>
+
+            </div>
+            <div class="chart-wrapper">
+                <div id="flotChart4" class="flot-chart"></div>
+            </div><!-- chart-wrapper -->
+        </div><!-- card -->
+    </div><!-- col -->
+
+
+    <div class="col-xl-12 mg-t-20">
+        <div class="card card-dashboard-twentyone">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <div class="card-body">
+                        <h6 class="az-content-label">Distribution % by Area</h6>
+                        <p>The top locations where subscribers are located for this month</p>
+
+                        <div class="list-group">
+                            @foreach (var item in ViewBag.AllDealerKPI)
+                            {
+                                <div class="list-group-item">
+                                    <span>@item.DealerName</span>
+                                    @{
+                                        var dist_pct = (decimal)item.distribution_pct * 100;
+                                        var percentage = dist_pct.ToString().Remove(dist_pct.ToString().Length - 3);
+                                        var progress = "wd-" + percentage + "p";
+                                    }
+                                    <span>@percentage%</span>
+
+                                    <div class="progress">
+                                        <div class="progress-bar @progress bg-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+
+                            }
+
+                            @*<div class="list-group-item">
+                                    <span>West</span>
+                                    <span>25%</span>
+                                    <div class="progress">
+                                        <div class="progress-bar wd-75p bg-indigo" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <span>South</span>
+                                    <span>30%</span>
+                                    <div class="progress">
+                                        <div class="progress-bar wd-65p" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <span>North East</span>
+                                    <span>7%</span>
+                                    <div class="progress">
+                                        <div class="progress-bar wd-55p bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <span>North West</span>
+                                    <span>13%</span>
+                                    <div class="progress">
+                                        <div class="progress-bar wd-45p bg-teal" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>*@
+                        </div><!-- list-group -->
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div id="vmap" class="vmap-wrapper"></div>
+                </div><!-- col -->
+            </div><!-- row -->
+        </div><!-- card -->
+    </div><!-- col -->
+    <!-- <div class="col-md-4 col-xl-3 mg-t-20">
+      <div class="card card-body card-dashboard-twentythree ht-xl-100p">
+        <h6 class="card-title tx-14 mg-b-10">Mobile Sessions</h6>
+        <p class="mg-b-15">The percentage of users who uses mobile devices compare to other devices.</p>
+
+        <div class="d-flex flex-column align-items-center mg-b-25">
+          <div>
+            <div class="az-donut-chart chart1">
+              <div class="slice one"></div>
+              <div class="slice two"></div>
+              <div class="chart-center">
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div><!- d-flex --
+
+
+      </div>
+    </div> -->
+    <div class="col-md-12 mg-t-20">
+        <div class="row row-sm mg-b-15 mg-sm-b-20">
+            <div class="col-lg-6 col-xl-6">
+                <div class="card card-dashboard-six">
+                    <div class="card-header">
+                        <div>
+                            <label class="az-content-label">Activation Trends</label>
+                            @*<span class="d-block">Actual vs Target Activation Performance</span>*@
+                        </div>
+                        <div class="chart-legend">
+                            <div><span>Target </span> <span class="bg-indigo"></span></div>
+                            <div><span>Actual </span> <span class="bg-teal"></span></div>
+                        </div>
+                    </div><!-- card-header -->
+                    <div id="morrisBar1" class="ht-200 ht-lg-250 wd-100p"></div>
+                </div><!-- card -->
+            </div><!-- col -->
+
+            <div class="col-lg-6 col-xl-6">
+                <div class="card card-dashboard-six">
+                    <div class="card-header">
+                        <div>
+                            <label class="az-content-label">Active Base Trends</label>
+                            @*<span class="d-block">Actual vs Target Active Base Performance</span>*@
+                        </div>
+                        <div class="chart-legend">
+                            <div><span>Target </span> <span class="bg-indigo"></span></div>
+                            <div><span>Actual </span> <span class="bg-teal"></span></div>
+                        </div>
+                    </div><!-- card-header -->
+                    <div id="morrisBar2" class="ht-200 ht-lg-250 wd-100p"></div>
+                </div><!-- card -->
+            </div>
+
+        </div><!-- row -->
+    </div>
+
+    <div class="col-md-12 mg-t-20">
+        <div class="row row-sm mg-b-15 mg-sm-b-20">
+            <div class="col-lg-6 col-xl-6">
+                <div class="card card-dashboard-six">
+                    <div class="card-header">
+                        <div>
+                            <label class="az-content-label">Recharge Trends</label>
+                            @*<span class="d-block">Actual vs Target Recharge Performance</span>*@
+                        </div>
+                        <div class="chart-legend">
+                            <div><span>Target </span> <span class="bg-pink"></span></div>
+                            <div><span>Actual </span> <span class="bg-orange"></span></div>
+                        </div>
+                    </div><!-- card-header -->
+                    <div id="morrisBar3" class="ht-200 ht-lg-250 wd-100p"></div>
+                </div><!-- card -->
+            </div><!-- col -->
+
+            <div class="col-lg-6 col-xl-6">
+                <div class="card card-dashboard-six">
+                    <div class="card-header">
+                        <div>
+                            <label class="az-content-label">Performance Trends</label>
+                            @*<span class="d-block">Actual vs Target Usage Performance</span>*@
+                        </div>
+                        <div class="chart-legend">
+                            <div><span>Target </span> <span class="bg-pink"></span></div>
+                            <div><span>Actual</span> <span class="bg-orange"></span></div>
+                        </div>
+                    </div><!-- card-header -->
+                    <div id="morrisBar4" class="ht-200 ht-lg-250 wd-100p"></div>
+                </div><!-- card -->
+            </div>
+
+        </div><!-- row -->
+    </div>
+    <!--trend start-->
+    <div class="col-md-12">
+        <div class="card card-dashboard-twelve mg-b-20">
+
+            <div class="media-body">
+                <div class="card card-minimal-two">
+                    <div class="card-header">
+                        <nav class="nav nav-pills">
+                            <a class="nav-link active" data-toggle="tab" href="#">Recharge</a>
+                            <a class="nav-link" data-toggle="tab" href="#">Activations</a>
+                            <a class="nav-link" data-toggle="tab" href="#">Usage</a>
+                            <a class="nav-link" data-toggle="tab" href="#">Active Base</a>
+                        </nav>
+                        @*<div class="card-header-right">
+                                <nav class="nav nav-pills">
+                                    <a href="" class="nav-link"><span>hour</span><span>h</span></a>
+                                    <a href="" class="nav-link active"><span>day</span><span>d</span></a>
+                                    <a href="" class="nav-link"><span>week</span><span>w</span></a>
+                                    <a href="" class="nav-link"><span>month</span><span>m</span></a>
+                                    <a href="" class="nav-link"><span>year</span><span>y</span></a>
+                                    <a href="" class="nav-link">All</a>
+                                </nav>
+                            </div>*@<!-- card-header-right -->
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-legend">
+                            <div><span class="bg-indigo"></span> Actual recharge</div>
+                            <div><span class="bg-teal"></span> Target recharge</div>
+                        </div><!-- chart-legend -->
+                        <div class="chart-wrapper">
+                            <div id="flotChart" class="flot-chart"></div>
+                        </div><!-- chart-wrapper -->
+                    </div><!-- card-body -->
+                </div><!-- card minimal-->
+            </div> <!--media body-->
+        </div> <!--card-->
+    </div>
+
+    <!--end trend-->
+    @*<div class="col-md-8 col-xl-6 mg-t-20">
+            <div class="card card-dashboard-audience-metrics ht-md-100p">
+                <div class="card-header">
+                    <h6 class="card-title">Audience Metrics</h6>
+                    <p class="mg-b-15">Measures your user's sessions and page views metrics to your website for this month.</p>
+                </div><
+                <div class="card-body">
+                    <div>
+                        <h4>120,500</h4>
+                        <label><span class="bg-primary"></span>Users</label>
+                    </div>
+                    <div>
+                        <h4>360,108</h4>
+                        <label><span class="bg-teal"></span>Page Views</label>
+                    </div>
+                    <div>
+                        <h4>150,712</h4>
+                        <label><span class="bg-pink"></span>Sessions</label>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div id="flotChart5" class="flot-chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 mg-t-20">
+            <div class="card card-dashboard-audience-metrics">
+                <div class="card-header">
+                    <h6 class="card-title">Traffic Sources</h6>
+                    <p class="mg-b-15">Measures your user's sources that generate traffic metrics to your website for this month.</p>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <h4>86,376</h4>
+                        <label><span class="bg-purple"></span>Organic</label>
+                    </div>
+                    <div>
+                        <h4>25,001</h4>
+                        <label><span class="bg-primary"></span>Direct</label>
+                    </div>
+                    <div>
+                        <h4>12,909</h4>
+                        <label><span class="bg-teal"></span>Referral</label>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <div id="flotChart6" class="flot-chart"></div>
+                </div>
+            </div>
+        </div>*@
+
+    @*<div class="col-md-12 col-md-12 mg-t-20 ">
+            <div class="card card-dashboard-thirteen">
+                <label class="az-content-label">Events Interest Comparison</label>
+                <p class="az-content-text">A comparison of people who mark themeselves of their interest based from the date range given above.</p>
+                <div class="row mg-t-20 mg-b-20">
+                    <div class="col-lg-4">
+                        <div id="flotPie" class="wd-100p ht-250"></div>
+                    </div>
+                    <div class="col-lg-8 mg-t-40 mg-lg-t-0">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="media">
+                                    <div class="media-icon tx-purple">
+                                        <i class="icon ion-ios-man"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6>3,890 <span>(26%)</span></h6>
+                                        <label>Interested</label>
+                                    </div>
+                                </div>
+                                <span>People who have a ticket reservation of the event is automatically mark as interested.</span>
+                            </div>
+                            <div class="col-sm-6 mg-t-20 mg-sm-t-0">
+                                <div class="media">
+                                    <div class="media-icon tx-primary">
+                                        <i class="icon ion-ios-man"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6>8,005 <span>(39%)</span></h6>
+                                        <label>Going</label>
+                                    </div>
+                                </div>
+                                <span>People who have bought a ticket of the event is automatically mark as going.</span>
+                            </div>
+                            <div class="col-sm-6 mg-t-20 mg-lg-t-40">
+                                <div class="media">
+                                    <div class="media-icon tx-teal">
+                                        <i class="icon ion-ios-man"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6>2,120 <span>(20%)</span></h6>
+                                        <label>Maybe</label>
+                                    </div>
+                                </div>
+                                <span>People who have viewed the event details and set themeselves as maybe.</span>
+                            </div>
+                            <div class="col-sm-6 mg-t-20 mg-lg-t-40">
+                                <div class="media">
+                                    <div class="media-icon tx-gray-500">
+                                        <i class="icon ion-ios-man"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6>1,613 <span>(15%)</span></h6>
+                                        <label>Not Going</label>
+                                    </div>
+                                </div><
+                                <span>People who have viewed the event details and set themeselves as not going.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+</div>
+
+    <script src="~/Omnistack-UI-html/lib/jquery/jquery.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery-ui/ui/widgets/datepicker.js"></script>
+    <script src="~/Omnistack-UI-html/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/ionicons/ionicons.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="~/Omnistack-UI-html/lib/raphael/raphael.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/morris.js/morris.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jqvmap/maps/jquery.vmap.nigeria.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <script src="~/Omnistack-UI-html/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.pie.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+    <script>
+    $(function () {
+        'use strict'
+
+        
+
+        /* ----------------------------------- */
+        /* Dashboard content */
+        var graphdata;
+        var morrisActivationData = [];
+        var morrisActiveBaseData = [];
+        var morrisRechargeData = [];
+        var morrisUsageData = [];
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("marketDeveloperKPI", "Dashboard")",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                console.log(result);
+                $.each(result, function (i, obj) {
+                    var period = obj.ref_period.toString().slice(0, 4) + "-" + obj.ref_period.toString().slice(4, 6);
+                    period = new Date(period)
+                    var dt = period.toLocaleDateString('default', { month: 'short' }) + " " + period.getFullYear();
+                    console.log(period)
+                    morrisActivationData.push({ y: dt, a: obj.actual_activation, b: obj.target_activation });
+                    morrisActiveBaseData.push({ y: dt, a: obj.actual_activebase, b: obj.target_activebase });
+                    morrisRechargeData.push({ y: dt, a: obj.actual_recharge, b: obj.target_recharge });
+                    morrisUsageData.push({ y: dt, a: obj.actual_usage, b: obj.target_usage });
+                    //console.log(morrisData)
+
+                });
+
+                plotbar(morrisActivationData, 'morrisBar1', '');
+                plotbar(morrisActiveBaseData, 'morrisBar2', '');
+                plotbar(morrisRechargeData, 'morrisBar3', 'N');
+                plotbar(morrisUsageData, 'morrisBar4', 'N');
+            },
+            error: function () {
+                alert("Error getting data! ");
+            }
+        });
+
+        var color = ['#F10075', "#FD7E14"];
+        function plotbar(data, elementId, unit) {
+            new Morris.Bar({
+                element: elementId,
+                data: data,
+                xkey: 'y',
+                ykeys: ['a', 'b'],
+                labels: ['Actual', 'Target'],
+                barColors: ['#560bd0', '#00cccc'],
+                barColors: (elementId == "morrisBar1" || elementId == "morrisBar2") ? ['#560bd0', '#00cccc'] : color,
+                preUnits: unit,
+                barSizeRatio: 0.55,
+                gridTextSize: 11,
+                gridTextColor: '#494c57',
+                gridTextWeight: 'bold',
+                gridLineColor: '#999',
+                gridStrokeWidth: 0.25,
+                hideHover: 'auto',
+                resize: true,
+                padding: 5
+            });
+        }
+
+
+        $.plot('#flotChart1', [{
+            data: dashData1,
+            color: '#6f42c1'
+        }], {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 2,
+                    fill: true,
+                    fillColor: { colors: [{ opacity: 0 }, { opacity: 1 }] }
+                }
+            },
+            grid: {
+                borderWidth: 0,
+                labelMargin: 0
+            },
+            yaxis: {
+                show: false,
+                min: 0,
+                max: 100
+            },
+            xaxis: { show: false }
+        });
+
+        $.plot('#flotChart2', [{
+            data: dashData2,
+            color: '#007bff'
+        }], {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 2,
+                    fill: true,
+                    fillColor: { colors: [{ opacity: 0 }, { opacity: 1 }] }
+                }
+            },
+            grid: {
+                borderWidth: 0,
+                labelMargin: 0
+            },
+            yaxis: {
+                show: false,
+                min: 0,
+                max: 100
+            },
+            xaxis: { show: false }
+        });
+
+        $.plot('#flotChart3', [{
+            data: dashData3,
+            color: '#f10075'
+        }], {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 2,
+                    fill: true,
+                    fillColor: { colors: [{ opacity: 0 }, { opacity: 1 }] }
+                }
+            },
+            grid: {
+                borderWidth: 0,
+                labelMargin: 0
+            },
+            yaxis: {
+                show: false,
+                min: 0,
+                max: 100
+            },
+            xaxis: { show: false }
+        });
+
+        $.plot('#flotChart4', [{
+            data: dashData4,
+            color: '#00cccc'
+        }], {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 2,
+                    fill: true,
+                    fillColor: { colors: [{ opacity: 0 }, { opacity: 1 }] }
+                }
+            },
+            grid: {
+                borderWidth: 0,
+                labelMargin: 0
+            },
+            yaxis: {
+                show: false,
+                min: 0,
+                max: 100
+            },
+            xaxis: { show: false }
+        });
+
+        //$.plot('#flotChart5', [{
+        //    data: dashData2,
+        //    color: '#00cccc'
+        //}, {
+        //    data: dashData3,
+        //    color: '#007bff'
+        //}, {
+        //    data: dashData4,
+        //    color: '#f10075'
+        //}], {
+        //    series: {
+        //        shadowSize: 0,
+        //        lines: {
+        //            show: true,
+        //            lineWidth: 2,
+        //            fill: false,
+        //            fillColor: { colors: [{ opacity: 0 }, { opacity: 1 }] }
+        //        }
+        //    },
+        //    grid: {
+        //        borderWidth: 0,
+        //        labelMargin: 20
+        //    },
+        //    yaxis: {
+        //        show: false,
+        //        min: 0,
+        //        max: 100
+        //    },
+        //    xaxis: {
+        //        show: true,
+        //        color: 'rgba(0,0,0,.16)',
+        //        ticks: [
+        //            [0, ''],
+        //            [10, '<span>Nov</span><span>05</span>'],
+        //            [20, '<span>Nov</span><span>10</span>'],
+        //            [30, '<span>Nov</span><span>15</span>'],
+        //            [40, '<span>Nov</span><span>18</span>'],
+        //            [50, '<span>Nov</span><span>22</span>'],
+        //            [60, '<span>Nov</span><span>26</span>'],
+        //            [70, '<span>Nov</span><span>30</span>'],
+        //        ]
+        //    }
+        //});
+
+        //$.plot('#flotChart6', [{
+        //    data: dashData2,
+        //    color: '#6f42c1'
+        //}, {
+        //    data: dashData3,
+        //    color: '#007bff'
+        //}, {
+        //    data: dashData4,
+        //    color: '#00cccc'
+        //}], {
+        //    series: {
+        //        shadowSize: 0,
+        //        stack: true,
+        //        bars: {
+        //            show: true,
+        //            lineWidth: 0,
+        //            fill: 0.85
+        //            //fillColor: { colors: [ { opacity: 0 }, { opacity: 1 } ] }
+        //        }
+        //    },
+        //    grid: {
+        //        borderWidth: 0,
+        //        labelMargin: 20
+        //    },
+        //    yaxis: {
+        //        show: false,
+        //        min: 0,
+        //        max: 100
+        //    },
+        //    xaxis: {
+        //        show: true,
+        //        color: 'rgba(0,0,0,.16)',
+        //        ticks: [
+        //            [0, ''],
+        //            [10, '<span>Nov</span><span>05</span>'],
+        //            [20, '<span>Nov</span><span>10</span>'],
+        //            [30, '<span>Nov</span><span>15</span>'],
+        //            [40, '<span>Nov</span><span>18</span>'],
+        //            [50, '<span>Nov</span><span>22</span>'],
+        //            [60, '<span>Nov</span><span>26</span>'],
+        //            [70, '<span>Nov</span><span>30</span>'],
+        //        ]
+        //    }
+        //});
+
+        //$('#vmap2').vectorMap({
+        //    map: 'usa_en',
+        //    showTooltip: true,
+        //    backgroundColor: '#fff',
+        //    color: '#60adff',
+        //    colors: {
+        //        mo: '#9fceff',
+        //        fl: '#60adff',
+        //        or: '#409cff',
+        //        ca: '#005cbf',
+        //        tx: 'red',
+        //        wy: '#005cbf',
+        //        ny: '#007bff'
+        //    },
+        //    hoverColor: '#222',
+        //    enableZoom: false,
+        //    borderWidth: 1,
+        //    borderColor: '#fff',
+        //    hoverOpacity: .85
+        //});
+
+        var region = $("#region").val()
+        $('#vmap').vectorMap({
+            map: 'nigeria_ng',
+            showTooltip: true,
+            backgroundColor: '#f8f9fa',
+            //color: '#ced4da',
+            color: 'pink',
+            colors: {
+                25: (region == 1) ? 'red' : 'pink',
+
+                2: (region == 4) ? 'red' : 'pink',
+                5: (region == 4) ? 'red' : 'pink',
+                6: (region == 4) ? 'red' : 'pink',
+                7: (region == 4) ? 'red' : 'pink',
+                16: (region == 4) ? 'red' : 'pink',
+                26: (region == 4) ? 'red' : 'pink',
+                32: (region == 4) ? 'red' : 'pink',
+                35: (region == 4) ? 'red' : 'pink',
+                36: (region == 4) ? 'red' : 'pink',
+
+                //25: 'green',
+                15: (region == 5) ? 'red' : 'pink',
+                18: (region == 5) ? 'red' : 'pink',
+                19: (region == 5) ? 'red' : 'pink',
+                21: (region == 5) ? 'red' : 'pink',
+                23: (region == 5) ? 'red' : 'pink',
+                20: (region == 5) ? 'red' : 'pink',
+                22: (region == 5) ? 'red' : 'pink',
+                24: (region == 5) ? 'red' : 'pink',
+                27: (region == 5) ? 'red' : 'pink',
+                34: (region == 5) ? 'red' : 'pink',
+                37: (region == 5) ? 'red' : 'pink',
+
+                13: (region == 2) ? 'red' : 'pink',
+                28: (region == 2) ? 'red' : 'pink',
+                29: (region == 2) ? 'red' : 'pink',
+                30: (region == 2) ? 'red' : 'pink',
+                31: (region == 2) ? 'red' : 'pink',
+
+                1: (region == 3) ? 'red' : 'pink',
+                3: (region == 3) ? 'red' : 'pink',
+                4: (region == 3) ? 'red' : 'pink',
+                8: (region == 3) ? 'red' : 'pink',
+                9: (region == 3) ? 'red' : 'pink',
+                10: (region == 3) ? 'red' : 'pink',
+                11: (region == 3) ? 'red' : 'pink',
+                12: (region == 3) ? 'red' : 'pink',
+                14: (region == 3) ? 'red' : 'pink',
+
+                17: (region == 3) ? 'red' : 'pink',
+                33: (region == 3) ? 'red' : 'pink',
+            },
+            hoverColor: '#222',
+            enableZoom: true,
+            borderOpacity: .3,
+            borderWidth: 3,
+            borderColor: '#fff',
+            hoverOpacity: .85
+        });
+
+    });
+    </script>
+    <script>
+        $(function () {
+            'use strict'
+
+            // Datepicker found in left sidebar of the page
+            var highlightedDays = ['2018-5-10', '2018-5-11', '2018-5-12', '2018-5-13', '2018-5-14', '2018-5-15', '2018-5-16'];
+            var date = new Date();
+
+            $('.fc-datepicker').datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                dateFormat: 'yy-mm-dd',
+                beforeShowDay: function (date) {
+                    var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+                    for (var i = 0; i < highlightedDays.length; i++) {
+                        if ($.inArray(y + '-' + (m + 1) + '-' + d, highlightedDays) != -1) {
+                            return [true, 'ui-date-highlighted', ''];
+                        }
+                    }
+                    return [true];
+                }
+            });
+
+            var flotSampleDataNew = [
+                [0, 40.42460652446133],
+                [1, 39.746131861430484],
+                [2, 35.95109348595284],
+                [3, 33.295567798337025],
+                [4, 28.87960054374564],
+                [5, 28.498853797438535],
+                [6, 24.44598918395687],
+                [7, 20.218403695742982],
+                [8, 17.498233218421312],
+                [9, 16.54060961040485],
+                [10, 19.002383747980975],
+            ]
+
+            var plot1 = $.plot('#flotChart', [{
+                data: flotSampleData5,
+                color: '#6610f2'
+            }, {
+                data: flotSampleData3,
+                color: '#00cccc'
+            }], {
+                series: {
+                    shadowSize: 0,
+                    lines: {
+                        show: true,
+                        lineWidth: 2,
+                        fill: true,
+                        fillColor: { colors: [{ opacity: 0 }, { opacity: 0.2 }] }
+                    }
+                },
+                grid: {
+                    borderWidth: 0,
+                    borderColor: '#969dab',
+                    labelMargin: 5,
+                    markings: [{
+                        xaxis: { from: 10, to: 20 },
+                        color: '#f7f7f7'
+                    }]
+                },
+                yaxis: {
+                    show: false,
+                    color: '#ced4da',
+                    tickLength: 10,
+                    min: 0,
+                    max: 110,
+                    font: {
+                        size: 11,
+                        color: '#969dab'
+                    },
+                    tickFormatter: function formatter(val, axis) {
+                        return val + 'k';
+                    }
+                },
+                xaxis: {
+                    show: false,
+                    position: 'top',
+                    color: 'rgba(0,0,0,0.1)'
+                }
+            });
+
+            var mqSM = window.matchMedia('(min-width: 576px)');
+            var mqSMMD = window.matchMedia('(min-width: 576px) and (max-width: 991px)');
+            var mqLG = window.matchMedia('(min-width: 992px)');
+
+            function screenCheck() {
+                if (mqSM.matches) {
+                    plot1.getAxes().yaxis.options.show = true;
+                    plot1.getAxes().xaxis.options.show = true;
+                } else {
+                    plot1.getAxes().yaxis.options.show = false;
+                    plot1.getAxes().xaxis.options.show = false;
+                }
+
+                if (mqSMMD.matches) {
+                    var tick = [
+                        [0, '<span>May</span><span>100</span>'],
+                        [20, '<span>May</span><span>12</span>'],
+                        [40, '<span>May</span><span>14</span>'],
+                        [60, '<span>May</span><span>16</span>'],
+                        [80, '<span>May</span><span>18</span>'],
+                        [100, '<span>May</span><span>19</span>'],
+                        [120, '<span>May</span><span>20</span>'],
+                        [140, '<span>May</span><span>23</span>']
+                    ];
+
+                    plot1.getAxes().xaxis.options.ticks = tick;
+                }
+
+                if (mqLG.matches) {
+                    var tick = [
+                        [10, '<span>May</span><span>10</span>'],
+                        [20, '<span>May</span><span>11</span>'],
+                        [30, '<span>May</span><span>12</span>'],
+                        [40, '<span>May</span><span>13</span>'],
+                        [50, '<span>May</span><span>14</span>'],
+                        [60, '<span>May</span><span>15</span>'],
+                        [70, '<span>May</span><span>16</span>'],
+                        [80, '<span>May</span><span>17</span>'],
+                        [90, '<span>May</span><span>18</span>'],
+                        [100, '<span>May</span><span>19</span>'],
+                        [110, '<span>May</span><span>20</span>'],
+                        [120, '<span>May</span><span>21</span>'],
+                        [130, '<span>May</span><span>22</span>'],
+                        [140, '<span>May</span><span>23</span>']
+                    ];
+
+                    plot1.getAxes().xaxis.options.ticks = tick;
+                }
+            }
+
+            screenCheck();
+            mqSM.addListener(screenCheck);
+            mqSMMD.addListener(screenCheck);
+            mqLG.addListener(screenCheck);
+
+            plot1.setupGrid();
+            plot1.draw();
+
+            //$.plot('#flotPie', [
+            //    { label: 'Interested', data: [[1, 25]], color: '#6f42c1' },
+            //    { label: 'Going', data: [[1, 38]], color: '#007bff' },
+            //    { label: 'Maybe', data: [[1, 20]], color: '#00cccc' },
+            //    { label: 'Not Going', data: [[1, 15]], color: '#969dab' }
+            //], {
+            //    series: {
+            //        pie: {
+            //            show: true,
+            //            radius: 1,
+            //            innerRadius: 0.5,
+            //            label: {
+            //                show: true,
+            //                radius: 3 / 4,
+            //                formatter: labelFormatter
+            //            }
+            //        }
+            //    },
+            //    legend: { show: false }
+            //});
+
+            function labelFormatter(label, series) {
+                return '<div style="font-size:11px; font-weight:500; text-align:center; padding:2px; color:white;">' + Math.round(series.percent) + '%</div>';
+            }
+
+
+            $('#sparkline').sparkline([15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15], {
+                type: 'bar',
+                height: 100,
+                barWidth: 7,
+                barColor: '#e9ecef',
+                barSpacing: 5,
+                chartRangeMin: 0,
+                chartRangeMax: 15,
+                disableTooltips: true,
+                disableHighlight: true
+            });
+
+            $('#sparkline').sparkline([1, 2, 4, 4, 7, 5, 9, 10, 6, 4, 4, 7, 5, 9, 10, 5, 9, 10, 6, 4, 4, 7, 5, 9, 10, 9, 10, 6, 4, 4, 7, 5, 6, 4, 3, 4], {
+                composite: true,
+                type: 'bar',
+                barWidth: 7,
+                barSpacing: 5,
+                height: 100,
+                barColor: '#6f42c1',
+                chartRangeMin: 0,
+                chartRangeMax: 15,
+                disableTooltips: true,
+                disableHighlight: true
+            });
+
+
+
+        });
+    </script>
+    

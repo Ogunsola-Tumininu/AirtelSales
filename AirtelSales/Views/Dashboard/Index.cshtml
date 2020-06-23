@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+
+@if (ViewContext.HttpContext.User.IsInRole("RegionalManager"))
+{
+    @Html.Partial("_RegionalDashboard")
+}
+else if (ViewContext.HttpContext.User.IsInRole("ZonalManager"))
+{
+    @Html.Partial("_ZonalDashboard")
+}
+else if (ViewContext.HttpContext.User.IsInRole("AreaManager"))
+{
+    @Html.Partial("_AreaDashboard")
+}
+else
+{
+    @Html.Partial("_MktDevDashboard")
+}
+
+
+

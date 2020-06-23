@@ -1,0 +1,122 @@
+﻿@model IEnumerable<AirtelSales.DAL.AspNetUser>
+
+@using AirtelSales.Models;
+@using AirtelSales.DAL;
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                <div class="card-header">
+                    <h2>Users</h2>
+                </div>
+                <div class="card-body">
+
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                <div class="card-header">
+                    <div style="margin: 20px 0">
+                        <table class="table table-hover" id="table_id">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                        Fullname
+                                    </th>
+                                    <th>
+                                        Role
+                                    </th>
+
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @{ 
+                                                int id = Convert.ToInt32(item.ProfileId);
+                                                AirtelSalesDBEntities db = new AirtelSalesDBEntities();
+                                                var username = db.sf_user_profiles.Where(p => p.PROFILE_ID == id).FirstOrDefault();
+
+                                                if (username != null)
+                                                {
+                                                     <p>@username.USER_ID</p>
+                                                }
+                                            }
+
+
+
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Role)
+                                        </td>
+
+                                        <td>
+                                            @*<a href="@Url.Action( "UpdateUserRole", "Account", new { id=item.Id, Role=item.Role })" class="btn btn-primary">Edit</a>*@
+                                            @if (item.IsDisabled == true)
+                                            {
+                                                <a href="@Url.Action("DisableEnable", "Users", new { Id=item.Id })" class="btn btn-success">Enable</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.Action("DisableEnable", "Users", new { Id=item.Id })" class="btn btn-danger">Disable</a>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+
+
+
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section Scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                //"scrollX": true,
+                "ordering": false
+            });
+        });
+    </script>
+}
+
+

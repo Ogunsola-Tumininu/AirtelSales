@@ -1,0 +1,113 @@
+﻿@model AirtelSales.DAL.all_surveys
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                <div class="card-header">
+                    <h2>Edit Survey </h2>
+                </div>
+                <div class="card-body">
+
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                @*<div class="card-header">
+                        <h2>Edit Survey </h2>
+                    </div>*@
+                <div class="card-body">
+                    <div class="pd-30 pd-sm-40  wd-xl-50p">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Id)
+                                @Html.HiddenFor(model => model.created_date)
+                                @Html.HiddenFor(model => model.created_by)
+                                @Html.HiddenFor(model => model.response_count)
+
+                                <div class="row row-xs align-items-center mg-b-20">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(model => model.SurveyTypeId, "SurveyTypeId", htmlAttributes: new { @class = "control-label mg-b-0" })
+                                    </div><!-- col -->
+                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                        @Html.DropDownList("SurveyTypeId", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.SurveyTypeId, "", new { @class = "text-danger" })
+                                    </div><!-- col -->
+                                </div><!-- row -->
+
+                                <div class="row row-xs align-items-center mg-b-20">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(model => model.SurveyName, htmlAttributes: new { @class = "control-label mg-b-0" })
+                                    </div><!-- col -->
+                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                        @Html.EditorFor(model => model.SurveyName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.SurveyName, "", new { @class = "text-danger" })
+                                    </div><!-- col -->
+                                </div><!-- row -->
+
+                                <div class="row row-xs align-items-center mg-b-20">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(model => model.SurveryStartDate, htmlAttributes: new { @class = "control-label mg-b-0" })
+                                    </div><!-- col -->
+                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                        @Html.TextBoxFor(model => model.SurveryStartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                        @Html.ValidationMessageFor(model => model.SurveryStartDate, "", new { @class = "text-danger" })
+                                    </div><!-- col -->
+                                </div>
+
+                                <div class="row row-xs align-items-center mg-b-20">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(model => model.SurveryExpiryDate, htmlAttributes: new { @class = "control-label mg-b-0" })
+                                    </div><!-- col -->
+                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                        @Html.TextBoxFor(model => model.SurveryExpiryDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                        @Html.ValidationMessageFor(model => model.SurveryExpiryDate, "", new { @class = "text-danger" })
+                                    </div><!-- col -->
+                                </div>
+
+                                <div class="row row-xs align-items-center mg-b-20">
+                                    <div class="col-md-4">
+                                        @Html.LabelFor(model => model.SurveyStatus, htmlAttributes: new { @class = "control-label mg-b-0" })
+                                    </div><!-- col -->
+                                    <div class="col-md-8 mg-t-5 mg-md-t-0">
+                                        @Html.EditorFor(model => model.SurveyStatus, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.SurveyStatus, "", new { @class = "text-danger" })
+                                    </div><!-- col -->
+                                </div>
+
+                                <button type="submit" class="btn btn-az-primary pd-x-30 mg-r-5">Submit</button>
+                            </div>
+                        }
+
+                        <div>
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
+
+                    </div>
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,436 @@
+﻿@model AirtelSales.DAL.sf_user_profiles
+<div class="az-dashboard-one-title">
+    <div>
+        <h2 class="az-dashboard-title">Hi, welcome back!</h2>
+        <p class="az-dashboard-text">Your Incentive manager dashboard</p>
+    </div>
+    <div class="az-content-header-right">
+        <div class="media">
+            <div class="media-body">
+                <label>Start Date</label>
+                <h6>Apr 01, 2020</h6>
+            </div><!-- media-body -->
+        </div><!-- media -->
+        <div class="media">
+            <div class="media-body">
+                <label>End Date</label>
+                <h6>June 30, 2020</h6>
+            </div><!-- media-body -->
+        </div><!-- media -->
+        <div class="media">
+            <div class="media-body">
+                <label>Incentive Category</label>
+                <h6>All Categories</h6>
+            </div><!-- media-body -->
+        </div><!-- media -->
+        <a href="@Url.Action("Dealer","Incentive", new { RegionCode = Model.region_code })" class="btn btn-purple">Dealers Incentive </a>
+    </div>
+</div><!-- az-dashboard-one-title -->
+
+<div class="az-dashboard-nav">
+    <nav class="nav">
+        <a class="nav-link active" data-toggle="tab" href="#">Overview</a>
+
+    </nav>
+
+    <nav class="nav">
+        <a class="nav-link" href="#"><i class="far fa-save"></i> Save Report</a>
+        <a class="nav-link" href="#"><i class="far fa-file-pdf"></i> Export to PDF</a>
+        <a class="nav-link" href="#"><i class="far fa-envelope"></i>Send to Email</a>
+        <a class="nav-link" href="#"><i class="fas fa-ellipsis-h"></i></a>
+    </nav>
+</div>
+
+<div class="row row-sm mg-b-20">
+    <div class="col-lg-8">
+        <div class="row row-xs row-sm--sm">
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-dashboard-seventeen">
+                    <div class="card-body">
+                        <h6 class="card-title">Payable</h6>
+                        <div>
+                            <h3>N230M</h3>
+                            <span>Period: Q2 2020</span>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <div id="flotChart1" class="flot-chart"></div>
+                    </div><!-- chart-wrapper -->
+                </div>
+            </div><!-- col -->
+            <div class="col-sm-6 col-md-3 mg-t-20 mg-sm-t-0">
+                <div class="card card-dashboard-seventeen">
+                    <div class="card-body">
+                        <h6 class="card-title">Average Attainment</h6>
+                        <div>
+                            <h3>67%</h3>
+                            <span>Goal: 100%</span>
+                        </div>
+                    </div><!-- card-body -->
+                    <div class="chart-wrapper">
+                        <div id="flotChart2" class="flot-chart"></div>
+                    </div><!-- chart-wrapper -->
+                </div><!-- card -->
+            </div><!-- col -->
+            <div class="col-sm-6 col-md-3 mg-t-20 mg-md-t-0">
+                <div class="card card-dashboard-seventeen bg-primary-dark tx-white">
+                    <div class="card-body">
+                        <h6 class="card-title">Monthly MRR Retention</h6>
+                        <div>
+                            <h3 class="text-white">102.3%</h3>
+                            <span class="op-7">Goal: 105.5%</span>
+                        </div>
+                    </div><!-- card-body -->
+                    <div class="chart-wrapper">
+                        <div id="flotChart3" class="flot-chart"></div>
+                    </div><!-- chart-wrapper -->
+                </div><!-- card -->
+            </div><!-- col -->
+            <div class="col-sm-6 col-md-3 mg-t-20 mg-md-t-0">
+                <div class="card card-dashboard-seventeen bg-primary tx-white">
+                    <div class="card-body">
+                        <h6 class="card-title">Average MRR by dealer</h6>
+                        <div>
+                            <h3 class="text-white"> N37M</h3>
+                            <span class="op-7"></span>
+                        </div>
+                    </div><!-- card-body -->
+                    <div class="chart-wrapper">
+                        <div id="flotChart4" class="flot-chart"></div>
+                    </div><!-- chart-wrapper -->
+                </div>
+            </div><!-- col -->
+            <div class="col-12 mg-t-20">
+                <div class="card card-dashboard-nineteen">
+                    <div class="card-header">
+                        <h6 class="card-title">Account &amp; Monthly Recurring Revenue Growth</h6>
+                        <div class="row">
+                            <div class="col-6 col-md-5">
+                                <h4><span>N</span>620,076</h4>
+                                <label class="az-content-label">MRR Growth</label>
+                                <p>Measure How Fast You’re Growing Monthly Recurring Revenue. <a href="">Learn More</a></p>
+                            </div><!-- col -->
+                            <div class="col-6 col-md-5">
+                                <h4><span>N</span>1,200</h4>
+                                <label class="az-content-label">Avg. MRR/Dealer</label>
+                                <p>The revenue generated per dealer on a monthly or yearly basis.  <a href="">Learn More</a></p>
+                            </div><!-- col -->
+                        </div><!-- row -->
+                        <div class="chart-legend">
+                            <div>Growth Actual</div>
+                            <div>Target</div>
+                            <div>Forecast</div>
+                        </div>
+                    </div><!-- card-header -->
+                    <div class="card-body">
+                        <div class="flot-chart-wrapper">
+                            <div id="flotChart" class="flot-chart"></div>
+                        </div><!-- flot-chart-wrapper -->
+                    </div><!-- card-body -->
+                </div><!-- card -->
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- col -->
+
+    <div class="col-lg-4 mg-t-20 mg-lg-t-0">
+        <div class="card card-dashboard-eighteen">
+            <h6 class="card-title mg-b-5">Attainment Breakdown</h6>
+            <p class="tx-gray-500 mg-b-0">Apr 01,2020 - June 30,2020</p>
+            <div class="card-body row row-xs">
+                <div class="col-6">
+                    <h6 class="dot-primary"><span>N</span>67,000M</h6>
+                    <label>Revenue Quota Attainment: 87%</label>
+                </div><!-- col -->
+                <div class="col-6">
+                    <h6 class="dot-purple"><span>N</span>230M</h6>
+                    <label>Payable on sales quota attainment : 13.5%</label>
+                </div><!-- col -->
+                <div class="col-6 mg-t-30">
+                    <h6 class="dot-teal"><span>N</span>332,891</h6>
+                    <label>Revenue Attainment</label>
+                </div><!-- col -->
+                <div class="col-6 mg-t-30">
+                    <h6 class="dot-dark-blue"><span>N</span>78,005M</h6>
+                    <label>Company goal</label>
+                </div><!-- col -->
+            </div><!-- card-body -->
+            <h6 class="card-title mg-b-10">Monthly Trends</h6>
+            <div class="chartjs-wrapper"><canvas id="chartBar5"></canvas></div>
+        </div><!-- card -->
+    </div><!-- col -->
+
+</div><!-- row -->
+
+<script src="~/Omnistack-UI-html/lib/jquery/jquery.min.js"></script>
+<script src="~/Omnistack-UI-html/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/Omnistack-UI-html/lib/ionicons/ionicons.js"></script>
+<script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.js"></script>
+<script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.resize.js"></script>
+<script src="~/Omnistack-UI-html/lib/chart.js/Chart.bundle.min.js"></script>
+<script src="~/Omnistack-UI-html/lib/peity/jquery.peity.min.js"></script>
+<script src="~/Omnistack-UI-html/js/azia.js"></script>
+<script src="~/Omnistack-UI-html/js/chart.flot.sampledata.js"></script>
+<script>
+    // Bar charts
+    $('.peity-donut').peity('donut');
+    $(function () {
+        'use strict'
+
+        var plot = $.plot('#flotChart', [{
+            data: flotSampleData10,
+            color: '#FFA07A',
+            lines: {
+                fillColor: { colors: [{ opacity: .6 }, { opacity: .4 }] }
+            }
+        }, {
+            data: flotSampleData4,
+            color: '#FA8072',
+            lines: {
+                fillColor: { colors: [{ opacity: .8 }, { opacity: .6 }] }
+            }
+        }, {
+            data: flotSampleData11,
+            color: '#FF0000',
+            lines: {
+                fillColor: { colors: [{ opacity: .9 }, { opacity: .7 }] }
+            }
+        }], {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 0,
+                    fill: true
+                }
+            },
+            grid: {
+                borderWidth: 0,
+                aboveData: true
+            },
+            yaxis: {
+                show: true,
+                min: 0,
+                max: 150,
+                color: 'rgba(255,255,255,0.2)',
+                ticks: [[0, ''], [25, 'N25,000'], [50, 'N50,000'], [75, 'N75,000'], [100, 'N100,000']]
+            },
+            xaxis: {
+                show: true,
+                ticks: [[0, ''], [8, 'Jan'], [20, 'Feb'], [32, 'Mar'], [44, 'Apr'], [56, 'May'], [68, 'Jun'], [80, 'Jul'], [92, 'Aug'], [104, 'Sep'], [116, 'Oct'], [128, 'Nov'], [140, 'Dec']],
+                color: 'rgba(255,255,255,0.2)'
+            }
+        });
+
+        $.plot('#flotChart1', [{
+            data: flotSampleData6,
+            color: '#70737c'
+        }], {
+            series: {
+                shadowSize: 0,
+            lines: {
+                show: true,
+                lineWidth: 2,
+                fill: true,
+                fillColor: { colors: [{ opacity: 0 }, { opacity: 0.1 }] }
+        }
+            },
+        grid: {
+        borderWidth: 0,
+        labelMargin: 0
+    },
+        yaxis: {
+        show: false,
+        min: 0,
+        max: 120
+    },
+        xaxis: { show: false }
+        });
+
+    $.plot('#flotChart2', [{
+        data: flotSampleData7,
+        color: '#007bff'
+    }], {
+        series: {
+            shadowSize: 0,
+            lines: {
+                show: true,
+                lineWidth: 2,
+                fill: true,
+                fillColor: { colors: [{ opacity: 0 }, { opacity: 0.2 }] }
+            }
+        },
+        grid: {
+            borderWidth: 0,
+            labelMargin: 0
+        },
+        yaxis: {
+            show: false,
+            min: 0,
+            max: 120
+        },
+        xaxis: { show: false }
+    });
+
+    $.plot('#flotChart3', [{
+        data: flotSampleData8,
+        color: '#fff'
+    }], {
+        series: {
+            shadowSize: 0,
+            lines: {
+                show: true,
+                lineWidth: 2,
+                fill: true,
+                fillColor: { colors: [{ opacity: 0 }, { opacity: 0.2 }] }
+            }
+        },
+        grid: {
+            borderWidth: 0,
+            labelMargin: 0
+        },
+        yaxis: {
+            show: false,
+            min: 0,
+            max: 120
+        },
+        xaxis: { show: false }
+    });
+
+    $.plot('#flotChart4', [{
+        data: flotSampleData9,
+        color: '#fff'
+    }], {
+        series: {
+            shadowSize: 0,
+            lines: {
+                show: true,
+                lineWidth: 2,
+                fill: true,
+                fillColor: { colors: [{ opacity: 0 }, { opacity: 0.2 }] }
+            }
+        },
+        grid: {
+            borderWidth: 0,
+            labelMargin: 0
+        },
+        yaxis: {
+            show: false,
+            min: 0,
+            max: 120
+        },
+        xaxis: { show: false }
+    });
+
+    var ctx5 = document.getElementById('chartBar5').getContext('2d');
+    new Chart(ctx5, {
+        type: 'horizontalBar',
+        data: {
+            labels: ['Apr', 'May', 'Jun'],
+            datasets: [{
+                data: [12, 39, 20],
+                backgroundColor: '#FFA07A'
+            }, {
+                data: [22, 30, 25],
+                backgroundColor: '#E9967A'
+            }, {
+                data: [40, 30, 35],
+                backgroundColor: '#DC143C'
+            }, {
+                data: [25, 40, 25],
+                backgroundColor: '#FF0000'
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            legend: {
+                display: false,
+                labels: {
+                    display: false
+                }
+            },
+            scales: {
+                yAxes: [{
+                    barPercentage: 0.75,
+                    ticks: {
+                        beginAtZero: true,
+                        fontSize: 11,
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        fontSize: 11,
+                        max: 80
+                    }
+                }]
+            }
+        }
+    });
+
+    var ctx6 = document.getElementById('chartBar6').getContext('2d');
+    new Chart(ctx6, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                data: [150, 110, 90, 115, 125, 160, 160, 140, 100, 110, 120, 120],
+                backgroundColor: '#2b91fe'
+            }, {
+                data: [180, 140, 120, 135, 155, 170, 180, 150, 140, 150, 130, 130],
+                backgroundColor: '#054790'
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            legend: {
+                display: false,
+                labels: {
+                    display: false
+                }
+            },
+            scales: {
+                xAxes: [{
+                    //stacked: true,
+                    display: false,
+                    barPercentage: 0.5,
+                    ticks: {
+                        beginAtZero: true,
+                        fontSize: 11
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 10,
+                        color: '#eee',
+                        min: 80,
+                        max: 200
+                    }
+                }]
+            }
+        }
+    });
+
+    // Progress
+    var prog1 = $('#progressBar1 .progress-bar:first-child');
+    prog1.css('width', '30%');
+    prog1.attr('aria-valuenow', '30');
+    prog1.text('30%');
+
+    var prog2 = $('#progressBar1 .progress-bar:last-child');
+    prog2.css('width', '53%');
+    prog2.attr('aria-valuenow', '53');
+    prog2.text('53%');
+
+    // Progress
+    var prog3 = $('#progressBar2 .progress-bar:first-child');
+    prog3.css('width', '35%');
+    prog3.attr('aria-valuenow', '35');
+    prog3.text('35%');
+
+    var prog4 = $('#progressBar2 .progress-bar:last-child');
+    prog4.css('width', '37%');
+    prog4.attr('aria-valuenow', '37');
+    prog4.text('37%');
+
+    });
+</script>

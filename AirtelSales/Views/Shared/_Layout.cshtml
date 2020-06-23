@@ -1,0 +1,337 @@
+﻿@using Microsoft.AspNet.Identity
+@using AirtelSales.DAL;
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90680653-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-90680653-2');
+    </script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Meta -->
+    <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
+    <meta name="author" content="ThemePixels">
+
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @*@Styles.Render("~/Content/css")*@
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    @*@Styles.Render("~/Omnistack-UI-html/lib/fontawesome-free/css")
+        @Styles.Render("~/Omnistack-UI-html/lib/ionicons/css")
+        @Styles.Render("~/Omnistack-UI-html/lib/typicons.font")
+        @Styles.Render("~/Omnistack-UI-html/lib/simplebar/css")
+        @Styles.Render("~/Omnistack-UI-html/lib/select2/css")
+        @Styles.Render("~/Omnistack-UI-html/css")
+        @Styles.Render("~/Omnistack-UI-html/css/custom")*@
+    @*@Scripts.Render("~/Omnistack-UI-html/lib/jquery")*@
+
+    @*@Scripts.Render("~/Omnistack-UI-html/lib/bootstrap/js")*@
+
+    <!-- vendor css -->
+    <link href="~/Omnistack-UI-html/lib/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="~/Omnistack-UI-html/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/Omnistack-UI-html/lib/typicons.font/typicons.css" rel="stylesheet">
+    <link href="~/Omnistack-UI-html/lib/jqvmap/jqvmap.min.css" rel="stylesheet">
+
+    <!-- azia CSS -->
+    <link href="~/Omnistack-UI-html/css/azia.css" rel="stylesheet" />
+
+</head>
+<body class="az-body az-body-sidebar az-body-dashboard-nine">
+
+    <div class="az-sidebar az-sidebar-sticky az-sidebar-green" style="background: #f7d0d4 !important">
+        <div class="az-sidebar-header">
+            <a href="../template/index.html" class="az-logo">
+                <img src="~/Content/images/airtel-logo.png" alt="Airtel Logo" style="width: 120px; margin-top:20px" />
+            </a>
+        </div><!-- az-sidebar-header -->
+        <div class="az-sidebar-loggedin">
+            @*<div class="az-img-user onlin">
+                    <img src="~/Content/images/airtel-logo.png" alt="Airtel Logo" />
+                </div>*@
+            <div class="media-body">
+                @*@Html.Partial("_LoginPartial")*@
+            </div><!-- media-body -->
+        </div><!-- az-sidebar-loggedin -->
+        <div class="az-sidebar-body">
+            <ul class="nav">
+                <li class="nav-label">Main Menu</li>
+                @if (ViewContext.HttpContext.User.IsInRole("RegionalManager") || ViewContext.HttpContext.User.IsInRole("ZonalManager") || ViewContext.HttpContext.User.IsInRole("AreaManager") || ViewContext.HttpContext.User.IsInRole("MarketDeveloper"))
+                {
+                    <li class="nav-item ">
+                        <a href="@Url.Action("Index", "Dashboard")" class="nav-link "><i class="typcn typcn-clipboard"></i>Dashboard</a>
+                        <ul class="nav-sub">
+                            <li class="nav-sub-item">
+                                <a href="http://104.40.131.15/cem/Segment/Create" class="nav-sub-link">Create Segment</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <!-- nav-item -->
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Survey")" class="nav-link "><i class="fa fa-briefcase"></i>Survey</a>
+
+                    </li>
+
+                    @*<li class="nav-item">
+                        <a href="@Url.Action("Index", "IncentiveConfigs")" class="nav-link "><i class="fa fa-address-book" style="font-size: 1.1em"></i> Incentive Config</a>
+
+                    </li>*@
+
+
+                    //AirtelSalesDBEntities db = new AirtelSalesDBEntities();
+                    //var userId = User.Identity.GetUserId();
+                    //var mkt = db.MarketDevelopers.Where(m => m.UserId == userId).FirstOrDefault();
+                    <li class="nav-item">
+                        <a href="#" class="nav-link with-sub"><i class="fa fa-money-bill" style="font-size: 1.1em"></i> Incentive </a>
+                        <ul class="nav-sub">
+                            @if (ViewContext.HttpContext.User.IsInRole("MarketDeveloper"))
+                            {
+                                <li class="nav-sub-item">
+                                    <a href="@Url.Action("Dashboard", "Incentive")" class="nav-sub-link"><i class="fa fa-money-bill" style="font-size: 1.1em"></i> Incentive </a>
+                                </li>
+                            }
+                            <li class="nav-sub-item">
+                                <a href="@Url.Action("Index", "IncentiveConfigs")" class="nav-link "><i class="fa fa-address-book" style="font-size: 1.1em"></i> Configuration </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Data")" class="nav-link w"><i class="fa fa-database"></i> Data</a>
+                    </li>
+                    if (ViewContext.HttpContext.User.IsInRole("RegionalManager"))
+                    {
+                        AirtelSalesDBEntities db = new AirtelSalesDBEntities();
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Users")" class="nav-link w"><i class="fa fa-user"></i> User Management </a>
+                        </li>
+                    }
+                }
+
+                else
+                {
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Incentive")" class="nav-link "><i class="fa fa-money-bill" style="font-size: 1.1em"></i> Dashboard</a>
+
+                    </li>
+                    @*<li class="nav-item">
+                            <a href="@Url.Action("Index", "Survey")" class="nav-link "><i class="fa fa-briefcase"></i>Survey</a>
+
+                        </li>*@
+                }
+
+                <li class="nav-item">
+
+                </li>
+
+                @*<li class="@(ViewContext.RouteData.Values["Controller"].ToString()=="Survey" ? "active" : "")">
+                        <i class="fa fa-briefcase "></i> <a href="@Url.Action("Index", "Survey")"> Survey</a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString()=="Incentive" ? "active" : "")">
+                        <i class="fa fa-credit-card"></i> <a href="@Url.Action("Index", "Incentive")"> Incentive</a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString()=="Data" ? "active" : "")">
+                        <i class="fa fa-database "></i> <a href="@Url.Action("Index", "Data")"> Data</a>
+                    </li>*@
+
+                <!-- nav-item -->
+            </ul><!-- nav -->
+        </div><!-- az-sidebar-body -->
+    </div><!-- az-sidebar -->
+    <div class="az-content az-content-dashboard-nine">
+        <div class="az-header az-header-dashboard-nine">
+            <div class="container-fluid">
+                <div class="az-header-left">
+                    <a href="" id="azSidebarToggle" class="az-header-menu-icon"><span></span></a>
+                </div><!-- az-header-left -->
+                <div class="az-header-center">
+                    <a style="color: black" href="@Url.Action("Index", "Manage")">Hello  @User.Identity.GetUserName() </a>
+                    @*<input type="search" class="form-control" placeholder="Search for anything...">
+                        <button class="btn"><i class="fas fa-search"></i></button>*@
+                </div><!-- az-header-center -->
+                <div class="az-header-right">
+
+                    <div class="az-header-message">
+                        @Html.Partial("_LoginPartial")
+                        @*<a href="app-chat.html"><i class="typcn typcn-messages"></i></a>*@
+                    </div><!-- az-header-message -->
+                    <div class="dropdown az-header-notification">
+                        <a href="" class="new"><i class="typcn typcn-bell"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="az-dropdown-header mg-b-20 d-sm-none">
+                                <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
+                            </div>
+                            <h6 class="az-notification-title">Notifications</h6>
+                            <p class="az-notification-text">You have 2 unread notification</p>
+                            <div class="az-notification-list">
+                                <div class="media new">
+                                    <div class="az-img-user"><img src="https://via.placeholder.com/500x500" alt=""></div>
+                                    <div class="media-body">
+                                        <p>Congratulate <strong>Socrates Itumay</strong> for work anniversaries</p>
+                                        <span>Mar 15 12:32pm</span>
+                                    </div><!-- media-body -->
+                                </div><!-- media -->
+                                <div class="media new">
+                                    <div class="az-img-user online"><img src="https://via.placeholder.com/500x500" alt=""></div>
+                                    <div class="media-body">
+                                        <p><strong>Joyce Chua</strong> just created a new blog post</p>
+                                        <span>Mar 13 04:16am</span>
+                                    </div><!-- media-body -->
+                                </div><!-- media -->
+                                <div class="media">
+                                    <div class="az-img-user"><img src="https://via.placeholder.com/500x500" alt=""></div>
+                                    <div class="media-body">
+                                        <p><strong>Althea Cabardo</strong> just created a new blog post</p>
+                                        <span>Mar 13 02:56am</span>
+                                    </div><!-- media-body -->
+                                </div><!-- media -->
+                                <div class="media">
+                                    <div class="az-img-user"><img src="https://via.placeholder.com/500x500" alt=""></div>
+                                    <div class="media-body">
+                                        <p><strong>Adrian Monino</strong> added new comment on your photo</p>
+                                        <span>Mar 12 10:40pm</span>
+                                    </div><!-- media-body -->
+                                </div><!-- media -->
+                            </div><!-- az-notification-list -->
+                            <div class="dropdown-footer"><a href="">View All Notifications</a></div>
+                        </div><!-- dropdown-menu -->
+                    </div><!-- az-header-notification -->
+                    <div class="dropdown az-profile-menu">
+                        <a href="" class="az-img-user"><img src="https://via.placeholder.com/500x500" alt=""></a>
+                        <div class="dropdown-menu">
+                            <div class="az-dropdown-header d-sm-none">
+                                <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
+                            </div>
+                            <div class="az-header-profile">
+                                <div class="az-img-user">
+                                    <img src="https://via.placeholder.com/500x500" alt="">
+                                </div><!-- az-img-user -->
+                                <h6>Aziana Pechon</h6>
+                                <span>Premium Member</span>
+                            </div><!-- az-header-profile -->
+
+                            <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
+                            <a href="" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
+                            <a href="" class="dropdown-item"><i class="typcn typcn-time"></i> Activity Logs</a>
+                            <a href="" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
+                            <a href="page-signin.html" class="dropdown-item"><i class="typcn typcn-power-outline"></i> Sign Out</a>
+                        </div><!-- dropdown-menu -->
+                    </div>
+                </div><!-- az-header-right -->
+            </div><!-- container -->
+        </div><!-- az-header -->
+        @*<div class="az-content-header">
+                <div class="az-content-header-top">
+                    <div>
+                        <h2 class="az-content-title mg-b-5 mg-b-lg-8">Hi, welcome back!</h2>
+                        <p class="mg-b-0">Your campaign monitoring dashboard template.</p>
+                    </div>
+                </div><!-- az-content-body-title -->
+                <div class="nav-wrapper">
+                    <nav class="nav az-nav-line">
+                        <a href="#" class="nav-link active">Overview</a>
+                        <a href="#" class="nav-link">Earnings</a>
+                        <a href="#" class="nav-link">Reviews</a>
+                        <a href="#" class="nav-link">Notifications</a>
+                        <a href="#" class="nav-link">Web Settings</a>
+                        <a href="#" class="nav-link">Report Settings</a>
+                    </nav>
+                </div><!-- nav-wrapper -->
+            </div><!-- az-content-header -->*@
+        <div class="az-content-body">
+            @RenderBody()
+            <!-- your content goes here -->
+        </div><!-- az-content-body -->
+        @*<div class="az-footer">
+                <div class="container-fluid">
+                    <span>&copy; 2018 Azia Responsive Bootstrap 4 Dashboard Template</span>
+                    <span>Designed by: ThemePixels</span>
+                </div>
+            </div>*@
+    </div><!-- az-content -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    <script src="~/Omnistack-UI-html/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    @*@Scripts.Render("~/Omnistack-UI-html/lib/ionicons")
+        @Scripts.Render("~/Omnistack-UI-html/js")
+        @Scripts.Render("~/Omnistack-UI-html/lib/select2/js")
+        @Scripts.Render("~/Omnistack-UI-html/js/features")*@
+
+    @*<script src="~/Omnistack-UI-html/lib/jquery/jquery.min.js"></script>*@
+    <script src="~/Omnistack-UI-html/lib/jquery-ui/ui/widgets/datepicker.js"></script>
+    <script src="~/Omnistack-UI-html/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/ionicons/ionicons.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="~/Omnistack-UI-html/lib/raphael/raphael.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/morris.js/morris.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jqvmap/maps/jquery.vmap.nigeria.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <script src="~/Omnistack-UI-html/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.pie.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="~/Omnistack-UI-html/lib/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+    <script src="~/Omnistack-UI-html/js/azia.js"></script>
+    <script src="~/Omnistack-UI-html/js/chart.flot.sampledata.js"></script>
+    <script src="~/Omnistack-UI-html/js/dashboard.sampledata.js"></script>
+    <script>
+        $(function () {
+            'use strict'
+
+            $('.az-sidebar .with-sub').on('click', function (e) {
+                e.preventDefault();
+                $(this).parent().toggleClass('show');
+                $(this).parent().siblings().removeClass('show');
+            })
+
+            $(document).on('click touchstart', function (e) {
+                e.stopPropagation();
+
+                // closing of sidebar menu when clicking outside of it
+                if (!$(e.target).closest('.az-header-menu-icon').length) {
+                    var sidebarTarg = $(e.target).closest('.az-sidebar').length;
+                    if (!sidebarTarg) {
+                        $('body').removeClass('az-sidebar-show');
+                    }
+                }
+            });
+
+
+            $('#azSidebarToggle').on('click', function (e) {
+                e.preventDefault();
+
+                if (window.matchMedia('(min-width: 992px)').matches) {
+                    $('body').toggleClass('az-sidebar-hide');
+                } else {
+                    $('body').toggleClass('az-sidebar-show');
+                }
+            });
+
+            new PerfectScrollbar('.az-sidebar-body', {
+                suppressScrollX: true
+            });
+
+        });
+    </script>
+</body>
+</html>
+
+

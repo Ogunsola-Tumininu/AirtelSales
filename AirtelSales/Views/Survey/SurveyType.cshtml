@@ -1,0 +1,333 @@
+﻿@model IEnumerable<AirtelSales.DAL.all_survey_questions>
+
+@{
+    ViewBag.Title = "SurveyType";
+}
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                <div class="card-header">
+                    <h2>@ViewBag.Survey.SurveyName</h2>
+                </div>
+                <div class="card-body">
+
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+<div class="col-md-12">
+    <div class="card card-dashboard-twelve mg-b-20">
+
+        <div class="media-body">
+            <div class="card card-minimal-two">
+                @*<div class="card-header">
+                        <h2>@ViewBag.Survey.SurveyName</h2>
+                    </div>*@
+                <div class="card-body">
+                    <div style="margin: 20px auto">
+                        <p class="text-danger" id="no-geolocation"></p>
+                        @if (Model.Count() > 0)
+                        {
+                            <form id="regForm" action="">
+                                <input type="hidden" name="RegionId" id="RegionId" value="@ViewBag.RegionId" />
+                                <input type="hidden" name="StateId" id="StateId" value="@ViewBag.StateId" />
+                                <input type="hidden" name="LocationId" id="LocationId" value="@ViewBag.LocationId" />
+                                <input type="hidden" name="long" id="long" />
+                                <input type="hidden" name="lat" id="lat" />
+
+                                @foreach (var item in Model)
+                                {
+                            <div class="tab">
+                                <h3>@Html.DisplayFor(modelItem => item.SurveyQuestion) </h3> <br />
+                                <input type="hidden" class="id" value="@item.Id" />
+                                <input type="hidden" class="surveyId" value="@item.SurveyId" />
+                                @{
+                                    if (item.ResponseType == "Comments" )
+                                    {
+                                        <div class="form-group">
+                                            <textarea class="form-control" rows="5" name="comment" id="@item.Id" required></textarea>
+                                        </div> 
+                                    }
+                                    else if (item.ResponseType == "TextBox" || item.ResponseType == "Text")
+                                    {
+                                        <div class="form-group">
+                                            <input class="form-control"  name="comment" id="@item.Id" />
+                                            
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        List<string> options = item.DomainValues.Split(',').ToList();
+                                        foreach (var option in options)
+                                        {
+                                            <label class="rdiobox radio-inline">
+                                                <input type="radio" name="resp" value="@option"><span>@option</span>
+                                            </label>
+                                        }
+                                    }
+
+                                }
+
+                                @*<p><input placeholder="First name..." oninput="this.className = ''"></p>
+        <p><input placeholder="Last name..." oninput="this.className = ''"></p>*@
+                            </div>
+                                }
+
+                                <div style="overflow:auto; margin-top: 20px">
+                                    <div>
+                                        <button type="button" class="btn btn-danger btn-lg" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                                        <button type="button" class="btn btn-primary btn-lg" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                                    </div>
+                                </div>
+
+                                <!-- Circles which indicates the steps of the form: -->
+                                <div style="text-align:center;margin-top:40px;">
+                                    @foreach (var item in Model)
+                                    {
+                                        <span class="step"></span>
+                                    }
+
+                                </div>
+
+                            </form>
+                                            }
+                                            else
+                                            {
+                                                <p>There is no question for this survey.</p>
+                                            }
+
+                    </div>
+                </div><!-- card-body -->
+            </div><!-- card minimal-->
+        </div> <!--media body-->
+    </div> <!--card-->
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        function showPosition(position) {
+            //lat = position.coords.latitude;
+            //long = position.coords.longitude;
+            console.log(lat, long);
+            $("#lat").val(position.coords.latitude);
+            $("#long").val(position.coords.longitude);
+        }
+
+        $(document).ready(function () {
+            var p = document.getElementById("no-geolocation");
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition)
+
+            }
+            else {
+                p.innerHTML = "Geolocation is not supported by your browser";
+            }
+        })
+
+        var surveyArray = [];
+        var lat= "";
+        var long = "";
+
+
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
+
+        function showTab(n) {
+            // This function will display the specified tab of the form ...
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            // ... and fix the Previous/Next buttons:
+            if (n == 0) {
+                document.getElementById("prevBtn").style.display = "none";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                document.getElementById("nextBtn").innerHTML = "Submit";
+            } else {
+                document.getElementById("nextBtn").innerHTML = "Next";
+            }
+            // ... and run a function that displays the correct step indicator:
+            fixStepIndicator(n)
+        }
+
+
+
+        function nextPrev(n) {
+            // This function will figure out which tab to display
+            var x = document.getElementsByClassName("tab");
+            // Exit the function if any field in the current tab is invalid:
+            if (n == 1 && !validateForm()) return false;
+            // Hide the current tab:
+            x[currentTab].style.display = "none";
+
+            var child = x[currentTab];
+            var radios = document.getElementsByName("resp");
+            var comments = document.getElementsByName("comment");
+            var Id = document.getElementsByClassName("id");
+            var surveyId = document.getElementsByClassName("surveyId");
+            var RegionId = document.getElementById("RegionId").value;
+            var StateId = document.getElementById("StateId").value;
+            var LocationId = document.getElementById("LocationId").value;
+            //console.log(Id[currentTab].value, surveyId[currentTab].value)
+
+
+            if (n == 1) {
+
+                for(var radio of radios) {
+                    if (x[currentTab].contains(radio)) {
+
+                        if (radio.checked) {
+                            var survey = {};
+                            survey.SurveryQuestionId = Id[currentTab].value;
+                            survey.SurveyId = surveyId[currentTab].value;
+                            survey.SurveyAnswer = radio.value;
+                            survey.geo_longitude = $("#lat").val();
+                            survey.geo_latitude = $("#long").val();
+                            survey.agentcode = "3535";
+                            survey.submission_date = getSubDate();
+                            survey.region_id = RegionId;
+                            survey.location_id = LocationId;
+                            survey.state_id = StateId;
+
+
+
+                            surveyArray.push(survey)
+                            //console.log(radio.value);
+                        }
+
+
+                    }
+                }
+
+                for(var comment of comments) {
+                    if (x[currentTab].contains(comment)) {
+                        if (comment.value != "") {
+                            var survey = {};
+                            survey.SurveryQuestionId = Id[currentTab].value;
+                            survey.SurveyId = surveyId[currentTab].value;
+                            survey.SurveyAnswer = comment.value;
+                            survey.geo_longitude = $("#lat").val();
+                            survey.geo_latitude = $("#long").val();
+                            survey.agentcode = "3535";
+                            survey.submission_date = getSubDate();
+                            survey.submission_date = getSubDate();
+                            survey.region_id = RegionId;
+                            survey.location_id = LocationId;
+                            survey.state_id = StateId;
+
+                            surveyArray.push(survey);
+                            console.log(lat, long);
+                            //console.log(comment.value);
+                        }
+                    }
+                }
+
+                console.log(surveyArray)
+            }
+            else {
+                surveyArray.pop()
+                console.log(surveyArray)
+            }
+
+
+
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            // if you have reached the end of the form... :
+            if (currentTab >= x.length) {
+                //...the form gets submitted:
+                submitSurvey();
+                window.open("/Data/Index", "_self")
+                //document.getElementById("regForm").submit();
+                return false;
+            }
+            // Otherwise, display the correct tab:
+            showTab(currentTab);
+
+        }
+
+
+
+        function getSubDate() {
+            var date = new Date();
+            var day = date.getDate();
+            var month = date.getMonth();
+            var year = date.getFullYear();
+            var hour = date.getHours();
+            var minutes = date.getMinutes();
+            var second = date.getSeconds();
+
+            var time = day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + second;
+            console.log(time);
+            return time
+        }
+
+
+        function submitSurvey() {
+
+            for (var survey of surveyArray) {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("SubmitSurvey", "Survey" )",
+                    data: survey,
+                    success: function (message) {
+                        console.log(message);
+                    },
+                    error: function () {
+                        alert("Error posting Survey! " + survey.SurveyQuestionId);
+                    }
+                });
+            }
+
+        }
+        function validateForm() {
+            // This function deals with validation of the form fields
+            var x, y, i, valid = true;
+            x = document.getElementsByClassName("tab");
+            y = x[currentTab].getElementsByTagName("input");
+
+            if (y.checked == false) {
+                // add an "invalid" class to the field:
+                y.className += " invalid";
+                // and set the current valid status to false:
+                valid = false;
+            }
+            // A loop that checks every input field in the current tab:
+            for (i = 0; i < y.length; i++) {
+                // If a field is empty...
+                if (y[i].value == "") {
+                    // add an "invalid" class to the field:
+                    y[i].className += " invalid";
+                    // and set the current valid status to false:
+                    valid = false;
+                }
+            }
+            // If the valid status is true, mark the step as finished and valid:
+            if (valid) {
+                document.getElementsByClassName("step")[currentTab].className += " finish";
+            }
+            return valid; // return the valid status
+        }
+
+        function fixStepIndicator(n) {
+            // This function removes the "active" class of all steps...
+            var i, x = document.getElementsByClassName("step");
+            for (i = 0; i < x.length; i++) {
+                x[i].className = x[i].className.replace(" active", "");
+            }
+            //... and adds the "active" class to the current step:
+            x[n].className += " active";
+        }
+    </script>
+}
+

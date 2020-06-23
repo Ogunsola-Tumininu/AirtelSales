@@ -1,0 +1,223 @@
+﻿
+@using Microsoft.AspNet.Identity;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>@ViewBag.Title - Airtel Sales</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="position: relative">
+    <div id="loading">
+        <img src="~/Content/please-wait-gif.gif" />
+    </div>
+
+    <aside class="side-nav" id="show-side-navigation1">
+        <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
+        <div class="heading">
+            <img src="~/Content/images/airtel-logo.png" alt="Airtel Logo" />
+            @*<div class="info">
+                <p><i class="fa fa-phone"></i> 01- 2776900</p>
+                <p><i class="fa fa-envelope-o"></i> info@bluechiptech.biz</p>
+            </div>*@
+        </div>
+
+
+        <ul class="categories">
+            @if (Request.IsAuthenticated)
+            {
+                <li class="@(ViewContext.RouteData.Values["Controller"].ToString()=="Dashboard" ? "active" : "")">
+                    <i class="fa fa-dashboard "></i> <a href="@Url.Action("Index", "Dashboard")"> Dashboard</a>
+                </li>
+                <li  class="@(ViewContext.RouteData.Values["Controller"].ToString()=="Survey" ? "active" : "")">
+                    <i class="fa fa-briefcase "></i> <a href="@Url.Action("Index", "Survey")"> Survey</a>
+                </li>
+                <li  class="@(ViewContext.RouteData.Values["Controller"].ToString()=="Incentive" ? "active" : "")">
+                    <i class="fa fa-credit-card"></i> <a href="@Url.Action("Index", "Incentive")"> Incentive</a>
+                </li>
+                <li  class="@(ViewContext.RouteData.Values["Controller"].ToString()=="Data" ? "active" : "")">
+                    <i class="fa fa-database "></i> <a href="@Url.Action("Index", "Data")"> Data</a>
+                </li>
+                <li  class="@(ViewContext.RouteData.Values["Controller"].ToString()=="Users" ? "active" : "")">
+                    <i class="fa fa-user "></i> <a href="#"> User</a>
+                    <ul class="side-nav-dropdown">
+                        <li><a href="@Url.Action("Index", "Users")" style="color: red">All User</a></li>
+                        <li><a href="@Url.Action("ZonalManager", "Users")" style="color: red">All Zonal Managers </a></li>
+                    </ul>
+                </li>
+                //if (ViewContext.HttpContext.User.IsInRole("EmpAdmin") || ViewContext.HttpContext.User.IsInRole("Employer"))
+                //{
+
+                //}
+
+
+            }
+        </ul>
+    </aside>
+
+    <section id="contents" style="position:relative">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header" style="margin-left: 25px">
+                    @*<a class="navbar-brand" href="#">my<span class="main-color">Dashboard</span></a>*@
+
+                    <ul class="nav navbar-nav navbar-right visible-xs">
+                        <li>
+                            @Html.Partial("_LoginPartial")
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            @Html.Partial("_LoginPartial")
+                        </li>
+
+                        @*<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My profile <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"><i class="fa fa-user-o fw"></i> My account</a></li>
+                                    <li><a href="#"><i class="fa fa-envelope-o fw"></i> My inbox</a></li>
+                                    <li><a href="#"><i class="fa fa-question-circle-o fw"></i> Help</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="fa fa-sign-out"></i> Log out</a></li>
+                                </ul>
+                            </li>*@
+
+                        <li>
+                            @if (ViewContext.HttpContext.User.IsInRole("Relationship Manager"))
+                            {
+                                <a class="notif-link" href="@Url.Action("Feedbacks", "Admin")">
+                                    <i class="fa fa-comments"></i>
+                                    <span id="admin_notification"> </span>
+                                </a>
+                            }
+                            else if (ViewContext.HttpContext.User.IsInRole("EmpAdmin") || ViewContext.HttpContext.User.IsInRole("Employer"))
+                            {
+                                <a class="notif-link" href="@Url.Action("Feedback", "Employer")">
+                                    <i class="fa fa-comments"></i>
+                                    <span id="notification"> </span>
+                                </a>
+                            }
+                        </li>
+
+                        @*<li><a href="#"><i class="fa fa-bell-o"></i><span>98</span></a></li>*@
+                        <li><a href="#"><i data-show="show-side-navigation1" class="fa fa-bars show-side-btn"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div style="width:100%; padding: 20px; padding-top: 0">
+            @RenderBody()
+        </div>
+
+
+        @*<footer class="footer-div ">
+            <p style="text-align: center">
+                &copy; @DateTime.Now.Year - Bluechip Technology &nbsp;&nbsp;&nbsp;
+                <a href="https://www.twitter.com/palpensions"><i class="fa fa-twitter top-icon"></i></a>
+                <a href="https://www.facebook.com/palpensions"><i class="fa fa-facebook top-icon"></i></a>
+                <a href="https://www.linkedin.com/company/3265910"><i class="fa fa-linkedin top-icon"></i></a>
+                <a href="https://www.instagram.com/palpensions"><i class="fa fa-instagram top-icon"></i></a>
+            </p>
+
+        </footer>*@
+        <br> <br>
+    </section>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+           
+
+            $("#alert").ready(function () {
+                setTimeout(function () {
+                    $(".alert").hide();
+                }, 20000);
+            })
+
+        })
+
+        $(function () {
+
+            'use strict';
+
+            (function () {
+
+                var aside = $('.side-nav'),
+
+                    showAsideBtn = $('.show-side-btn'),
+
+                    contents = $('#contents');
+
+                showAsideBtn.on("click", function () {
+
+                    $("#" + $(this).data('show')).toggleClass('show-side-nav');
+
+                    contents.toggleClass('margin');
+
+                });
+
+                if ($(window).width() <= 767) {
+
+                    aside.addClass('show-side-nav');
+
+                }
+                $(window).on('resize', function () {
+
+                    if ($(window).width() > 767) {
+                        $(".footer-div").addClass("increase-width")
+                        aside.removeClass('show-side-nav');
+
+                    }
+
+                });
+
+                // dropdown menu in the side nav
+                var slideNavDropdown = $('.side-nav-dropdown');
+
+                $('.side-nav .categories li').on('click', function () {
+
+                    $(this).toggleClass('opend').siblings().removeClass('opend');
+
+                    if ($(this).hasClass('opend')) {
+
+                        $(this).find('.side-nav-dropdown').slideToggle('fast');
+
+                        $(this).siblings().find('.side-nav-dropdown').slideUp('fast');
+
+                    } else {
+
+                        $(this).find('.side-nav-dropdown').slideUp('fast');
+
+                    }
+
+                });
+
+                $('.side-nav .close-aside').on('click', function () {
+
+                    $('#' + $(this).data('close')).addClass('show-side-nav');
+
+                    contents.removeClass('margin');
+
+                });
+
+            }());
+
+
+
+        });
+    </script>
+</body>
+</html>

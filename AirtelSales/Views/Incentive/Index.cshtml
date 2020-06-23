@@ -1,0 +1,483 @@
+﻿@*@model IEnumerable<AirtelSales.DAL.AreaManager>*@
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="az-content-body az-content-body-dashboard-six">
+
+    <h2 class="az-content-title tx-24 mg-b-5">Hi, welcome back!</h2>
+    <p class="mg-b-25">Dealer Incentive and performance  dashboard.</p>
+    <div class="az-content-header-top">
+        <div class="az-dashboard-date">
+            <div class="date">
+                <div>Q2: Apr 2020</div>
+                <div></div>
+                <div>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div><!-- az-dashboard-date -->
+            <i class="icon ion-md-arrow-forward"></i>
+            <div class="date">
+                <div>Jun 2020</div>
+                <div>
+                    <span> </span>
+                    <span></span>
+                </div>
+            </div><!-- az-dashboard-date -->
+        </div><!-- az-dashboard-date -->
+    </div>
+
+    <div class="row row-sm mg-b-20">
+        <div class="col-sm-6 col-lg-3">
+            <div class="card card-dashboard-donut">
+                <div class="card-header">
+                    <h6 class="card-title mg-b-10">% ORSC Attainment</h6>
+                    <p class="mg-b-0 tx-12 tx-gray-500">Percentage of ORSC sales revenue target achieved <a href="">Learn more</a></p>
+                </div><!-- card-header -->
+                <div class="card-body">
+                    <div class="az-donut-chart chart1">
+                        <div class="slice one"></div>
+                        <div class="slice two"></div>
+                        <div class="chart-center">
+                            <span></span>
+                        </div>
+                    </div>
+                </div><!-- card-body -->
+            </div><!-- card -->
+        </div>
+        <div class="col-sm-6 col-lg-3 mg-t-20 mg-sm-t-0">
+            <div class="card card-dashboard-donut">
+                <div class="card-header">
+                    <h6 class="card-title mg-b-10">% BTS Attainment</h6>
+                    <p class="mg-b-0 tx-12 tx-gray-500">Measures Percentage of BTS target Revenue accomplished <a href="">Learn more</a></p>
+                </div><!-- card-header -->
+                <div class="card-body">
+                    <div class="az-donut-chart chart2">
+                        <div class="slice one"></div>
+                        <div class="slice two"></div>
+                        <div class="chart-center">
+                            <span></span>
+                        </div>
+                    </div>
+                </div><!-- card-body -->
+            </div><!-- card -->
+        </div>
+        <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-balance">
+                <div class="card-body">
+
+                    <label class="az-content-label mg-b-0">Your EVC Balance</label>
+                    <h1 class="balance-amount"><span>N</span>780,560<small>.00</small></h1>
+
+                    <label class="az-content-label mg-b-2">Your Dealer Code</label>
+                    <div class="account-number">
+
+                        <span>DPLN202459</span>
+                    </div><!-- account-number -->
+
+                    <div class="d-sm-flex">
+                        <div>
+                            <label class="az-content-label">Dealer Name</label>
+                            <h5 class="account-name">Sharubutu & Sons Ltd</h5>
+                        </div>
+                        <div class="mg-t-20 mg-sm-t-0 mg-sm-l-50">
+                            <label class="az-content-label">Account Status</label>
+                            <h5 class="account-name">Credit</h5>
+                        </div>
+                    </div>
+                </div><!-- card-body -->
+                <div class="chart-wrapper">
+                    <div id="flotChart2" class="flot-chart"></div>
+                </div><!-- chart-wrapper -->
+            </div><!-- card -->
+        </div>
+        <div class="col-lg-6 mg-t-20">
+            <div class="card card-dashboard-ratio">
+                <div class="card-body">
+                    <div>
+                        <div class="card-icon"><i class="typcn typcn-chart-line-outline"></i></div>
+                    </div>
+                    <div>
+                        <h6 class="card-title mg-b-7">Corporate Sales Payable</h6>
+                        <h5>2,300,000</h5>
+                        <div class="progress ht-5 mg-b-5">
+                            <div class="progress-bar bg-warning wd-40p" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <span class="tx-12 tx-gray-500">Incentive: 5% Total Recharge</span>
+
+                        <p class="mg-t-10 mg-b-0">Criteria : 1000 Usage OR CUG <a href="">Learn more</a></p>
+                    </div>
+                </div><!-- card-body -->
+                <div class="card-body">
+                    <div>
+                        <div class="card-icon"><i class="typcn typcn-chart-area-outline"></i></div>
+                    </div>
+                    <div>
+                        <h6 class="card-title mg-b-7">Sales & Distribution Payable</h6>
+                        <h5>280,000</h5>
+                        <div class="progress ht-5 mg-b-5">
+                            <div class="progress-bar bg-success wd-60p" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <span class="tx-12 tx-gray-500">Incentive : N100 per activation</span>
+                        <p class="mg-t-10 mg-b-0">Criteria: SIM ACTIVATION + 1000 Naira min recharge <a href="">Learn more</a></p>
+                    </div>
+                </div><!-- card-body -->
+            </div><!-- card -->
+        </div>
+        <div class="col-lg-6 mg-t-20">
+            <div class="row row-sm">
+                <div class="col-sm-6">
+                    <div class="card card-dashboard-finance">
+                        <h6 class="card-title">Activations</h6>
+                        <span class="peity-bar" data-peity='{ "fill": ["#560bd0"], "height": 27, "width": 70 }'>7,5,9,10,1,4,4,7,5,10,4,4</span>
+                        <h2><span></span>830,320<small></small></h2>
+                        <span class="tx-12"><span class="tx-success tx-bold">18.2%</span> higher vs previous month</span>
+                    </div>
+                </div><!-- col -->
+                <div class="col-sm-6 mg-t-20 mg-sm-t-0">
+                    <div class="card card-dashboard-finance">
+                        <h6 class="card-title">Active Base</h6>
+                        <span class="peity-bar" data-peity='{ "fill": ["#007bff"], "height": 27, "width": 70 }'>10,4,4,7,5,9,10,3,4,4,7,5</span>
+                        <h2><span></span>830,370<small>.00</small></h2>
+                        <span class="tx-12"><span class="tx-danger tx-bold">0.7%</span> higher vs previous month</span>
+                    </div>
+                </div><!-- col -->
+                <div class="col-sm-6 mg-t-20">
+                    <div class="card card-dashboard-finance">
+                        <h6 class="card-title">Recharge</h6>
+                        <span class="peity-bar" data-peity='{ "fill": ["#00cccc"], "height": 27, "width": 70 }'>7,5,9,10,5,4,4,7,5,10,4,4</span>
+                        <h2><span>N</span>9,112<small>.00</small></h2>
+                        <span class="tx-12"><span class="tx-success tx-bold">0.7%</span> higher vs previous month</span>
+                    </div>
+                </div><!-- col -->
+                <div class="col-sm-6 mg-t-20">
+                    <div class="card card-dashboard-finance">
+                        <h6 class="card-title">Usage</h6>
+                        <span class="peity-bar" data-peity='{ "fill": ["#f10075"], "height": 27, "width": 70 }'>1,4,4,7,5,10,4,7,5,9,10,4</span>
+                        <h2><span>N</span>8,216<small>.00</small></h2>
+                        <span class="tx-12"><span class="tx-success tx-bold">0.7%</span> higher vs previous month</span>
+                    </div>
+                </div><!-- col -->
+            </div><!-- row -->
+        </div>
+
+
+
+        <div class="col-12 mg-t-20">
+            <div class="card card-dashboard-table-six">
+                <h6 class="card-title">Performance Review</h6>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th colspan="5">Quarter To Date (QTD)</th>
+                                <th colspan="2">Year To Date (YTD)</th>
+                            </tr>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>Actual</th>
+                                <th>Target</th>
+                                <th>Variance</th>
+                                <th>% Variance</th>
+                                <th>Actual</th>
+                                <th>Target</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Activations</td>
+                                <td>232,243</td>
+                                <td>399,768</td>
+                                <td>40,234</td>
+                                <td>5.1%</td>
+                                <td>2,983,098</td>
+                                <td>2,092,243</td>
+                            </tr>
+                            <tr>
+                                <td>Activebase</td>
+                                <td>2,232,877</td>
+                                <td>3,099,565</td>
+                                <td>400,020</td>
+                                <td>6.8%</td>
+                                <td>28,983,091</td>
+                                <td>29,092,765</td>
+                            </tr>
+                            <tr>
+                                <td>Recharge</td>
+                                <td>32,435</td>
+                                <td>99,789</td>
+                                <td>20,020</td>
+                                <td>16.9%</td>
+                                <td>183,566</td>
+                                <td>292,897</td>
+                            </tr>
+                            <tr>
+                                <td>Usage</td>
+                                <td>76,877</td>
+                                <td>98,565</td>
+                                <td>123,020</td>
+                                <td>15.0%</td>
+                                <td>101,675</td>
+                                <td>122,232</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div><!-- table-responsive -->
+            </div><!-- card -->
+        </div><!-- col -->
+    </div><!-- row -->
+
+    <div class="row row-sm mg-b-20">
+        <div class="col-lg-4">
+            <div class="card card-dashboard-pageviews">
+                <div class="card-header">
+                    <h6 class="card-title">Underperforming subdealers</h6>
+                    <p class="card-text"></p>
+                </div><!-- card-header -->
+                <div class="card-body">
+                    <div class="az-list-item">
+                        <div>
+                            <h6>Subdealer 1</h6>
+
+                        </div>
+                        <div>
+                            <h6 class="tx-primary">7,755</h6>
+
+                        </div>
+                    </div><!-- list-group-item -->
+                    <div class="az-list-item">
+                        <div>
+                            <h6>Subdealer 2</h6>
+
+                        </div>
+                        <div>
+                            <h6 class="tx-primary">5,215</h6>
+
+                        </div>
+                    </div><!-- list-group-item -->
+                    <div class="az-list-item">
+                        <div>
+                            <h6>Subdealer 3</h6>
+
+                        </div>
+                        <div>
+                            <h6 class="tx-primary">4,848</h6>
+
+                        </div>
+                    </div><!-- list-group-item -->
+                    <div class="az-list-item">
+                        <div>
+                            <h6>Subdealer 4</h6>
+
+                        </div>
+                        <div>
+                            <h6 class="tx-primary">3,275</h6>
+
+                        </div>
+                    </div><!-- list-group-item -->
+                    <div class="az-list-item">
+                        <div>
+                            <h6>Subdealer 5</h6>
+
+                        </div>
+                        <div>
+                            <h6 class="tx-primary">3,003</h6>
+
+                        </div>
+                    </div><!-- list-group-item -->
+                </div><!-- card-body -->
+            </div><!-- card -->
+
+        </div><!-- col -->
+        <div class="col-lg-8 mg-t-20 mg-lg-t-0">
+            <div class="card card-dashboard-four">
+                <div class="card-header">
+                    <h6 class="card-title">Incentive Mix</h6>
+                </div><!-- card-header -->
+                <div class="card-body row">
+                    <div class="col-md-6 d-flex align-items-center">
+                        <div class="chart"><canvas id="chartDonut"></canvas></div>
+                    </div><!-- col -->
+                    <div class="col-md-6 col-lg-5 mg-lg-l-auto mg-t-20 mg-md-t-0">
+                        <div class="az-traffic-detail-item">
+                            <div>
+
+                                <span>Product Sales</span>
+                                <span> <span>(25%)</span></span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-red wd-10p" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div><!-- progress -->
+                        </div>
+                        <div class="az-traffic-detail-item">
+                            <div>
+                                <span>Activation</span>
+                                <span> <span>(30%)</span></span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-red wd-30p" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div><!-- progress -->
+                        </div>
+                        <div class="az-traffic-detail-item">
+                            <div>
+                                <span>Recharges</span>
+                                <span><span>(25%)</span></span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-red wd-25p" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div><!-- progress -->
+                        </div>
+                        <div class="az-traffic-detail-item">
+                            <div>
+                                <span>Usage</span>
+                                <span> <span>(30%)</span></span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-red wd-30p" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div><!-- progress -->
+                        </div>
+                        <div class="az-traffic-detail-item">
+                            <div>
+                                <span>Other discretionary payment</span>
+                                <span> <span>(5%)</span></span>
+                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-red0 wd-5p" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div><!-- progress -->
+                        </div>
+                    </div><!-- col -->
+                </div><!-- card-body -->
+            </div><!-- card-dashboard-four -->
+        </div><!-- col -->
+    </div><!-- row -->
+
+</div><!-- az-content-body -->
+
+
+<script src="~/Omnistack-UI-html/lib/jquery/jquery.min.js"></script>
+<script src="~/Omnistack-UI-html/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/Omnistack-UI-html/lib/ionicons/ionicons.js"></script>
+<script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.js"></script>
+<script src="~/Omnistack-UI-html/lib/jquery.flot/jquery.flot.resize.js"></script>
+<script src="~/Omnistack-UI-html/lib/peity/jquery.peity.min.js"></script>
+<script src="~/Omnistack-UI-html/lib/chart.js/Chart.bundle.min.js"></script>
+<script src="~/Omnistack-UI-html/js/azia.js"></script>
+<script src="~/Omnistack-UI-html/js/chart.flot.sampledata.js"></script>
+
+
+<script>
+    $(function () {
+        'use strict'
+
+        if ($('.az-iconbar .nav-link.active').length) {
+            var targ = $('.az-iconbar .nav-link.active').attr('href');
+            $(targ).addClass('show');
+
+            if (window.matchMedia('(min-width: 1200px)').matches) {
+                $('.az-iconbar-aside').addClass('show');
+            }
+
+            if (window.matchMedia('(min-width: 992px)').matches &&
+                window.matchMedia('(max-width: 1199px)').matches) {
+                $('.az-iconbar .nav-link.active').removeClass('active');
+            }
+        }
+
+        $('.az-iconbar .nav-link').on('click', function (e) {
+            e.preventDefault();
+
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+
+            $('.az-iconbar-aside').addClass('show');
+
+            var targ = $(this).attr('href');
+            $(targ).addClass('show');
+            $(targ).siblings().removeClass('show');
+        });
+
+        $('.az-iconbar-body .with-sub').on('click', function (e) {
+            e.preventDefault();
+            $(this).parent().addClass('show');
+            $(this).parent().siblings().removeClass('show');
+        });
+
+        $('.az-iconbar-toggle-menu').on('click', function (e) {
+            e.preventDefault();
+
+            if (window.matchMedia('(min-width: 992px)').matches) {
+                $('.az-iconbar .nav-link.active').removeClass('active');
+                $('.az-iconbar-aside').removeClass('show');
+            } else {
+                $('body').removeClass('az-iconbar-show');
+            }
+        })
+
+        $('#azIconbarShow').on('click', function (e) {
+            e.preventDefault();
+            $('body').toggleClass('az-iconbar-show');
+        });
+
+
+        $.plot('#flotChart2', [{
+            data: flotSampleData1,
+            color: '#969dab'
+        }], {
+            series: {
+                shadowSize: 0,
+                lines: {
+                    show: true,
+                    lineWidth: 2,
+                    fill: true,
+                    fillColor: { colors: [{ opacity: 0 }, { opacity: 0.2 }] }
+                }
+            },
+            grid: {
+                borderWidth: 0,
+                labelMargin: 0
+            },
+            yaxis: { show: false },
+            xaxis: { show: false }
+        });
+
+
+        //// Mini Bar charts
+        //$('.peity-bar').peity('bar');
+
+
+        // Donut Chart
+        var datapie = {
+            labels: ['Product Sales', 'Activation', 'Recharge', 'Usage', 'Other'],
+            datasets: [{
+                data: [10, 30, 25, 30, 5],
+                backgroundColor: ['#DC143C', '#B22222', '#FF0000', '#E9967A', '#FF4500']
+            }]
+        };
+
+        var optionpie = {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+                display: false,
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        };
+
+        // For a doughnut chart
+        var ctxpie = document.getElementById('chartDonut');
+        var myPieChart6 = new Chart(ctxpie, {
+            type: 'doughnut',
+            data: datapie,
+            options: optionpie
+        });
+    });
+</script>
+
+
