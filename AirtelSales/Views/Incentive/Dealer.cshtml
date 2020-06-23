@@ -34,27 +34,10 @@
                         <table id="table_id" class="table table-striped">
                             <thead>
                                 <tr>
-                                    @*<th>
-                                        @Html.DisplayNameFor(model => model.DealerCode)
-                                    </th>*@
                                     <th>
                                         @Html.DisplayNameFor(model => model.DealerName)
                                     </th>
-                                    @*<th>
-                                                                    @Html.DisplayNameFor(model => model.RegionCode)
-                                                                </th>
-                                                                <th>
-                                            @Html.DisplayNameFor(model => model.target_activation)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.target_activebase)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.target_recharge)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.target_usage)
-                                        </th>*@
+                                   
                                     <th>
                                         @Html.DisplayNameFor(model => model.distribution_pct)
                                     </th>
@@ -65,16 +48,16 @@
                                             @Html.DisplayNameFor(model => model.fraction_pct)
                                         </th>*@
                                     <th>
-                                        @Html.DisplayNameFor(model => model.actual_activation)
+                                        @Html.DisplayName("Activation")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.actual_activebase)
+                                        @Html.DisplayName("ActiveBase")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.actual_recharge)
+                                        @Html.DisplayName("Recharge") 
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.actual_usage)
+                                        @Html.DisplayName("Usage")
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.ref_period)

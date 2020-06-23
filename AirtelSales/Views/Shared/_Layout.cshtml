@@ -67,17 +67,12 @@
                 <li class="nav-label">Main Menu</li>
                 @if (ViewContext.HttpContext.User.IsInRole("RegionalManager") || ViewContext.HttpContext.User.IsInRole("ZonalManager") || ViewContext.HttpContext.User.IsInRole("AreaManager") || ViewContext.HttpContext.User.IsInRole("MarketDeveloper"))
                 {
-                    <li class="nav-item ">
+                    <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString() == "Dashboard" ? "active" : "")">
                         <a href="@Url.Action("Index", "Dashboard")" class="nav-link "><i class="typcn typcn-clipboard"></i>Dashboard</a>
-                        <ul class="nav-sub">
-                            <li class="nav-sub-item">
-                                <a href="http://104.40.131.15/cem/Segment/Create" class="nav-sub-link">Create Segment</a>
-                            </li>
-
-                        </ul>
+                        
                     </li>
                     <!-- nav-item -->
-                    <li class="nav-item">
+                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Survey" ? "active" : "")">
                         <a href="@Url.Action("Index", "Survey")" class="nav-link "><i class="fa fa-briefcase"></i>Survey</a>
 
                     </li>
@@ -91,16 +86,16 @@
                     //AirtelSalesDBEntities db = new AirtelSalesDBEntities();
                     //var userId = User.Identity.GetUserId();
                     //var mkt = db.MarketDevelopers.Where(m => m.UserId == userId).FirstOrDefault();
-                    <li class="nav-item">
+                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "IncentiveConfigs" ? "active" : "")">
                         <a href="#" class="nav-link with-sub"><i class="fa fa-money-bill" style="font-size: 1.1em"></i> Incentive </a>
                         <ul class="nav-sub">
                             @if (ViewContext.HttpContext.User.IsInRole("MarketDeveloper"))
                             {
-                                <li class="nav-sub-item">
+                                <li class="nav-sub-item @(ViewContext.RouteData.Values["controller"].ToString() == "Incentive" ? "active" : "")">
                                     <a href="@Url.Action("Dashboard", "Incentive")" class="nav-sub-link"><i class="fa fa-money-bill" style="font-size: 1.1em"></i> Incentive </a>
                                 </li>
                             }
-                            <li class="nav-sub-item">
+                            <li class="nav-sub-item @(ViewContext.RouteData.Values["controller"].ToString() == "IncentiveConfigs" ? "active" : "")">
                                 <a href="@Url.Action("Index", "IncentiveConfigs")" class="nav-link "><i class="fa fa-address-book" style="font-size: 1.1em"></i> Configuration </a>
                             </li>
 
@@ -108,13 +103,13 @@
                     </li>
 
 
-                    <li class="nav-item">
+                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Data" ? "active" : "")">
                         <a href="@Url.Action("Index", "Data")" class="nav-link w"><i class="fa fa-database"></i> Data</a>
                     </li>
                     if (ViewContext.HttpContext.User.IsInRole("RegionalManager"))
                     {
                         AirtelSalesDBEntities db = new AirtelSalesDBEntities();
-                        <li class="nav-item">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Users" ? "active" : "")">
                             <a href="@Url.Action("Index", "Users")" class="nav-link w"><i class="fa fa-user"></i> User Management </a>
                         </li>
                     }
@@ -122,7 +117,7 @@
 
                 else
                 {
-                    <li class="nav-item">
+                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Incentive" ? "active" : "")">
                         <a href="@Url.Action("Index", "Incentive")" class="nav-link "><i class="fa fa-money-bill" style="font-size: 1.1em"></i> Dashboard</a>
 
                     </li>
