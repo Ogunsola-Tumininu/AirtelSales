@@ -17,8 +17,8 @@
 
 
     <!-- Meta -->
-    <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
-    <meta name="author" content="ThemePixels">
+    <meta name="description" content="Airtel Sales Portal">
+    <meta name="author" content="conclave">
 
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @*@Styles.Render("~/Content/css")*@
@@ -47,17 +47,17 @@
     @*<link href="~/Omnistack-UI-html/css/azia.css" rel="stylesheet" />*@
 
 </head>
-<body class="az-body az-body-sidebar az-body-dashboard-nine">
+<body class="az-body az-body-sidebar az-body-dashboard-nine bg-gray-100">
 
-    <div class="az-sidebar az-sidebar-sticky az-sidebar-green" style="background: #f7d0d4 !important">
+    <div class="az-sidebar az-sidebar-sticky bg-white">
         <div class="az-sidebar-header">
             <a href="../template/index.html" class="az-logo">
-                <img src="~/Content/images/airtel-logo.png" alt="Airtel Logo" style="width: 120px; margin-top:20px" />
+                <img src="~/Content/images/airtel-logo.png" width="120" alt="Airtel Logo"/>
             </a>
         </div><!-- az-sidebar-header -->
         <div class="az-sidebar-loggedin">
             @*<div class="az-img-user onlin">
-                    <img src="~/Content/images/airtel-logo.png" alt="Airtel Logo" />
+                    <img src="~/Content/images/airtel-logo.png" width="120" alt="Airtel Logo" />
                 </div>*@
             <div class="media-body">
                 @*@Html.Partial("_LoginPartial")*@
@@ -69,17 +69,17 @@
                 @if (ViewContext.HttpContext.User.IsInRole("RegionalManager") || ViewContext.HttpContext.User.IsInRole("ZonalManager") || ViewContext.HttpContext.User.IsInRole("AreaManager") || ViewContext.HttpContext.User.IsInRole("MarketDeveloper"))
                 {
                     <li class="nav-item  @(ViewContext.RouteData.Values["controller"].ToString() == "Dashboard" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Dashboard")" class="nav-link "><i class="typcn typcn-clipboard"></i>Dashboard</a>
+                        <a href="@Url.Action("Index", "Dashboard")" class="nav-link "><i class="far fa-tachometer-alt"></i>Dashboard</a>
                         
                     </li>
                     <!-- nav-item -->
                     <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Survey" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Survey")" class="nav-link "><i class="fa fa-briefcase"></i>Survey</a>
+                        <a href="@Url.Action("Index", "Survey")" class="nav-link "><i class="far fa-poll-h"></i>Survey</a>
 
                     </li>
 
                     @*<li class="nav-item">
-                        <a href="@Url.Action("Index", "IncentiveConfigs")" class="nav-link "><i class="fa fa-address-book" style="font-size: 1.1em"></i> Incentive Config</a>
+                        <a href="@Url.Action("Index", "IncentiveConfigs")" class="nav-link "> Incentive Config</a>
 
                     </li>*@
 
@@ -88,16 +88,16 @@
                     //var userId = User.Identity.GetUserId();
                     //var mkt = db.MarketDevelopers.Where(m => m.UserId == userId).FirstOrDefault();
                     <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "IncentiveConfigs" ? "active" : "")">
-                        <a href="#" class="nav-link with-sub"><i class="fa fa-money-bill" style="font-size: 1.1em"></i> Incentive </a>
+                        <a href="#" class="nav-link with-sub"><i class="far fa-usd-circle-wave" ></i> Incentive </a>
                         <ul class="nav-sub">
                             @if (ViewContext.HttpContext.User.IsInRole("MarketDeveloper"))
                             {
                                 <li class="nav-sub-item @(ViewContext.RouteData.Values["controller"].ToString() == "Incentive" ? "active" : "")">
-                                    <a href="@Url.Action("Dashboard", "Incentive")" class="nav-sub-link"><i class="fa fa-money-bill" style="font-size: 1.2em; margin-right:10px"></i> Incentive </a>
+                                    <a href="@Url.Action("Dashboard", "Incentive")" class="nav-sub-link"><i class="far fa-usd-circle"></i> Incentive </a>
                                 </li>
                             }
                             <li class="nav-sub-item @(ViewContext.RouteData.Values["controller"].ToString() == "IncentiveConfigs" ? "active" : "")">
-                                <a href="@Url.Action("Index", "IncentiveConfigs")" class="nav-sub-link "><i class="fa fa-address-book" style="font-size: 1.2em; margin-right:10px"></i> Configuration </a>
+                                <a href="@Url.Action("Index", "IncentiveConfigs")" class="nav-sub-link ">Configuration </a>
                             </li>
 
                         </ul>
@@ -105,13 +105,13 @@
 
 
                     <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Data" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Data")" class="nav-link w"><i class="fa fa-database"></i> Data</a>
+                        <a href="@Url.Action("Index", "Data")" class="nav-link w"><i class="far fa-database"></i> Data</a>
                     </li>
                     if (ViewContext.HttpContext.User.IsInRole("RegionalManager"))
                     {
                         AirtelSalesDBEntities db = new AirtelSalesDBEntities();
                         <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Users" ? "active" : "")">
-                            <a href="@Url.Action("Index", "Users")" class="nav-link w"><i class="fa fa-user"></i> User Management </a>
+                            <a href="@Url.Action("Index", "Users")" class="nav-link w"><i class="far fa-user"></i> User Management </a>
                         </li>
                     }
                 }
@@ -119,11 +119,11 @@
                 else
                 {
                     <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Incentive" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Incentive")" class="nav-link "><i class="fa fa-money-bill" style="font-size: 1.1em"></i> Dashboard</a>
+                        <a href="@Url.Action("Index", "Incentive")" class="nav-link "><i class="far fa-tachometer-alt"></i> Dashboard</a>
 
                     </li>
                     @*<li class="nav-item">
-                            <a href="@Url.Action("Index", "Survey")" class="nav-link "><i class="fa fa-briefcase"></i>Survey</a>
+                            <a href="@Url.Action("Index", "Survey")" class="nav-link "><i class="far fa-poll-h"></i>Survey</a>
 
                         </li>*@
                 }
@@ -133,13 +133,13 @@
                 </li>
 
                 @*<li class="@(ViewContext.RouteData.Values["Controller"].ToString()=="Survey" ? "active" : "")">
-                        <i class="fa fa-briefcase "></i> <a href="@Url.Action("Index", "Survey")"> Survey</a>
+                        <i class="far fa-poll-h "></i> <a href="@Url.Action("Index", "Survey")"> Survey</a>
                     </li>
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString()=="Incentive" ? "active" : "")">
-                        <i class="fa fa-credit-card"></i> <a href="@Url.Action("Index", "Incentive")"> Incentive</a>
+                        <i class="far fa-credit-card"></i> <a href="@Url.Action("Index", "Incentive")"> Incentive</a>
                     </li>
                     <li class="@(ViewContext.RouteData.Values["Controller"].ToString()=="Data" ? "active" : "")">
-                        <i class="fa fa-database "></i> <a href="@Url.Action("Index", "Data")"> Data</a>
+                        <i class="far fa-database "></i> <a href="@Url.Action("Index", "Data")"> Data</a>
                     </li>*@
 
                 <!-- nav-item -->
@@ -153,7 +153,7 @@
                     <a href="" id="azSidebarToggle" class="az-header-menu-icon"><span></span></a>
                 </div><!-- az-header-left -->
                 <div class="az-header-center">
-                    <a style="color: black" href="@Url.Action("Index", "Manage")">Hello  @User.Identity.GetUserName() </a>
+                    
                     @*<input type="search" class="form-control" placeholder="Search for anything...">
                         <button class="btn"><i class="fas fa-search"></i></button>*@
                 </div><!-- az-header-center -->
@@ -210,19 +210,9 @@
                             <div class="az-dropdown-header d-sm-none">
                                 <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
                             </div>
-                            <div class="az-header-profile">
-                                <div class="az-img-user">
-                                    <img src="https://via.placeholder.com/500x500" alt="">
-                                </div><!-- az-img-user -->
-                                <h6>Aziana Pechon</h6>
-                                <span>Premium Member</span>
-                            </div><!-- az-header-profile -->
-
-                            <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
-                            <a href="" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
-                            <a href="" class="dropdown-item"><i class="typcn typcn-time"></i> Activity Logs</a>
-                            <a href="" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
-                            <a href="page-signin.html" class="dropdown-item"><i class="typcn typcn-power-outline"></i> Sign Out</a>
+                            <a href="" class="dropdown-item"><i class="far fa-eye"></i>Logs</a>
+                            <a href="" class="dropdown-item"><i class="far fa-cog"></i> Account Settings</a>
+                            <a href="" class="dropdown-item"><i class="far fa-sign-out"></i> Sign Out</a>
                         </div><!-- dropdown-menu -->
                     </div>
                 </div><!-- az-header-right -->
@@ -252,8 +242,8 @@
         </div><!-- az-content-body -->
         @*<div class="az-footer">
                 <div class="container-fluid">
-                    <span>&copy; 2018 Azia Responsive Bootstrap 4 Dashboard Template</span>
-                    <span>Designed by: ThemePixels</span>
+                    <span>&copy; 2020 Airtel Sales Portal</span>
+                    <span>Bluechip Technologies Limited</span>
                 </div>
             </div>*@
     </div><!-- az-content -->

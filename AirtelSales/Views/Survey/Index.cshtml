@@ -1,86 +1,133 @@
 ﻿@model IEnumerable<AirtelSales.DAL.survey_types>
-@using AirtelSales.DAL;
+    @using AirtelSales.DAL;
 
-@{
+    @{
     ViewBag.Title = "Index";
-}
+    }
 
-<div class="col-md-12">
-    <div class="card card-dashboard-twelve mg-b-20">
 
-        <div class="media-body">
-            <div class="card card-minimal-two">
-                <div class="card-header">
-                    <h2>Survey Type</h2>
-                    <a href="@Url.Action("Create", "Survey" )" class="btn btn-outline-danger float-right">Create</a>
+
+    <!-- THIS NEEDS TO BE ABOVE THE THE AZ-CONTENT-BODY DIV  -->
+    <div class="row bg-white bd-y bd-x-0 bd-gray-300 pd-y-15 pd-x-15 ">
+        <div class="col-lg-2">
+            <div class="btn-group">
+                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="fa fa-filter mg-r-10"></i>Filter
+                </button>
+                <div class="dropdown-menu">
+                    <form class="px-4 py-3">
+                        <div class="form-group">
+
+
+                        </div>
+                    </form>
+
+
+
+
                 </div>
-                <div class="card-body">
 
-                </div><!-- card-body -->
-            </div><!-- card minimal-->
-        </div> <!--media body-->
-    </div> <!--card-->
-</div>
+            </div>
 
-@if (ViewContext.HttpContext.User.IsInRole("MarketDeveloper"))
-{
+
+
+        </div>
+
+        <div class="col-lg-4">
+            <div class="bd-l bd-gray-200 pd-l-10">
+                <input class="form-control" placeholder="Search survey" type="text">
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-6">
+            <a href="@Url.Action(" create",="" "survey"="" )"="" class="btn btn-small btn-primary float-right"><i
+                    class="fa fa-plus mg-r-10"></i>Create
+                survey</a></div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="card card-dashboard-twelve mg-b-20">
+
+            <div class="media-body">
+                <div class="card card-minimal-two">
+                    <div class="card-header">
+                        <h2>Survey Type</h2>
+                        <a href="@Url.Action(" Create", "Survey" )"
+                            class="btn btn-outline-danger float-right">Create</a>
+                    </div>
+                    <div class="card-body">
+
+                    </div><!-- card-body -->
+                </div><!-- card minimal-->
+            </div>
+            <!--media body-->
+        </div>
+        <!--card-->
+    </div>
+
+    @if (ViewContext.HttpContext.User.IsInRole("MarketDeveloper"))
+    {
     @*<div class="col-md-12">
-            <div class="card card-dashboard-twelve mg-b-20">
+        <div class="card card-dashboard-twelve mg-b-20">
 
-                <div class="media-body">
-                    <div class="card card-minimal-two">
+            <div class="media-body">
+                <div class="card card-minimal-two">
 
-                        <div class="card-body">
-                            <div style="margin-top: 20px">
-                                <h5>Select Survey to Fill Questionaire</h5>
-                                <div class="row">
+                    <div class="card-body">
+                        <div style="margin-top: 20px">
+                            <h5>Select Survey to Fill Questionaire</h5>
+                            <div class="row">
 
 
-                                    @foreach (var item in Model)
-                                    {
-                                        <div class="col-md-4" style="margin-bottom: 20px">
-                                            <a href="@Url.Action("SurveyType", "Survey", new { id = item.Id })" class="btn btn-outline-danger">@item.SurveyName</a>
-                                        </div>
-                                    }
+                                @foreach (var item in Model)
+                                {
+                                <div class="col-md-4" style="margin-bottom: 20px">
+                                    <a href="@Url.Action(" SurveyType", "Survey" , new { id=item.Id })"
+                                        class="btn btn-outline-danger">@item.SurveyName</a>
                                 </div>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>*@
-}
+        </div>
+    </div>*@
+    }
 
-<div class="col-md-12">
-    <div class="card card-dashboard-twelve mg-b-20">
+    <div class="col-md-12">
+        <div class="card card-dashboard-twelve mg-b-20">
 
-        <div class="media-body">
-            <div class="card card-minimal-two">
-                @*<div class="card-header">
+            <div class="media-body">
+                <div class="card card-minimal-two">
+                    @*<div class="card-header">
 
                     </div>*@
-                <div class="card-body">
-                    <div style="margin: 20px auto">
-                        <table id="table_id" class="table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        @Html.DisplayName("Survey Type")
-                                    </th>
-                                    <th>
-                                        @Html.DisplayName("Survey Description")
-                                    </th>
-                                    <th>
-                                        @Html.DisplayName("Survey Count")
-                                    </th>
-                                    <th>
+                    <div class="card-body">
+                        <div style="margin: 20px auto">
+                            <table id="table_id" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayName("Survey Type")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Survey Description")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Survey Count")
+                                        </th>
+                                        <th>
 
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
                                     AirtelSalesDBEntities db = new AirtelSalesDBEntities();
                                     var surveyCount = db.all_surveys.Where(m => m.SurveyTypeId == item.Id).Count();
                                     <tr>
@@ -95,28 +142,31 @@
                                         </td>
 
                                         <td>
-                                            <a class="btn btn-outline-info" href="@Url.Action("List", "Survey", new { Id = item.Id})">View Survey</a>
+                                            <a class="btn btn-outline-info" href="@Url.Action(" List", "Survey" , new {
+                                                Id=item.Id})">View Survey</a>
                                         </td>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div><!-- card-body -->
-            </div><!-- card minimal-->
-        </div> <!--media body-->
-    </div> <!--card-->
-</div>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- card-body -->
+                </div><!-- card minimal-->
+            </div>
+            <!--media body-->
+        </div>
+        <!--card-->
+    </div>
 
 
 
 
-@*<p>
+    @*<p>
         @Html.ActionLink("Create New", "Create")
     </p>*@
 
-<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
-@section Scripts{
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    @section Scripts{
     <script src="~/Omnistack-UI-html/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/Omnistack-UI-html/lib/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="~/Omnistack-UI-html/lib/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
@@ -133,4 +183,4 @@
             });
         });
     </script>
-}
+    }
